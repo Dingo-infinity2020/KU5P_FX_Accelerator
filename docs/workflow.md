@@ -1,5 +1,33 @@
 # 仓库与开发流程
 
+## 本地工作区
+
+源码与构建产物分离，全部放在 NVMe（D 盘），不要放在 C 盘、桌面、OneDrive 或 `Documents` 下。
+
+```
+D:\work\
+├─ KU5P_FX_Accelerator\                      # git 仓库，只放源码/脚本/文档
+│  ├─ rtl\
+│  ├─ constr\
+│  ├─ tcl\
+│  └─ docs\
+├─ build\
+│  └─ KU5P_FX_Accelerator\                   # 构建产物，不入库
+│     └─ <top>_<part>\                       # 一次构建一个目录
+│        ├─ project\                         # Vivado 工程
+│        ├─ reports\
+│        ├─ <top>_routed.dcp
+│        └─ <top>.bit
+└─ (旧版本/归档可另建 archive\)
+```
+
+约定：
+
+- 仓库目录内**不产生任何构建输出**，`build_dir` 永远指向 `D:\work\build\...`。
+- 路径不含空格与中文；`LongPathsEnabled` 已开启（Vivado 深层路径易超 260 字符）。
+- 临时目录统一 `D:\tmp`，已加入 Defender 排除项。
+- F: 移动硬盘只做归档备份，不承载工程或构建。
+
 ## 分支
 
 - `main`：可构建、可上板的状态。

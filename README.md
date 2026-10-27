@@ -39,8 +39,10 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 ```powershell
 # 用法: <part> <top> [工程目录]
 D:\AMDDesignTools\2026.1\Vivado\bin\vivado.bat -mode batch `
-  -source tcl/build.tcl -tclargs xcku5p-ffva676-1-i top D:\work\ku5p_build
+  -source tcl/build.tcl -tclargs xcku5p-ffva676-1-i top D:\work\build\KU5P_FX_Accelerator\top_xcku5p
 ```
+
+本地工作区布局见 [docs/workflow.md](docs/workflow.md#本地工作区)。
 
 脚本会依次执行 synth → opt → place → route → write_bitstream，并把报告写到工程目录下。
 
