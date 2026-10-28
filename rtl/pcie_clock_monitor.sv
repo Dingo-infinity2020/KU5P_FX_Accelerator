@@ -6,7 +6,8 @@ module pcie_clock_monitor #(
     parameter integer TIMEOUT_BITS=16
 ) (
     input wire monitor_clk,ref_clk,axi_clk,
-    output wire ref_recent,axi_recent
+    output wire ref_recent,axi_recent,
+    output wire [1:0] divided_samples
 );
     reg [SOURCE_BIT:0] ref_counter=0,axi_counter=0;
     always @(posedge ref_clk) ref_counter<=ref_counter+1'b1;
@@ -26,4 +27,5 @@ module pcie_clock_monitor #(
     end
     assign ref_recent=!(&ref_age);
     assign axi_recent=!(&axi_age);
+    assign divided_samples=sample2;
 endmodule

@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from pcie_evidence import verify_sources
 
 STATE_SOURCE = 'https://docs.amd.com/r/en-US/pg213-pcie4-ultrascale-plus/Configuration-Status-Interface'
 STATES = {0x00:'Detect.Quiet',0x01:'Detect.Active',0x02:'Polling.Active',0x03:'Polling.Compliance',
@@ -28,10 +29,9 @@ def main():
     root=Path(__file__).resolve().parents[1];out=a.build_dir.resolve()
     if out==root or root in out.parents:p.error('External output required')
     proof=json.loads((out/'verification.json').read_text())
-    assert proof['monitor_build_id'] in ('465805d4','465805d5') and proof['training_debug']
+    assert proof['monitor_build_id'] in ('465805d4','465805d5','465805d8','465805d9','465805da','465805db','465805dc','465805dd') and proof['training_debug']
     expected_build=proof['monitor_build_id']
-    for name,expected in proof['sources'].items():
-        assert hashlib.sha256((root/name).read_bytes()).hexdigest()==expected, f'Changed source: {name}'
+    source_locations=verify_sources(out,root,proof['sources'])
     path=out/'hardware'/f'{a.label}_training.tsv'
     with path.open(newline='') as h:rows=list(csv.DictReader(h,delimiter='\t'))
     assert len(rows)==12
@@ -45,13 +45,14 @@ def main():
         seen=value&((1<<64)-1)
         if valid:assert seen&(1<<state),'Current state absent from coherent history'
         samples.append(dict(status_hex=row['status_hex'],valid=valid,
-            axi_clock_recent=bool(status&128),snapshot_hex=row['snapshot_hex'],
+            axi_clock_recent=bool(status&128) if proof.get('status_bit7_represents_axi_activity',True) else None,snapshot_hex=row['snapshot_hex'],
             state_hex=f'{state:02x}',state_name=STATES.get(state,'Reserved/unknown'),
             states_seen_hex=f'{seen:016x}',states_seen=[dict(hex=f'{i:02x}',name=STATES.get(i,'Reserved/unknown')) for i in range(64) if seen&(1<<i)],
             transitions=(value>>64)&0xffffffff,speed_raw=(value>>102)&7,width_raw=(value>>105)&15,
             sticky_errors_hex=f'{(value>>109)&255:02x}',snapshot_link_up=bool(value&(1<<118)),
             snapshot_axi_reset_n=bool(value&(1<<119)),sequence=(value>>120)&255))
     result=dict(observed_at_utc=datetime.now(timezone.utc).isoformat(),build_id=expected_build,
+        verified_source_locations=source_locations,
         state_encoding_source=STATE_SOURCE,capture_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
         samples=samples,valid_snapshots=sum(s['valid'] for s in samples),
         l0_ever_seen=any(s['valid'] and int(s['states_seen_hex'],16)&(1<<16) for s in samples),

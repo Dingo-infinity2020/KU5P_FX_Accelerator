@@ -118,7 +118,7 @@ proc lesson05d_hex_vector {value bits} {
     }
     return $result
 }
-proc lesson05d_read_phy {build_dir label} {
+proc lesson05d_read_phy {build_dir label {expected_build_id 465805d5}} {
     if {![regexp {^[a-zA-Z0-9_-]+$} $label]} {error "Invalid label"}
     set device [lesson05d_attach]
     set vio [get_hw_vios -of_objects $device]
@@ -146,10 +146,10 @@ proc lesson05d_read_phy {build_dir label} {
         foreach port {0 1 4} width {8 32 144} {
             if {[lindex $masks $port] != ((1<<$width)-1)} {error "Incomplete PHY ports"}
         }
-        if {[lindex $values 1]!=0x465805d5} {error "Wrong PHY diagnostic build"}
+        if {[format %08x [lindex $values 1]] ne $expected_build_id} {error "Wrong PHY diagnostic build"}
         set packed [lindex $values 4]
         set hex [lesson05d_hex_vector $packed 144]
-        lappend rows "$i\t[format %02x [lindex $values 0]]\t465805d5\t$hex"
+        lappend rows "$i\t[format %02x [lindex $values 0]]\t$expected_build_id\t$hex"
         puts "PHY index=$i status=[format %02x [lindex $values 0]] current=[string range $hex 24 35] high=[string range $hex 12 23] low=[string range $hex 0 11]"
         after 150
     }

@@ -20,14 +20,14 @@
 | 插槽 | 主机 PCIe x16 插槽（Z790-P） | 已确认 |
 | BAR 大小 | 05D 配置用户 AXI-Lite 4 KiB、DMA 控制 64 KiB | IP 配置已生成，实际系统资源分配待枚举读回 |
 | 供电 | TODO（是否需要外接 6/8pin） | 待确认 |
-| 当前状态 | 显卡下方 ×4 插槽；当前上板 d5 Gen3×4 GT/PHY 监测版，本地复位 0，PHY rrst_n/prst_n 均为 1，CPLL/QPLL1 未锁定，GT TX/RX 复位未完成 | 训练仍为 Detect.Quiet，无 `10EE:9034`；下一步检查参考时钟频率及 PLL reset/power-down，实际 BAR/DMA 待测试，见[GT/PHY 诊断](lesson05d-phy.md) |
+| 当前状态 | 显卡下方 ×4 插槽；当前 SRAM 为 dd Gen3×4 校验/原始 power-good 版，本地复位 0，四路 raw GTPOWERGOOD 均为 1，CPLL/QPLL1 未锁定，GT TX/RX 复位未完成 | 训练历史仍为 Detect.Quiet，无 `10EE:9034`；同域采集校验通过但参考计数边沿不稳定，实际 BAR/DMA 待测试，见[PLL/时钟排查](lesson05d-pll-clock.md) |
 
 ## 存储与时钟
 
 | 项 | 值 |
 |---|---|
 | DDR4 | TODO（位宽/容量/速率） |
-| 参考时钟 | PCIe 插槽目标 100 MHz 差分输入 AB7/AB6，PERSTn=T19/LVCMOS12；d2 已观察到共享参考缓冲后时钟活动，尚未精确测频或完成链路训练 |
+| 参考时钟 | PCIe 插槽目标 100 MHz 差分输入 AB7/AB6，PERSTn=T19/LVCMOS12；缓冲后计数有活动但重复 ILA 采集的边沿间隔不稳定，同域 256 点校验通过；尚无稳定 100 MHz 或电气测量证据 |
 | 用户时钟 | 厂家资料：100 MHz 单端 SYS_CLK，AB21 / LVCMOS18，BANK64 的 VCCO 为 1.8 V；第五课采用 IBUF/BUFG 接入 |
 
 ## 高速接口

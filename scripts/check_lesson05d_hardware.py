@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+from pcie_evidence import verify_sources
 
 
 def sha(path):
@@ -25,8 +26,7 @@ def main():
         parser.error('Invalid status label')
     proof = json.loads((out/'verification.json').read_text())
     assert proof['timing']['met'], 'Timing not met'
-    for name, expected in proof['sources'].items():
-        assert sha(root/name) == expected, f'Changed build source: {name}'
+    source_locations=verify_sources(out,root,proof['sources'])
     for name, key in (('lesson05d_pcie_top.bit', 'bitstream_sha256'),
                       ('lesson05d_pcie_top.ltx', 'ltx_sha256'),
                       ('lesson05d_pcie_top_routed.dcp', 'checkpoint_sha256')):
@@ -42,6 +42,8 @@ def main():
     samples = []
     expected_build = proof['monitor_build_id']
     fields = ('link_up', 'done', 'axi_reset_n', 'msi_enabled', 'perst_n', 'gt_powergood', 'ref_clock_recent', 'axi_clock_recent')
+    if not proof.get('status_bit7_represents_axi_activity',True):
+        fields = fields[:-1]+('calibration_clock_recent',)
     for index, row in enumerate(rows):
         assert int(row['index']) == index and int(row['build_hex'], 16) == int(expected_build, 16)
         value = int(row['status_hex'], 16)
@@ -50,7 +52,7 @@ def main():
     windows = json.loads(args.windows_report.read_text(encoding='utf-8-sig'))
     expected_device = proof.get('expected_device_id', '9038')
     assert windows['expected_vendor'] == '10EE' and windows['expected_device'] == expected_device
-    hardware_scripts = ('tcl/lesson05d_hardware.tcl', 'scripts/check_lesson05d_hardware.py',
+    hardware_scripts = ('tcl/lesson05d_hardware.tcl', 'scripts/check_lesson05d_hardware.py', 'scripts/pcie_evidence.py',
                         'scripts/inspect_pcie_windows.ps1', 'scripts/xdma_windows.py',
                         'tests/test_xdma_windows.py')
     if proof.get('training_debug'):
@@ -63,14 +65,15 @@ def main():
         build_id=expected_build, status_samples=samples,
         physical_link_observed=any(s['link_up'] for s in samples),
         reference_clock_activity_observed=any(s['ref_clock_recent'] for s in samples),
-        axi_clock_activity_observed=any(s['axi_clock_recent'] for s in samples),
+        axi_clock_activity_observed=any(s['axi_clock_recent'] for s in samples) if proof.get('status_bit7_represents_axi_activity',True) else None,
         gt_powergood_observed=any(s['gt_powergood'] for s in samples),
         host_enumerated=windows['endpoint_count'] > 0,
         endpoint_count=windows['endpoint_count'], host_dma_tested=False,
         negotiated_link_speed=None, negotiated_link_width=None,
         scope='JTAG configuration and readonly VIO/PnP observation; BAR and DMA not tested',
         windows_report_sha256=sha(args.windows_report), status_sha256=sha(status_path),
-        hardware_source_sha256={name: sha(root/name) for name in hardware_scripts})
+        hardware_source_sha256={name: sha(root/name) for name in hardware_scripts},
+        verified_source_locations=source_locations)
     if proof.get('phy_debug'):
         result.update(phy_debug=True,
             exported_power_on_signal='XDMA sys_clk_ce_out derives from common !rst_txpisopd; not four raw GT power-good outputs')

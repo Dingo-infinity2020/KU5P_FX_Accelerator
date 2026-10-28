@@ -41,6 +41,51 @@ log "part      = $part"
 log "top       = $top"
 log "build_dir = $build_dir"
 
+if {$top in {lesson05d_raw_power lesson05d_clock_sanity lesson05d_clock_ungate lesson05d_clock_measure lesson05d_refclk_fix lesson05d_pll_audit}} {
+    set root_guard [string tolower [string map {\\ /} $repo_dir]]
+    set out_guard [string tolower [string map {\\ /} [file normalize $build_dir]]]
+    if {$root_guard eq $out_guard || [string first "$root_guard/" "$out_guard/"]==0} {error "External diagnostic output directory required"}
+    if {[llength $argv]!=4} {error "Diagnostic profile requires explicit parent checkpoint (unused for HDL clock measure)"}
+}
+
+if {$top eq "lesson05d_raw_power"} {
+    source -notrace [file join $repo_dir tcl lesson05d_raw_power.tcl]
+    lesson05d_raw_power $build_dir $part [lindex $argv 3]
+    return
+}
+
+if {$top eq "lesson05d_clock_sanity"} {
+    source -notrace [file join $repo_dir tcl lesson05d_clock_sanity.tcl]
+    lesson05d_clock_sanity $build_dir $part [lindex $argv 3]
+    return
+}
+
+if {$top eq "lesson05d_clock_ungate"} {
+    source -notrace [file join $repo_dir tcl lesson05d_clock_ungate.tcl]
+    lesson05d_clock_ungate $build_dir $part [lindex $argv 3]
+    return
+}
+
+if {$top eq "lesson05d_clock_measure"} {
+    source -notrace [file join $repo_dir tcl lesson05d_clock_measure.tcl]
+    lesson05d_clock_measure $build_dir $part [lindex $argv 3]
+    return
+}
+
+if {$top eq "lesson05d_refclk_fix"} {
+    source -notrace [file join $repo_dir tcl lesson05d_refclk_fix.tcl]
+    lesson05d_refclk_fix $build_dir $part [lindex $argv 3]
+    return
+}
+
+if {$top eq "lesson05d_pll_audit"} {
+    set base [lindex $argv 3]
+    if {$base eq "" || ![file exists $base]} {error "Explicit verified d5 checkpoint required"}
+    source -notrace [file join $repo_dir tcl lesson05d_pll_audit.tcl]
+    lesson05d_pll_audit $build_dir $part $base
+    return
+}
+
 # Versioned board-specific flow; retain this file as the sole bitstream entry.
 # Optional fourth argument: prepare (MCP), simulate, or all (default).
 if {$top in {lesson05d_pcie_top lesson05d_pcie_x4_top lesson05d_pcie_training_top lesson05d_pcie_phy_top}} {

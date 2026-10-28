@@ -5,6 +5,7 @@ module tb_pcie_clock_monitor;
     always #4 if(ref_enabled) ref_clk=~ref_clk;else ref_clk=0;
     always #2 if(axi_enabled) axi_clk=~axi_clk;else axi_clk=0;
     wire ref_recent,axi_recent;
+    wire [1:0] divided_samples;
     pcie_clock_monitor #(.SOURCE_BIT(2),.TIMEOUT_BITS(8)) dut(.*);
     integer checks=0,handle;
     task automatic check(input bit expect_ref,expect_axi);

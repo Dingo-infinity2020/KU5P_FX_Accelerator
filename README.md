@@ -9,7 +9,7 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 
 第五课 A 已通过当前聊天的 Vivado MCP 完成片内回放的板级实现与真实 FPGA 验证：两次独立抓取各 2048 行，全部 650 位逐行匹配。含 ROM/ILA/VIO 的板级设计使用 9526 LUT、16977 FF、56 DSP、62.5 BRAM36 等效块，10 ns 约束下布线后 WNS=+3.339 ns。RFSoC 暂不可连接时，先推进候选协议测试、PC/ConnectX-5↔KU5P 链路准备与连续处理；当前算术硬件仍为可暂停的合成数据回放。
 
-第五课 D 已完成独立 XDMA 测试端点、仿真、板级布线和 JTAG SRAM 配置。当前 ×4 主机已上板 d5 GT/PHY 监测版，WNS=+1.104 ns；实测 CPLL/QPLL1 未锁定、GT TX/RX 复位未完成，PHY 同步复位已释放但初始化未完成，训练历史仅见 `Detect.Quiet`。Windows 尚未枚举，兼容驱动及真实 BAR/DMA 仍待验收；下一步查参考时钟频率与 PLL reset/power-down。见[GT/PHY 诊断](docs/lesson05d-phy.md)、[训练历史](docs/lesson05d-training.md)与[×4 启动记录](docs/lesson05d-pcie-x4.md)。
+第五课 D 已完成独立 XDMA 测试端点、仿真、板级布线和 JTAG SRAM 配置。当前 ×4 主机上板 dd 时钟校验/原始 GT power-good 诊断版，WNS=+1.256 ns；四路 raw power-good 为高，但 CPLL/QPLL1 未锁定，GT TX/RX 复位未完成。同域心跳采集严格每 256 点重复，参考路径计数边沿仍不稳定；门控旁路、显式 NORTH 入口和 6 MHz 下载均未修复。Windows 尚未枚举，真实 BAR/DMA 待验收。见[PLL/时钟排查与证据修正](docs/lesson05d-pll-clock.md)、[原 d5 诊断](docs/lesson05d-phy.md)与[训练历史](docs/lesson05d-training.md)。
 
 ## 快速索引
 
@@ -34,6 +34,7 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 | [docs/lesson05d-pcie-x4.md](docs/lesson05d-pcie-x4.md) | 当前 ×4 主机配置、反序降宽限制、d3 固件与可控复位观察 |
 | [docs/lesson05d-training.md](docs/lesson05d-training.md) | d4 一致训练历史、Detect.Quiet 实测、时序/CDC 与后续 GT/PHY 排查 |
 | [docs/lesson05d-phy.md](docs/lesson05d-phy.md) | d5 GT/PLL/PHY 实测、默认控制连接、同步修订及 Windows 验收边界 |
+| [docs/lesson05d-pll-clock.md](docs/lesson05d-pll-clock.md) | PLL 控制实测、无效证据修正、独立时钟采集/校验与原始 GT power-good 对照 |
 | [docs/rfsoc-preparation.md](docs/rfsoc-preparation.md) | RFSoC 接入前：现有光模块/ConnectX-5、PCIe 限制、候选协议工具及分阶段验收 |
 | [docs/vivado-first-steps.md](docs/vivado-first-steps.md) | 怎样在 Vivado 中查看本课综合网表、资源和波形 |
 | [docs/vivado-mcp.md](docs/vivado-mcp.md) | 本地 Vivado MCP 的安装配置、兼容修正、实测与连接刷新 |
