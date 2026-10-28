@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "exported_at_utc": "2026-10-28T12:12:20.070748+00:00",
+  "project": "KU5P_FX_Accelerator",
+  "scope": "Compact export of existing local d5 validation; not a new remote hardware run. No raw RFSoC engineering files, captures, licenses, serial identifiers or generated AMD IP included.",
+  "target": {
+    "part": "xcku5p-ffvb676-1-i",
+    "vivado": "2026.1",
+    "pcie_lanes": 4,
+    "pcie_generation_capability": 3,
+    "axis_width_bits": 256,
+    "axis_target_clock_mhz": 125,
+    "pci_vendor": "10EE",
+    "pci_device": "9034",
+    "monitor_build_id": "465805d5"
+  },
+  "application_simulation": {
+    "simulation": "PASS packets=29 beats=3712 stalls=1114 max_burst=1024 write_errors=12 read_errors=2 aw_first=22 w_first=22",
+    "stats": {
+      "packets": 29,
+      "beats": 3712,
+      "stalls": 1114,
+      "max_burst": 1024,
+      "write_errors": 12,
+      "read_errors": 2,
+      "aw_first": 22,
+      "w_first": 22
+    },
+    "cases": [
+      {
+        "packets": 3,
+        "bytes": 12288,
+        "signature": "ca83200a"
+      },
+      {
+        "packets": 1,
+        "bytes": 4096,
+        "signature": "b547a21c"
+      },
+      {
+        "packets": 17,
+        "bytes": 69632,
+        "signature": "b5799b71"
+      },
+      {
+        "packets": 8,
+        "bytes": 32768,
+        "signature": "00000000"
+      }
+    ],
+    "captured_sha256": "77cdb684f54b3a8806b78b13c7a3ba3964fba3cc52b0e2e74e6139ad6c26b501",
+    "clock_monitor_simulation": "PASS clock_monitor_checks=7",
+    "training_monitor_simulation": "PASS training_monitor_checks=9",
+    "phy_monitor_simulation": "PASS phy_monitor_checks=5"
+  },
+  "implementation": {
+    "timing": {
+      "wns": 1.104,
+      "tns": 0.0,
+      "whs": 0.01,
+      "ths": 0.0,
+      "wpws": 0.0,
+      "tpws": 0.0,
+      "failing_endpoints": 0,
+      "met": true,
+      "scope": "Reported constrained paths only; inspect check_timing and design stage separately",
+      "constraint_checks": {
+        "no_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 1,
+        "no_output_delay": 2
+      },
+      "parser": "ku5p-vivado-table-v1"
+    },
+    "utilization": {
+      "parser": "ku5p-vivado-table-v1",
+      "lut": {
+        "used": 19547.0,
+        "available": 216960.0,
+        "percent": 9.01,
+        "parsed": true
+      },
+      "ff": {
+        "used": 24451.0,
+        "available": 433920.0,
+        "percent": 5.63,
+        "parsed": true
+      },
+      "bram": {
+        "used": 46.0,
+        "available": 480.0,
+        "percent": 9.58,
+        "parsed": true
+      },
+      "dsp": {
+        "used": 0.0,
+        "available": 1824.0,
+        "percent": 0.0,
+        "parsed": true
+      },
+      "io": {
+        "used": 4.0,
+        "available": 280.0,
+        "percent": 1.43,
+        "parsed": true
+      }
+    },
+    "artifact_sha256": {
+      "bitstream_sha256": "2bf16e3cd7e300441394835fdc02392ecf52f39e2d143b52e0a65c5563ad83df",
+      "ltx_sha256": "4c294b45552e7ec726ace939df6e60fcff85f07bf72ad56bf4465084b78880c3",
+      "checkpoint_sha256": "608afc04a858288cd3fa0b2f2617c62ed2da89d66b7a4d3e67572654a8d3b297"
+    },
+    "cdc": {
+      "critical_count": 1,
+      "cdc11_count": 0,
+      "remaining_critical": "CDC-10: manually controlled reset merge before two FDCE ASYNC_REG stages; slow stable bring-up scope, no severity override"
+    },
+    "routed_nets": 41627,
+    "routing_errors": 0,
+    "verified_pins": 22,
+    "gt_sites": [
+      "X0Y4",
+      "X0Y5",
+      "X0Y6",
+      "X0Y7"
+    ]
+  },
+  "hardware": {
+    "configuration": "JTAG_SRAM",
+    "local_reset_readback": 0,
+    "status_samples": [
+      {
+        "status_hex": "f0",
+        "link_up": false,
+        "done": false,
+        "axi_reset_n": false,
+        "msi_enabled": false,
+        "perst_n": true,
+        "gt_powergood": true,
+        "ref_clock_recent": true,
+        "axi_clock_recent": true
+      },
+      {
+        "status_hex": "f0",
+        "link_up": false,
+        "done": false,
+        "axi_reset_n": false,
+        "msi_enabled": false,
+        "perst_n": true,
+        "gt_powergood": true,
+        "ref_clock_recent": true,
+        "axi_clock_recent": true
+      },
+      {
+        "status_hex": "f0",
+        "link_up": false,
+        "done": false,
+        "axi_reset_n": false,
+        "msi_enabled": false,
+        "perst_n": true,
+        "gt_powergood": true,
+        "ref_clock_recent": true,
+        "axi_clock_recent": true
+      },
+      {
+        "status_hex": "f0",
+        "link_up": false,
+        "done": false,
+        "axi_reset_n": false,
+        "msi_enabled": false,
+        "perst_n": true,
+        "gt_powergood": true,
+        "ref_clock_recent": true,
+        "axi_clock_recent": true
+      },
+      {
+        "status_hex": "f0",
+        "link_up": false,
+        "done": false,
+        "axi_reset_n": false,
+        "msi_enabled": false,
+        "perst_n": true,
+        "gt_powergood": true,
+        "ref_clock_recent": true,
+        "axi_clock_recent": true
+      },
+      {
+        "status_hex": "f0",
+        "link_up": false,
+        "done": false,
+        "axi_reset_n": false,
+        "msi_enabled": false,
+        "perst_n": true,
+        "gt_powergood": true,
+        "ref_clock_recent": true,
+        "axi_clock_recent": true
+      }
+    ],
+    "phy": [
+      {
+        "label": "after_release",
+        "observed_at_utc": "2026-10-28T11:55:54.159001+00:00",
+        "sample_count": 12,
+        "current_levels_stable": true,
+        "current_hex": "000060010000",
+        "current": {
+          "txresetdone": 0,
+          "rxresetdone": 0,
+          "rxpmaresetdone": 0,
+          "txpmaresetdone": 0,
+          "ip_power_on": 1,
+          "cplllock": 0,
+          "qpll_locks": 0,
+          "phy_reset_flags": 6,
+          "txprogdivresetdone": 0,
+          "txsyncdone": 0,
+          "rxsyncdone": 0,
+          "rxcdrlock": 0,
+          "qpll1lock": false,
+          "qpll0lock": false,
+          "phy_rst_idle": false,
+          "phy_rrst_n": true,
+          "phy_prst_n": true
+        },
+        "ever_high_hex": "f00f6001ff00",
+        "ever_low_hex": "ffffffffffff",
+        "local_capture_sha256": "399bffb317bfb5a6dae4db88d1fca88278e3473ad7b740e20008511d81c6f91c"
+      },
+      {
+        "label": "final_observed",
+        "observed_at_utc": "2026-10-28T11:58:04.527148+00:00",
+        "sample_count": 12,
+        "current_levels_stable": true,
+        "current_hex": "000060010000",
+        "current": {
+          "txresetdone": 0,
+          "rxresetdone": 0,
+          "rxpmaresetdone": 0,
+          "txpmaresetdone": 0,
+          "ip_power_on": 1,
+          "cplllock": 0,
+          "qpll_locks": 0,
+          "phy_reset_flags": 6,
+          "txprogdivresetdone": 0,
+          "txsyncdone": 0,
+          "rxsyncdone": 0,
+          "rxcdrlock": 0,
+          "qpll1lock": false,
+          "qpll0lock": false,
+          "phy_rst_idle": false,
+          "phy_rrst_n": true,
+          "phy_prst_n": true
+        },
+        "ever_high_hex": "f00f6001ff00",
+        "ever_low_hex": "ffffffffffff",
+        "local_capture_sha256": "399bffb317bfb5a6dae4db88d1fca88278e3473ad7b740e20008511d81c6f91c"
+      }
+    ],
+    "training": [
+      {
+        "label": "after_release",
+        "observed_at_utc": "2026-10-28T11:55:54.214707+00:00",
+        "valid_snapshots": 12,
+        "l0_ever_seen": false,
+        "ltssm_state_hex": [
+          "00"
+        ],
+        "states_seen_hex": [
+          "0000000000000001"
+        ],
+        "transitions": [
+          0
+        ],
+        "snapshot_sequences": [
+          58,
+          95,
+          163,
+          32,
+          87,
+          214,
+          149,
+          123,
+          102,
+          158,
+          75,
+          50
+        ],
+        "axi_clock_recent_in_all_samples": true,
+        "local_capture_sha256": "2c1d4347834f18c3194417d6857f75627aff28781816da64b58c8ee5199c858a"
+      },
+      {
+        "label": "final_observed",
+        "observed_at_utc": "2026-10-28T11:58:04.578976+00:00",
+        "valid_snapshots": 12,
+        "l0_ever_seen": false,
+        "ltssm_state_hex": [
+          "00"
+        ],
+        "states_seen_hex": [
+          "0000000000000001"
+        ],
+        "transitions": [
+          0
+        ],
+        "snapshot_sequences": [
+          78,
+          111,
+          98,
+          57,
+          23,
+          116,
+          28,
+          157,
+          30,
+          108,
+          83,
+          18
+        ],
+        "axi_clock_recent_in_all_samples": true,
+        "local_capture_sha256": "404a9fd50175aeed4de6211af18fef684b78793c4f19f61ad0478608f8964adf"
+      }
+    ],
+    "windows_endpoint_count": 0,
+    "physical_link_observed": false,
+    "host_enumerated": false,
+    "host_dma_tested": false,
+    "flash_modified": false,
+    "participated_in_windows_boot": false,
+    "power_on_signal_semantics": "XDMA sys_clk_ce_out derives from common !rst_txpisopd; not four raw GT power-good outputs",
+    "limits": "Independent GT/PHY flags may miss short pulses; training snapshots may be stale after stopped AXI clock; watchdog activity is not precise frequency or signal-quality measurement"
+  },
+  "next_step": "Observe PLL reset/powerdown, PHY reset FSM and reference-clock frequency; no repeated host reboot requested",
+  "source_hash_encoding": "SHA-256 of LF-normalized source bytes, verified against all 34 original local frozen d5 build/hardware inputs before export; docs and evidence files excluded",
+  "source_sha256_lf": {
+    "rtl/dma_pattern_source.sv": "085cbfb400b244a6a5d8a1dad802e7b86323e6699b2dfb5f66c93e0fc6f51e36",
+    "rtl/pcie_test_endpoint.sv": "a77b0b480c0d6b97018c19cb1009067ecbef70b7eddaf2974d26eb5585a0c422",
+    "rtl/lesson05d_pcie_top.sv": "1c907f906f82d729168157f432766f72b12888cbc5384673fd5754ea490c23c6",
+    "sim/tb_pcie_test_endpoint.sv": "e65143c783e925502a33d9d4d24a8d040797fbcb3b120e345fdba0cd981896f3",
+    "constr/lesson05d_fnic_ku5p.xdc": "a1df6eaab188073dcf9b44335e946831ac9b9ecc6ea407c4f7e13a1bdc10db79",
+    "tcl/build.tcl": "b595a67ef910d9ab215ff33596c24997ac1509606f142709de45006eb0ed2034",
+    "tcl/lesson05d_project.tcl": "fe3db45d9a06141b9f4acd2b572f3d39e31e45e5ff92b380b0124da5874840f0",
+    "scripts/pcie_pattern.py": "c4c15783d28214f2245ae95dca594def2a6320ae6763f26073724c05547e6d62",
+    "scripts/generate_pcie_vectors.py": "f5b706138b7d8bb20d21d7097c67340b287b87742151dd39f888f2a5d5debed9",
+    "scripts/run_pcie_application_test.ps1": "1566f2da127d63b1d4a9a9cf5dc38659e28ad6f78c8e9da4348da178ae8db260",
+    "scripts/lesson05d_manifest.py": "a38c60314323b400a3b70b440bcf19f41e6e13645c8b5088b62cbcd9a57390e7",
+    "rtl/pcie_clock_monitor.sv": "537ab59f37eebde56ab7fa69a95858de9f8b50d31c75fd2a8503b707498a4ea0",
+    "sim/tb_pcie_clock_monitor.sv": "c5362f8ee1bf50a30db0f2a8c686d9f61bc1385609455c7ad21c47c28295708a",
+    "scripts/run_pcie_clock_monitor_test.ps1": "98ecc548d8aae6ed3cd8d5119adfdb8d8595abaa71b483a422aa2d9a7202c6d4",
+    "tcl/lesson05d_synth_settings.tcl": "1130e435899a9aa2ba8ea0ed69748bbe1a6f61dbff412341eec7aa270a1e3afa",
+    "rtl/lesson05d_pcie_x4_top.sv": "e07ea493a256ab1ad32abfe3229e6e6fd815c924d270a64d7197191d50aecbd3",
+    "constr/lesson05d_fnic_ku5p_x4.xdc": "aaa5dbf5c2519474283c345b3b5290800eae6304e973255c5e65180de2079413",
+    "rtl/pcie_training_monitor.sv": "4b52e8dd219aa52cbe25df8daf8d9c01975904047182adbd1353dd21203d985d",
+    "rtl/lesson05d_pcie_training_top.sv": "f3a749603b65c975e840cc130214adb5fa6ad1442fe222f93a7b2844dcf13c4b",
+    "sim/tb_pcie_training_monitor.sv": "33e39ed3f1b8016a9640a73d1c62c4adeb82be63840d2df58ed7433e752bfd8d",
+    "scripts/run_pcie_training_monitor_test.ps1": "ddd3dbaf2bc08cc96e28b71d737077cd20519d97e82d56d8d1af2d227c1a98bd",
+    "rtl/pcie_phy_monitor.sv": "37db13725528ea866b993ea0f0f13d6b1ea27c19439a99e57892b0b09037e05a",
+    "rtl/lesson05d_pcie_phy_top.sv": "8ebcc2221ce93382547fb4e11497f7da296a786eb26b16eb84182a09644ad739",
+    "constr/lesson05d_phy_monitor.xdc": "b9cec2ca4c3dbfa4dfc0736f76451bf3ab9f5048a9b63708e335e9ed4165e9d3",
+    "sim/tb_pcie_phy_monitor.sv": "e982edbb542d8c6f8ef5482ede9bc82698573db0e5ecdbadbd33c628d9e0130d",
+    "scripts/run_pcie_phy_monitor_test.ps1": "55a38cad8ee1608983e1bbf4ba1e8560b65973ee079c6c7363e01b09c1db8ff1",
+    "tcl/lesson05d_hardware.tcl": "cf904e033000324001b045c7e3b72a2d5d0cec1d6369d27d04f843fa18db75e2",
+    "scripts/check_lesson05d_hardware.py": "96db2ac2e19ce8b65650698dc59ad3ee2d6ebbd2fb19136bd794cc03dd72ec0a",
+    "scripts/inspect_pcie_windows.ps1": "87dc5bb265113ec041d093cefcfa1152fc55431a61c65c23c30cf44d1835d6d3",
+    "scripts/xdma_windows.py": "0bb5d5a45a9b1a80c5f6ea9a039c430e3d703f23185cf41fbee5033f6b8d3c45",
+    "tests/test_xdma_windows.py": "b6d311451fc18723a719252e4bb53cc952e141a88d232cd325694004adab55be",
+    "scripts/check_pcie_training.py": "28fbd0600e493c4ec33ca345e5c545ae4cbff4ff574a628d019bd5d2c117072c",
+    "scripts/check_pcie_phy.py": "204b7208933c5ca8aab035e002b9b6bc6e7bb3f7fe1135ae9772331cdd451642",
+    "scripts/run_lesson05d.ps1": "dd2be071264dcc556d55bb0c2183da8a1e6adf233e63822a502ab588261ee987"
+  },
+  "local_evidence_sha256": {
+    "verification.json": "0a68a0b317be885f79d23971a9a9146f347b44e0d290ed1188a29ec4a26376d4",
+    "hardware_verification.json": "81c79c18186f7e807d3d231471bb1901454d6226f3262c0825a5c6c43f3c6308",
+    "diagnostic_audit.json": "505f37c41503f0fbb0886d97c14a6ae9e0cae0e03b814f9467e596ef63aed938"
+  }
+}

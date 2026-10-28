@@ -30,8 +30,18 @@ vivado.*
 *.swp
 .DS_Store
 Thumbs.db
+__pycache__/
+*.py[cod]
 
 # Licenses and secrets -- never commit
 *.lic
 *.lic.*
 secrets/
+
+# Local recovery notes and source/reference material stay on this machine.
+/docs/restart-checkpoint.md
+/local-only/
+*.xsa
+*.hwh
+*.pcap
+*.pcapng

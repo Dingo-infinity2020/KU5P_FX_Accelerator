@@ -41,6 +41,39 @@ log "part      = $part"
 log "top       = $top"
 log "build_dir = $build_dir"
 
+# Versioned board-specific flow; retain this file as the sole bitstream entry.
+# Optional fourth argument: prepare (MCP), simulate, or all (default).
+if {$top in {lesson05d_pcie_top lesson05d_pcie_x4_top lesson05d_pcie_training_top lesson05d_pcie_phy_top}} {
+    set action [lindex $argv 3]
+    if {$action eq ""} {set action all}
+    if {$action ni {prepare all}} {error "Invalid lesson05d action"}
+    source -notrace [file join $repo_dir tcl lesson05d_project.tcl]
+    set lanes [expr {$top eq "lesson05d_pcie_top" ? 8 : 4}]
+    lesson05d_prepare $build_dir $part $lanes [expr {$top in {lesson05d_pcie_training_top lesson05d_pcie_phy_top}}] [expr {$top eq "lesson05d_pcie_phy_top"}]
+    if {$action ne "prepare"} {
+        lesson05d_accept_simulation
+        lesson05d_start_implementation
+        wait_on_run impl_1
+        lesson05d_collect_implementation
+        close_project
+    }
+    return
+}
+if {$top eq "lesson05_board_top"} {
+    set action [lindex $argv 3]
+    if {$action eq ""} { set action all }
+    if {$action ni {prepare simulate all}} { error "Invalid lesson05 action" }
+    source -notrace [file join $repo_dir tcl lesson05_project.tcl]
+    lesson05_prepare $build_dir $part
+    if {$action ne "prepare"} {
+        launch_simulation -mode behavioral
+        lesson05_accept_simulation
+        if {$action eq "all"} { lesson05_implement }
+        close_project
+    }
+    return
+}
+
 file mkdir $build_dir
 file mkdir $rpt_dir
 

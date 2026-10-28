@@ -7,35 +7,50 @@
 | 项 | 值 | 状态 |
 |---|---|---|
 | 器件 | XCKU5P（Kintex UltraScale+，16nm） | 已确认 |
-| 封装 / 速度等级 | TODO（看器件丝印，`ffva676` 或 `sfva784`） | 待确认 |
-| 板卡型号 / 厂商 | TODO | 待确认 |
-| FPGA 温度等级 | TODO（E / I / 工业级） | 待确认 |
+| 封装 / 速度等级 | 厂家原理图标注 XCKU5P-1FFVB676I；本课目标 `xcku5p-ffvb676-1-i` | 资料已核对，实物丝印待核对；JTAG 仅确认 xcku5p |
+| 板卡型号 / 厂商 | FNIC-KU5P Rev1.0 / 微相科技 MicroPhase，依据本机厂家资料 | 资料已核对 |
+| FPGA 温度等级 | I，依据原理图完整料号 | 资料已核对 |
 | 配置 Flash | TODO（型号/容量，是否支持 PCIe 单独 reprogram） | 待确认 |
 
 ## PCIe
 
 | 项 | 值 | 状态 |
 |---|---|---|
-| 链路宽度 / 代数 | TODO（按原理图与实测 link status） | 待确认 |
+| 链路宽度 / 代数 | 原理图 PCIE 3.0 页及厂家 XDC 显示 TX/RX 0–7，共八条，目标 Gen3×8 | 资料核对；实际协商代数/宽度待含 PCIe 端点的位流和主机读回 |
 | 插槽 | 主机 PCIe x16 插槽（Z790-P） | 已确认 |
-| BAR 大小 | TODO（决定是否必须开 Above 4G Decoding） | 待确认 |
+| BAR 大小 | 05D 配置用户 AXI-Lite 4 KiB、DMA 控制 64 KiB | IP 配置已生成，实际系统资源分配待枚举读回 |
 | 供电 | TODO（是否需要外接 6/8pin） | 待确认 |
-| 当前状态 | FPGA 未配置时 PCIe 硬核不响应，主机侧枚举不到属正常现象 | 已验证 |
+| 当前状态 | 显卡下方 ×4 插槽；当前上板 d5 Gen3×4 GT/PHY 监测版，本地复位 0，PHY rrst_n/prst_n 均为 1，CPLL/QPLL1 未锁定，GT TX/RX 复位未完成 | 训练仍为 Detect.Quiet，无 `10EE:9034`；下一步检查参考时钟频率及 PLL reset/power-down，实际 BAR/DMA 待测试，见[GT/PHY 诊断](lesson05d-phy.md) |
 
 ## 存储与时钟
 
 | 项 | 值 |
 |---|---|
 | DDR4 | TODO（位宽/容量/速率） |
-| 参考时钟 | TODO（PCIe refclk 来源、板载晶振频率） |
-| 用户时钟 | TODO |
+| 参考时钟 | PCIe 插槽目标 100 MHz 差分输入 AB7/AB6，PERSTn=T19/LVCMOS12；d2 已观察到共享参考缓冲后时钟活动，尚未精确测频或完成链路训练 |
+| 用户时钟 | 厂家资料：100 MHz 单端 SYS_CLK，AB21 / LVCMOS18，BANK64 的 VCCO 为 1.8 V；第五课采用 IBUF/BUFG 接入 |
 
 ## 高速接口
 
 | 项 | 值 |
 |---|---|
-| GTH 收发器使用情况 | TODO |
-| 光模块 / SMA 接口 | TODO |
+| GTY 收发器分配 | 原理图显示两个 QSFP28 各占一组四通道 GTY，PCIe 另占八条，合计十六条；每一接口的实际时钟与约束仍需交叉核对 |
+| 光接口 | 两个 QSFP28 物理接口；物理连接器/25G lane 数量不等于独立 100GbE MAC/PCS 数量 |
+| 100G 硬核 | KU5P 集成一个 100G Ethernet 硬核，见 [AMD XMP103 第四页](https://docs.amd.com/api/khub/documents/Fz8MLna3N2KIo_xWN_Iv3w/content)；不能直接作为两个独立的 100GbE 接收端 |
+
+单口 100GbE 与 PCIe 可在同一 FPGA 工程并存，协议硬核和相应 GT 通道并不互相替代。按当前硬核方案先验收一个 100GbE 口；第二个接口如要同时运行独立 100GbE，需要额外经过验证的 MAC/PCS/FEC 实现与相应资源/授权。平均业务总量低于 100 Gb/s，不会消除第二个端口持续维持物理链路的要求。
+
+不能用一个 CMAC 的数量推导“整张卡任意数据流加起来永远只能 100G”，也不能推导两个 QSFP28 已提供双 100GbE。厂家手册第八章展示双端口 Corundum 网卡及互 ping 操作，但现有文字没有给出两口均为 100GbE 的配置和持续吞吐证据。源工程和现场速率仍需核对。
+
+厂家 XDC 中 `qsfp_0` / `qsfp_1` 的 bank 编号与原理图的连接器编号存在对应差异；构建网络位流前应按封装引脚、lane 和实物位置建立映射，不能只按名称选口。原始文件保留在本机下载/研究目录。
+
+## 接收带宽与主机读出带宽
+
+Gen3×8 只扣 128b/130b 编码后的单向理论上限为 `8 GT/s × 8 × 128/130 = 63.015 Gb/s`，即约 7.877 GB/s，实际 DMA 净带宽还要扣 PCIe 事务等开销。因此不能把持续的 100 Gb/s 原始数据全部经此接口送往主机；缓存也不能补足长期平均速率差。插到更高代数或更长的主板插槽不会升级卡本身。
+
+如果实际协商只有 Gen3×4，上限进一步降至约 31.508 Gb/s。实际插槽电气宽度、链路代数和驱动吞吐都须读回与实测。对于 FX 的积分可见度，FPGA 内部处理后送出的数据量可显著低于原始采样，PCIe 预算应按实际输出产品与积分周期计算。
+
+截至 2026-10-28，两路流水线已通过仿真与 OOC 布线；独立 PCIe 测试端点已实现并配置 SRAM，Windows 用户态程序已通过模拟端点/普通文件测试。网络接收、实际 PCIe 链路与 BAR/DMA 均尚未接通；不能把应用测试当作 DMA 测试。见[PCIe 阶段记录](lesson05d-pcie.md)。
 
 ## 调试接口
 
@@ -43,12 +58,14 @@
 |---|---|
 | JTAG | 板载排针 + Digilent 下载器（已验证可识别 `xcku5p_0`） |
 | 串口 | TODO |
-| LED / 按键 | TODO |
+| LED / 按键 | 厂家资料：LED1=AF14、LED2=AF15，LVCMOS33、低有效；KEY1=AF13。第五课仅使用两个 LED，复位/启动由 VIO 控制 |
 
-## IP 选型（待定）
+本次使用引脚在厂家手册、原理图和 XDC 之间交叉核对，来源哈希及板级实现范围见 [第五课 A](lesson05-board-replay.md)。原始厂家 PDF/XDC 保留在本机下载目录，仓库只包含自行编写的约束子集。
+
+## 当前 PCIe IP 选择
 
 | 用途 | 候选 | 备注 |
 |---|---|---|
-| PCIe 端点 | XDMA / QDMA / PCIe Subsystem | XDMA 生态最成熟；驱动官方仅 Linux |
-| 主机内存访问 | XDMA AXI Master + BAR | 需确认 64bit BAR / MSI-X |
-| DMA 描述符 | 自带 descriptor engine | 与主机驱动匹配 |
+| PCIe 端点 | XDMA 4.2，Gen3×8 能力、AXI Stream 256 位/250 MHz | 05D 已生成；实际协商结果待链路建立 |
+| 主机控制 | 用户 BAR → AXI-Lite 寄存器；DMA 控制 BAR；MSI | 当前用户态按常见 Windows XDMA 节点准备，仍需匹配内核驱动 |
+| DMA 描述符 | XDMA descriptor engine，由主机驱动提交 | FPGA 测试源默认空闲，不自行生成主机地址/描述符 |
