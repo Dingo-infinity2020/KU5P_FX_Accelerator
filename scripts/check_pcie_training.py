@@ -29,7 +29,7 @@ def main():
     root=Path(__file__).resolve().parents[1];out=a.build_dir.resolve()
     if out==root or root in out.parents:p.error('External output required')
     proof=json.loads((out/'verification.json').read_text())
-    assert proof['monitor_build_id'] in ('465805d4','465805d5','465805d8','465805d9','465805da','465805db','465805dc','465805dd') and proof['training_debug']
+    assert proof['monitor_build_id'] in ('465805d4','465805d5','465805d8','465805d9','465805da','465805db','465805dc','465805dd','465805de','465805df','465805e0') and proof['training_debug']
     expected_build=proof['monitor_build_id']
     source_locations=verify_sources(out,root,proof['sources'])
     path=out/'hardware'/f'{a.label}_training.tsv'

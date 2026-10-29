@@ -41,11 +41,29 @@ log "part      = $part"
 log "top       = $top"
 log "build_dir = $build_dir"
 
-if {$top in {lesson05d_raw_power lesson05d_clock_sanity lesson05d_clock_ungate lesson05d_clock_measure lesson05d_refclk_fix lesson05d_pll_audit}} {
+if {$top in {lesson05d_monitor_pll lesson05d_ref_ungated lesson05d_ref_prescale lesson05d_raw_power lesson05d_clock_sanity lesson05d_clock_ungate lesson05d_clock_measure lesson05d_refclk_fix lesson05d_pll_audit}} {
     set root_guard [string tolower [string map {\\ /} $repo_dir]]
     set out_guard [string tolower [string map {\\ /} [file normalize $build_dir]]]
     if {$root_guard eq $out_guard || [string first "$root_guard/" "$out_guard/"]==0} {error "External diagnostic output directory required"}
     if {[llength $argv]!=4} {error "Diagnostic profile requires explicit parent checkpoint (unused for HDL clock measure)"}
+}
+
+if {$top eq "lesson05d_monitor_pll"} {
+    source -notrace [file join $repo_dir tcl lesson05d_monitor_pll.tcl]
+    lesson05d_monitor_pll $build_dir $part [lindex $argv 3]
+    return
+}
+
+if {$top eq "lesson05d_ref_ungated"} {
+    source -notrace [file join $repo_dir tcl lesson05d_ref_ungated.tcl]
+    lesson05d_ref_ungated $build_dir $part [lindex $argv 3]
+    return
+}
+
+if {$top eq "lesson05d_ref_prescale"} {
+    source -notrace [file join $repo_dir tcl lesson05d_ref_prescale.tcl]
+    lesson05d_ref_prescale $build_dir $part [lindex $argv 3]
+    return
 }
 
 if {$top eq "lesson05d_raw_power"} {

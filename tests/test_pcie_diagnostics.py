@@ -44,5 +44,14 @@ class DiagnosticsTest(unittest.TestCase):
             saved.write_bytes(b'corrupt')
             with self.assertRaises(AssertionError):verify_sources(out,root,expected)
 
+    def test_mmcm_flags_remain_separate_from_pcie_fields(self):
+        fields=decode((1<<27)|(1<<31)|(1<<29),raw_power=True,monitor_pll=True)
+        self.assertTrue(fields['monitor_mmcm_locked'])
+        self.assertTrue(fields['monitor_clkin_stopped'])
+        self.assertEqual(fields['qpll_locks'],0)
+        self.assertEqual(fields['phy_reset_flags'],2)
+        self.assertFalse(any(fields['raw_gt_powergood'].values()))
+        self.assertNotIn('monitor_mmcm_locked',decode(1<<27,raw_power=True))
+
 
 if __name__=='__main__':unittest.main()

@@ -20,7 +20,7 @@
 | 插槽 | 主机 PCIe x16 插槽（Z790-P） | 已确认 |
 | BAR 大小 | 05D 配置用户 AXI-Lite 4 KiB、DMA 控制 64 KiB | IP 配置已生成，实际系统资源分配待枚举读回 |
 | 供电 | TODO（是否需要外接 6/8pin） | 待确认 |
-| 当前状态 | 显卡下方 ×4 插槽；当前 SRAM 为 dd Gen3×4 校验/原始 power-good 版，本地复位 0，四路 raw GTPOWERGOOD 均为 1，CPLL/QPLL1 未锁定，GT TX/RX 复位未完成 | 训练历史仍为 Detect.Quiet，无 `10EE:9034`；同域采集校验通过但参考计数边沿不稳定，实际 BAR/DMA 待测试，见[PLL/时钟排查](lesson05d-pll-clock.md) |
+| 当前状态 | 显卡下方 ×4 插槽；当前 SRAM 为 e0 Gen3×4 时钟诊断版，本地复位 0；SYS_CLK 监测 MMCM 已锁定，四路 raw GTPOWERGOOD 均为 1，但 PCIe CPLL/QPLL1 未锁定、GT TX/RX 复位未完成 | 已存训练快照只有 Detect.Quiet，无 `10EE:9034`；同域采集校验通过，预分频与诊断门控旁路后参考计数边沿仍不稳定；实际 BAR/DMA 待测，见[无重启交叉核验](lesson05d-ref-prescale.md) |
 
 ## 存储与时钟
 

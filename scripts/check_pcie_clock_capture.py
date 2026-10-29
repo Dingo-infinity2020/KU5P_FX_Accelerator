@@ -54,6 +54,7 @@ def main():
                   ref=measure(values, 0), axi=measure(values, 1),
                   scope='Two-stage synchronized counter bit 7; relative to nominal board SYS_CLK; not calibrated frequency, jitter, PLL lock or PCIe acceptance')
     if args.same_clock_calibration:
+        result['scope'] = 'Reference observer total divide256; same-clock heartbeat calibration; relative to nominal SYS_CLK, not calibrated frequency, jitter or PCIe acceptance'
         calibration = result.pop('axi')
         calibration['scope'] = 'Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency'
         result['monitor_calibration'] = calibration
