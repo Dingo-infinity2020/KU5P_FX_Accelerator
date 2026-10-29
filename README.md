@@ -11,6 +11,8 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 
 第五课 D 已完成独立 XDMA 测试端点、仿真、板级布线和 JTAG SRAM 配置。当前 ×4 主机上板 e0 时钟诊断版，WNS=+1.256 ns；新增 SYS_CLK 监测 MMCM 已锁定，四路 raw GT power-good 为高，但 PCIe CPLL/QPLL1 未锁定，GT TX/RX 复位未完成。硬件预分频、诊断门控旁路后，参考路径计数边沿仍不稳定；同域心跳采集严格每 256 点重复。Windows 尚未枚举，真实 BAR/DMA 待验收。见[无需重启的时钟交叉核验](docs/lesson05d-ref-prescale.md)、[PLL/时钟排查与证据修正](docs/lesson05d-pll-clock.md)与[原 d5 诊断](docs/lesson05d-phy.md)。
 
+第五课 E 已完成独立四通道 GT Wizard 对照：使用 SYS_CLK 管理复位，固定 8 Gb/s/QPLL1，发送保持禁止。布线 WNS=+4.005 ns，未豁免 CDC Critical=0；实板 SYS_CLK 粗测约 100 MHz，QPLL1 仍未锁定，参考计数两次短采集均无边沿。实验后已恢复同一 e0，PCIe 状态仍未改善。8 项控制/时钟仿真与 33 项 Python 测试通过；GT 动态仿真受 BASIC 实例上限限制，不能记为通过。见[独立 GT 隔离实验](docs/lesson05e-gt-isolation.md)。
+
 ## 快速索引
 
 完整进度、云端保存范围和重建入口见[2026-10-28 进度快照](docs/progress-2026-10-28.md)。当前 PCIe 尚未建链，不能把源码同步理解为驱动或 DMA 已验收。
@@ -36,6 +38,7 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 | [docs/lesson05d-phy.md](docs/lesson05d-phy.md) | d5 GT/PLL/PHY 实测、默认控制连接、同步修订及 Windows 验收边界 |
 | [docs/lesson05d-pll-clock.md](docs/lesson05d-pll-clock.md) | PLL 控制实测、无效证据修正、独立时钟采集/校验与原始 GT power-good 对照 |
 | [docs/lesson05d-ref-prescale.md](docs/lesson05d-ref-prescale.md) | 无需重启的硬件预分频、诊断门控旁路与 SYS_CLK MMCM 监测，PLL 未锁定的当前边界 |
+| [docs/lesson05e-gt-isolation.md](docs/lesson05e-gt-isolation.md) | 独立 GT 实现/实板对照、SYS_CLK 主机时间粗测、CDC 修正、仿真许可边界与 e0 回退 |
 | [docs/rfsoc-preparation.md](docs/rfsoc-preparation.md) | RFSoC 接入前：现有光模块/ConnectX-5、PCIe 限制、候选协议工具及分阶段验收 |
 | [docs/vivado-first-steps.md](docs/vivado-first-steps.md) | 怎样在 Vivado 中查看本课综合网表、资源和波形 |
 | [docs/vivado-mcp.md](docs/vivado-mcp.md) | 本地 Vivado MCP 的安装配置、兼容修正、实测与连接刷新 |
