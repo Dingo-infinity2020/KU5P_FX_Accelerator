@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-10-29T16:32:31.926674+00:00",
+  "authorization": "User authorized this night development until required host reboot/manual action; no automatic host or external-clock changes",
+  "worktree": "D:/work/KU5P_FX_Accelerator",
+  "branch": "codex/m0-nightly-baseline-2026-10-30",
+  "baseline_remote_commit": "ddf306ec7ae3828a19a594b728f828f16f5bcb77",
+  "frozen_source_commit": "fb7a0d90c472a60578a4bcc4974d1fb31b37138f",
+  "frozen_source_files": 235,
+  "sources_unchanged_during_run": true,
+  "tools": {
+    "vivado": {
+      "version": "vivado v2026.1 (64-bit)",
+      "informational_exit_code": 1
+    },
+    "numpy_version": "2.3.5",
+    "python_version": "3.12.14"
+  },
+  "m0_status": "PASS",
+  "h1_status": "WAIT_FOR_HOST_RESTART",
+  "current_regression": [
+    {
+      "name": "python",
+      "timeout_seconds": 180,
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 0.347,
+      "log_sha256": "3d19ffa05eaa3d88e60dcfc957aff53f6ce7f2ebb735fe90ac39fa02a5917a56",
+      "acceptance": {
+        "tests": 72,
+        "failures": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "boot",
+      "timeout_seconds": 240,
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 3.54,
+      "log_sha256": "32f129a51a3431ae33031b083dd7a4441b75250ccb0590473cc468bb965ebf4b",
+      "acceptance": "PASS boot_diagnostics_checks=14"
+    },
+    {
+      "name": "training",
+      "timeout_seconds": 240,
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 3.294,
+      "log_sha256": "02a3e119e799404b808e5d85137d59ecb1cc038410f83324f31167aa7dba5e7f",
+      "acceptance": "PASS training_monitor_checks=9"
+    },
+    {
+      "name": "application_vectors",
+      "timeout_seconds": 30,
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 0.063,
+      "log_sha256": "12e8e34d96de66d83ed43260c3c1785838edf32956466831945eed2a43d98637",
+      "acceptance": {
+        "reference_generation": true
+      }
+    },
+    {
+      "name": "application",
+      "timeout_seconds": 240,
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 3.66,
+      "log_sha256": "641aae3157a0e51c60a9bf0c194384d42f3c28259d79a712ad516d937018f0e8",
+      "acceptance": "PASS packets=29 beats=3712 stalls=1114 max_burst=1024 write_errors=12 read_errors=2 aw_first=22 w_first=22"
+    },
+    {
+      "name": "pipeline",
+      "timeout_seconds": 900,
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 507.947,
+      "log_sha256": "9d062406ceaa76d14f7b9d95a0b2c5d524dcfaaf8867b7ceb52722f4af6cd84d",
+      "acceptance": "PASS windows=90 cases=10 input_pairs=115712 pfb_pairs=115712 fft_pairs=115712 output_bins=46080 output_stalls=37423 pfb_stalls=34725 input_stalls=34667 protocol_faults=8 benchmark_pairs=65536 benchmark_input_cycles=65921 benchmark_total_cycles=67085 benchmark_stalls=4 max_inflight_frames=4"
+    }
+  ],
+  "pipeline_stats": {
+    "windows": 90,
+    "cases": 10,
+    "input_pairs": 115712,
+    "pfb_pairs": 115712,
+    "fft_pairs": 115712,
+    "output_bins": 46080,
+    "output_stalls": 37423,
+    "pfb_stalls": 34725,
+    "input_stalls": 34667,
+    "protocol_faults": 8,
+    "benchmark_pairs": 65536,
+    "benchmark_input_cycles": 65921,
+    "benchmark_total_cycles": 67085,
+    "benchmark_stalls": 4,
+    "max_inflight_frames": 4
+  },
+  "pipeline_nominal_rate_msample_s": 122.11373630468809,
+  "rate_scope": "Finite, backpressurable two-stream simulation at nominal 125MHz; not board sustained input",
+  "historical_artifacts": [
+    {
+      "name": "lesson05_board",
+      "status": "PASS",
+      "proof_sha256": "32053f2f6630745475c5e048173dc5e28e14041d4baf0036d2a18e0c2399881d",
+      "artifacts": [
+        {
+          "name": "lesson05_board_top.bit",
+          "matches": true,
+          "expected_sha256": "96854f46a7b45483534dd6f908a324a129b721421d680ef7e03b1609727dcd49"
+        },
+        {
+          "name": "lesson05_board_top.ltx",
+          "matches": true,
+          "expected_sha256": "6d0e350f0687286591b7838cfc915f3fa3e2bbecdd8e2133f60d5e1725c2ba80"
+        },
+        {
+          "name": "lesson05_board_top_routed.dcp",
+          "matches": true,
+          "expected_sha256": "bf784901b8886753c35b540bbeab9a46ca8330a42c55adf3be4d328f6e68614a"
+        }
+      ]
+    },
+    {
+      "name": "lesson05c_pipeline",
+      "status": "PASS",
+      "proof_sha256": "3c2d55bafbfbd9ab45c963c0a2f05a7878e74d320eaefa76affab76e54e1cadc",
+      "artifacts": [
+        {
+          "name": "two_channel_pfb_fx_pipeline_synth.dcp",
+          "matches": true,
+          "expected_sha256": "4b7b120c8dbe4b3320c62d4b8ab6aa4447ed51c9f2fdb5818bb8e889d557b229"
+        },
+        {
+          "name": "two_channel_pfb_fx_pipeline_routed.dcp",
+          "matches": true,
+          "expected_sha256": "838becd90d49ec9cb462ebefea6be0717cbb4d12acecbe0f38bea4bc3cce0d52"
+        }
+      ]
+    },
+    {
+      "name": "lesson05i_pcie_boot_attempt4",
+      "status": "PASS",
+      "proof_sha256": "456784e7c5da8d727ac7ee0680b96e7168938517a88a1441fbba652da49d05ec",
+      "artifacts": [
+        {
+          "name": "lesson05i_pcie_boot_top.bit",
+          "matches": true,
+          "expected_sha256": "a12257b3eddf1a1160be04e23d1e7374103c05e2c19c5e3c56ebb6abfd9eb300"
+        },
+        {
+          "name": "lesson05i_pcie_boot_top.ltx",
+          "matches": true,
+          "expected_sha256": "4c8d23e196eb2c5de522a88a0b120561929ece30adf43e72f3f2012e62d652df"
+        },
+        {
+          "name": "lesson05i_pcie_boot_top_routed.dcp",
+          "matches": true,
+          "expected_sha256": "8980fbddd1dd87e1e3d47070b306b658d6c0b5a48adbac341cf9aac5c7e1f1af"
+        }
+      ]
+    }
+  ],
+  "historical_source_recovery": {
+    "all_proof_sources_recoverable": true,
+    "archive": "docs/validation/source_archive/lesson05a-build.tcl",
+    "sha256": "be3321abb98191cfc39e8c281a37bd7b997b19c274b7d9a447b1d36846efcaf6",
+    "original_unreachable_git_blob": "d6eca1e531723d7ae83e1dedd230e0ffb5a6aa71",
+    "not_a_build_entrypoint": true
+  },
+  "ip_configuration": [
+    {
+      "name": "historical_fft",
+      "component": "xilinx.com:ip:xfft:9.1",
+      "xci_sha256": "c8975a8fff680ca5b7aa2e06fb3781520d9baedc4475e0cfe16b293043966feb",
+      "parameters": {
+        "transform_length": "512",
+        "input_width": "16",
+        "phase_factor_width": "24",
+        "implementation_options": "pipelined_streaming_io",
+        "scaling_options": "unscaled",
+        "rounding_modes": "convergent_rounding",
+        "output_ordering": "natural_order",
+        "throttle_scheme": "nonrealtime",
+        "target_clock_frequency": "125"
+      }
+    },
+    {
+      "name": "historical_xdma",
+      "component": "xilinx.com:ip:xdma:4.2",
+      "xci_sha256": "51dc73e8ed777ce26fb354b5d002244d2b62189688c1ba60108aa966a22bb646",
+      "parameters": {
+        "pl_link_cap_max_link_width": "X4",
+        "pl_link_cap_max_link_speed": "8.0_GT/s",
+        "ref_clk_freq": "100_MHz",
+        "axi_data_width": "256_bit",
+        "axisten_freq": "125",
+        "ext_sys_clk_bufg": "true",
+        "enable_lane_reversal": "true",
+        "select_quad": "GTY_Quad_225",
+        "en_gt_selection": "true"
+      }
+    }
+  ],
+  "e0_rollback_hashes_match": {
+    "lesson05d_pcie_top.bit": true,
+    "lesson05d_pcie_top.ltx": true,
+    "lesson05d_pcie_top_routed.dcp": true
+  },
+  "current_board": {
+    "build_id": "465805e4",
+    "done": 1,
+    "local_reset": 0,
+    "arm": 0,
+    "read_address_hex": "1ff",
+    "epoch": 1,
+    "entries": 512,
+    "retained_last_event_matches_original": true,
+    "raw_hex": "a0000f000f00000f",
+    "controls": {
+      "physical_perst_n": true,
+      "manual_reset": false,
+      "endpoint_reset_n": true,
+      "reference_recent": true,
+      "reference_window_good": false,
+      "axi_div8_recent": false,
+      "sys_mmcm_locked": true,
+      "sys_clock_stopped": false,
+      "any_cpll_locked": false,
+      "qpll1_locked": false,
+      "all_txresetdone": false,
+      "all_rxresetdone": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false,
+      "link_up": false,
+      "axi_reset_n": false,
+      "raw_observers_valid": true,
+      "ltssm_raw": 0,
+      "ltssm_name": "Detect.Quiet",
+      "training_recent": false,
+      "all_gt_powergood": true
+    },
+    "axi_div8_counts": [
+      9,
+      9,
+      9,
+      9
+    ],
+    "endpoint_count": 0,
+    "host_last_boot": "2026-10-29T18:45:52.5000000+08:00",
+    "hardware_manager_closed": true,
+    "link_passed": false,
+    "bar_tested": false,
+    "dma_tested": false
+  },
+  "actions": {
+    "fpga_program": false,
+    "vio_output_commit": false,
+    "endpoint_reset": false,
+    "recorder_arm": false,
+    "ila_trigger": false,
+    "synthesis": false,
+    "route": false,
+    "host_restart": false,
+    "si5338_write": false,
+    "flash_write": false,
+    "bios_change": false,
+    "driver_install": false
+  },
+  "failures_retained": [
+    {
+      "directory": "m0_20261030_attempt1",
+      "reason": "Informational version probe exit 1 rejected; corrected only version acceptance"
+    },
+    {
+      "directory": "m0_20261030_attempt2",
+      "reason": "Harness omitted application fixture generation; genuine Error/Fatal retained; corrected harness and reran in fresh directory"
+    }
+  ],
+  "next_action": "User performs one Windows Restart while board power/JTAG remain connected; first read identity/reset/epoch/events without program/reset/arm",
+  "evidence_inputs_sha256": {
+    "m0_20261030_attempt3/regression.json": "2b1013b6d47e3f9f3b5c428748c88c4a784d324fac9dcc2fec4c7e962584477f",
+    "m0_20261030_attempt3/vivado_version.txt": "b93442cf330ff2bfa3123468d6ba8bd36c4e929de8dfc6808fa290017ab40853",
+    "m0_20261030_attempt3/pipeline/verification.json": "b90f7dad541f0fd8ca764fd956def60d909b7bf637b3d8fe768f288acbc4c3a7",
+    "m0_20261030_attempt3/pipeline/simulation_pass.txt": "37ebbb4cc480fa0d636363998a7f44adaefbdcfe3ec0adbaedb33c91d800ab2e",
+    "h1_20261030_retention/reconciliation.json": "fdbd18f6f5f8837ec9fcfb06bf85462546e3cee19e0eef16e205c4464be694dc",
+    "h1_20261030_retention/night_initial_snapshot.json": "470b227de978d8e67ec732bb6ee4719ec460f0a02621784bc99a55846975abe9",
+    "h1_20261030_retention/night_final_snapshot.json": "ed40b4ff9764852e9a07345f711760975386b3e83b63ad973cbfc73d83bb2f7a",
+    "h1_20261030_retention/final_state.tcldict": "0368fb8425175f3ffaad64de594547373a3e691bbf495d95af7969d81a07dc6d",
+    "h1_20261030_retention/hardware/night_initial.tsv": "8f7fe1b98736d7b6ca3df7a39061459ea1e52db4b938fbfe46deee4de5bee8f0",
+    "h1_20261030_retention/hardware/night_final.tsv": "e135ef4bd2f9872651d06a4a9657436ac558604eaa5ff8642605c3d512f3aa3d",
+    "h1_20261030_retention/hardware/night_initial_retention.tcldict": "bb56cbfdf2b539217e18edff630e6febe81831825244ccea5b4d1efd49721283",
+    "h1_20261030_retention/static_netlist.tsv": "bd2a8e7c464ca4cf5a679555cd5267b8484533b088c5877576e24d475021bf74",
+    "h1_20261030_retention/static_netlist_review.tcl": "d3873d879b710bdb46d18635e4ba5a4720dc7a053bd461b92da0972927298d28",
+    "h1_20261030_retention/windows_before.json": "405dd04c1ccf950e1c9e80cc54bae26bc3805f0ae1123284d91ff5d4f364e677"
+  }
+}

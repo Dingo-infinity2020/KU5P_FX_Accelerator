@@ -37,6 +37,8 @@ H and F can progress **independently only once user explicitly resumes**. No exp
 
 ### M0 — baseline reconciliation and reproducible repo (FIRST after RESUME; offline only)
 
+2026-10-30 execution: M0 completed under the user's explicit night-development grant; 72 Python tests and bounded existing HDL regressions passed on frozen source `fb7a0d9`. Fresh simulation, historical artifact/source recovery, and read-only retained-e4 observation are reported separately in [the execution report](m0-night-development-2026-10-30.md). H1 now waits for a user-performed retained-configuration host restart; no automatic reboot or unrelated RTL/GT sweep.
+
 Inputs: actual Windows worktree, latest GitHub refs and Draft PR #1; previous lesson05A/05C/05I proof, IP regeneration Tcl. Deliver:
 1. Reconcile local uncommitted files and remote HEAD; locate every authored source, generated IP dependence, board pin/part, and existing test launcher. No destructive reset/clean. Maintain manifest of SHA, tool versions, constraints, exact historical output directories.
 2. Run bounded Python offline tests and self-checking HDL simulations only under approved offline scope; sample any reproducer for exact arithmetic output and negative cases. Mark unavailable tools/models NOT RUN rather than fabricate.

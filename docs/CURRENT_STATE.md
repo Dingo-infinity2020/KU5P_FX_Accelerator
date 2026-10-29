@@ -1,5 +1,11 @@
 # CURRENT_STATE — KU5P FX Accelerator
 
+**最新覆盖段：2026-10-30 夜间用户已明确授权恢复开发，至需要重启/人工操作时停下。** 已从远端 `ddf306e` 创建 `codex/m0-nightly-baseline-2026-10-30`，完成 M0：冻结源 `fb7a0d9` 的 72 Python 测试、14 诊断/9 训练检查、29 包应用仿真、226 帧/90 窗口完整 PFB-FX 回归通过；不是板级持续吞吐。235 项输入冻结，新旧证据严格分开。原 05A 构建脚本已按原哈希恢复并归档。详见[本轮报告及恢复入口](m0-night-development-2026-10-30.md)与[验证摘要](validation/m0-night-2026-10-30.json)。
+
+**当前停止点 WAIT_FOR_HOST_RESTART：** 本轮实际只读确认仍为 e4/465805e4、DONE1、local reset0、arm0、epoch1/512 条，尾事件与旧记录一致；未 program/reset/arm/触发 ILA，无新综合/布线。Windows PresentOnly 9034 仍 0、无 L0/BAR/DMA；Hardware Manager 已关闭。下一步需要用户手动 Windows“重新启动”并保持板/JTAG供电，返回后先只读保全，不得先重下位流/复位/arm。以下 2026-10-29 的 documentation-only 与暂停是历史基线，不覆盖本轮新授权和实测。
+
+## 2026-10-29 历史基线
+
 **Snapshot:** 2026-10-29. **Reviewed source:** codex/progress-2026-10-28 @ b89a5c433e9222e5ed2cedce110c5e79790bca2f (unmerged Draft PR #1). **Scope:** cloud source/docs and prior experimental evidence; no fresh Vivado/board run by this review.
 
 > STOP / HUMAN GATE: Prior user instructed development to pause after final e4 PCIe experiment. The 2026-10-29 follow-up authorized documentation/agent/planning updates only. Do not resume board, driver, RTL or BUILD work just because a milestone exists. Revalidate this STOP at each new local session against more recent explicit user instructions.
@@ -55,7 +61,6 @@ P2: wide PR mixes mature FX, experimental GT diagnostics and unmerged lessons; r
 
 ## Next authorized action and safe next development package
 
-Current permission: DOCUMENTATION ONLY. This doc/AGENTS/plan change is not an experiment and adds no hardware proof.
-After an explicit user RESUME instruction, propose **M0 reproducibility/baseline review** first: check clean working tree, re-run bounded Python tests, inspect Tcl for side effects, create frozen manifest/coverage, prepare focused PR(s), then request permission for M1 PCIe or M2 continuous two-lane implementation. M1 BOARD work must always have its own scoped grant.
+Latest permission and stop point are the 2026-10-30 override at the top: user authorized night development until required reboot/manual action; M0 is complete, next H1 retained-e4 host restart needs user action. Do not restart the host automatically or repeat local resets. The earlier documentation-only scope below the historical heading remains a dated record, not the current authorization.
 
 The plan in [DEVELOPMENT_PLAN](DEVELOPMENT_PLAN.md) is prospective. For raw report and latest real status, the dated experimental record takes precedence over a progress checkbox.
