@@ -1,0 +1,143 @@
+{
+  "saved_utc": "2026-10-29T02:09:20.116628+00:00",
+  "user_reported_reseated": true,
+  "same_slot_confirmed": true,
+  "firmware_changed": false,
+  "build_id": "465805dd",
+  "pcie_lanes": 4,
+  "bitstream_sha256": "a0d8ac037e052b5068a022fbbcb9f57855b51b2104552131bd84b6158e18f19d",
+  "ltx_sha256": "51d592a5616b461e0043246939cad1f38b6b1dfa4b9c7e7256776a4eee9e965f",
+  "checkpoint_sha256": "b23cb98bfec7878e6ebd526239340f2bdc0973f36616b5d938ebc58f5ae0d40c",
+  "jtag_hz": 6000000,
+  "local_reset": 0,
+  "initial_configuration": {
+    "done": true,
+    "recognized_vio": 0,
+    "recognized_ila": 0,
+    "identity": "unknown"
+  },
+  "phy_current": {
+    "txresetdone": 0,
+    "rxresetdone": 0,
+    "rxpmaresetdone": 0,
+    "txpmaresetdone": 0,
+    "ip_power_on": 1,
+    "cplllock": 0,
+    "qpll_locks": 0,
+    "phy_reset_flags": 2,
+    "txprogdivresetdone": 0,
+    "txsyncdone": 0,
+    "rxsyncdone": 0,
+    "rxcdrlock": 0,
+    "qpll1lock": false,
+    "qpll0lock": false,
+    "phy_rst_idle": false,
+    "phy_rrst_n": true,
+    "phy_prst_n": false,
+    "raw_gt_powergood": {
+      "GTYE4_CHANNEL_X0Y4": true,
+      "GTYE4_CHANNEL_X0Y5": true,
+      "GTYE4_CHANNEL_X0Y6": true,
+      "GTYE4_CHANNEL_X0Y7": true
+    }
+  },
+  "phy_raw": "0000240f0000",
+  "training_states": [
+    {
+      "hex": "00",
+      "name": "Detect.Quiet"
+    }
+  ],
+  "training_sequence_values": [
+    1
+  ],
+  "windows_endpoint_count": 0,
+  "host_dma_tested": false,
+  "clock_captures": {
+    "a": {
+      "csv_sha256": "da706fcb134a6373a81e819afe8f622ea6ecc5c8990867f9e8063c158b6ba46a",
+      "samples": 4096,
+      "nominal_sysclk_mhz": 100.0,
+      "source_divisor": 256,
+      "ref": {
+        "rising_edges": 10,
+        "full_periods": 9,
+        "stable_periods_observed": false,
+        "frequency_mhz_relative_to_nominal_sysclk": null,
+        "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+        "period_monitor_samples_min": 245,
+        "period_monitor_samples_max": 847,
+        "period_monitor_samples_mean": 398.8888888888889,
+        "mean_edge_rate_mhz_equivalent": 64.17827298050139
+      },
+      "scope": "Two-stage synchronized counter bit 7; relative to nominal board SYS_CLK; not calibrated frequency, jitter, PLL lock or PCIe acceptance",
+      "monitor_calibration": {
+        "rising_edges": 16,
+        "full_periods": 15,
+        "stable_periods_observed": true,
+        "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+        "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+        "period_monitor_samples_min": 256,
+        "period_monitor_samples_max": 256,
+        "period_monitor_samples_mean": 256,
+        "mean_edge_rate_mhz_equivalent": 100.0,
+        "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+      },
+      "calibration_pass": true
+    },
+    "b": {
+      "csv_sha256": "1482b09f4d5f5922d8538a48a04f9750c112b245cf417b433bef0f0575514459",
+      "samples": 4096,
+      "nominal_sysclk_mhz": 100.0,
+      "source_divisor": 256,
+      "ref": {
+        "rising_edges": 5,
+        "full_periods": 4,
+        "stable_periods_observed": false,
+        "frequency_mhz_relative_to_nominal_sysclk": null,
+        "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+        "period_monitor_samples_min": 615,
+        "period_monitor_samples_max": 1194,
+        "period_monitor_samples_mean": 915.75,
+        "mean_edge_rate_mhz_equivalent": 27.955227955227954
+      },
+      "scope": "Two-stage synchronized counter bit 7; relative to nominal board SYS_CLK; not calibrated frequency, jitter, PLL lock or PCIe acceptance",
+      "monitor_calibration": {
+        "rising_edges": 16,
+        "full_periods": 15,
+        "stable_periods_observed": true,
+        "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+        "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+        "period_monitor_samples_min": 256,
+        "period_monitor_samples_max": 256,
+        "period_monitor_samples_mean": 256,
+        "mean_edge_rate_mhz_equivalent": 100.0,
+        "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+      },
+      "calibration_pass": true
+    }
+  },
+  "boot_event": {
+    "time": "2026-10-29T09:55:34.5143589+08:00",
+    "provider": "Microsoft-Windows-Kernel-Boot",
+    "event_id": 27,
+    "data": [
+      {
+        "name": "BootType",
+        "value": "1"
+      },
+      {
+        "name": "LoadOptions",
+        "value": null
+      }
+    ]
+  },
+  "observed_os_last_boot": "2026-10-28T18:38:06.5+08:00",
+  "boot_interpretation": "BootType1 plus unchanged kernel start is consistent with Fast Startup; not evidence user did not power-cycle",
+  "restart_test": "Pending user Windows Restart with dd already in SRAM; keep supply/card position; verify retention before reprogramming",
+  "restart_preflight": "Build and local reset read back, hardware connection closed; no host reboot command executed",
+  "flash_written": false,
+  "driver_installed": false,
+  "scope": "Reseating did not yet produce observed PLL/PHY recovery; buffered counter samples do not measure analog slot clock quality",
+  "source": "https://learn.microsoft.com/en-us/troubleshoot/windows-client/setup-upgrade-and-drivers/fast-startup-causes-system-hibernation-shutdown-fail"
+}

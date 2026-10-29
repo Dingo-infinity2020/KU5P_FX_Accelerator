@@ -1,5 +1,7 @@
 # PLL 控制与时钟排查（2026-10-28）
 
+后续记录：用户于 2026-10-29 重新插牢并保持原插槽；同 dd 位流恢复后尚未观察到 PLL/PHY 改善，完整 Windows 重启对照待执行，见[重新插牢后的同位流对照](lesson05d-reseat-2026-10-29.md)。下文为前一日实验历史。
+
 承接 [d5 GT/PHY 诊断](lesson05d-phy.md)。本轮仍在 Windows 主机进行；板卡插槽为显卡下方的电气 ×4 槽。下面各目录均在 `D:/work/build/KU5P_FX_Accelerator/`，不在 Git 仓库内。
 
 ## 证据修正
