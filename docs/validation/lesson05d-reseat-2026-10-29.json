@@ -134,10 +134,11 @@
   },
   "observed_os_last_boot": "2026-10-28T18:38:06.5+08:00",
   "boot_interpretation": "BootType1 plus unchanged kernel start is consistent with Fast Startup; not evidence user did not power-cycle",
-  "restart_test": "Pending user Windows Restart with dd already in SRAM; keep supply/card position; verify retention before reprogramming",
+  "restart_test": "Optional, not prerequisite: user asked necessity, prioritize diagnostics without host restart. No evidence Fast Startup causes PLL failure. If user later opts in, verify dd retention before reprogramming.",
   "restart_preflight": "Build and local reset read back, hardware connection closed; no host reboot command executed",
   "flash_written": false,
   "driver_installed": false,
   "scope": "Reseating did not yet produce observed PLL/PHY recovery; buffered counter samples do not measure analog slot clock quality",
-  "source": "https://learn.microsoft.com/en-us/troubleshoot/windows-client/setup-upgrade-and-drivers/fast-startup-causes-system-hibernation-shutdown-fail"
+  "source": "https://learn.microsoft.com/en-us/troubleshoot/windows-client/setup-upgrade-and-drivers/fast-startup-causes-system-hibernation-shutdown-fail",
+  "local_reset_test": "Endpoint reset hold/release already tested with no improvement; not proposed again as new evidence"
 }
