@@ -1,5 +1,8 @@
 # KU5P_FX_Accelerator
 
+**本地 Codex/下一次开发入口（2026-10-29）：** [AGENTS.md](AGENTS.md)（工作约束与授权边界）→ [当前真实状态](docs/CURRENT_STATE.md) → [详细开发里程碑](docs/DEVELOPMENT_PLAN.md) → [接口与科学数据合同](docs/INTERFACE_CONTRACTS.md) → [代码审查清单](docs/REVIEW_BACKLOG.md)。开发分支仍在 Draft PR #1；此前 e4 硬件实验之后的暂停决定仍有效，文档路线本身不代表授权新的上板、构建或软件开发。
+
+
 基于 AMD Kintex UltraScale+ **XCKU5P** 的 FPGA 加速卡开发仓库。
 
 **最新状态（2026-10-29）：按用户要求，最后一次尝试结束后开发暂停。** 新e4独立启动记录器完成实现、CDC和实板观察，WNS=+1.174ns、未豁免CDC Critical=0；已保存完整512条事件和ILA。CPLL有瞬态指示但没有稳定初始化，GT TX/RX done低，Windows未枚举。当前SRAM为e4、reset0，板卡仍未打通；见[最后一次尝试与停止点](docs/lesson05i-pcie-boot-recorder.md)。下文e0等为此前阶段记录。

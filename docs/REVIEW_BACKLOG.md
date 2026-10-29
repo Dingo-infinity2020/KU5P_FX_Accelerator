@@ -1,0 +1,28 @@
+# REVIEW_BACKLOG — evidence-driven code and architecture audit
+
+**Baseline:** source branch b89a5c4 on 2026-10-29. These are **risk findings and verification tasks**, not unproven declarations of bugs. A confirmed defect requires reproducer, exact source and version. Do not refactor an already passing core just to satisfy a checklist.
+
+| ID | Priority | Target | Evidence and concrete next check | Closure |
+|---|---|---|---|---|
+| R-001 | P0 | PCIe GT/PHY | e0 showed first-boot Polling.Compliance, failed after local reset; e4 intermittent CPLL, TX/RX done0; no L0/enum. Reconcile clock/reset/lane/PLL against generated IP and positive control. | physical root cause discriminated; qualified L0 repeats |
+| R-002 | P0 | host DMA | Windows lacks 10EE:9034 while link not up; user-space file test != DMA. Defer driver until L0, then test BAR/known C2H/H2C. | hardware enumeration, BAR and known bytes |
+| R-003 | P0 | observation validity | Early e4 512-event recorder filled at ~212 ms; ref counters not calibrated; missing QPLL reset/power-down are unknown. Do not ascribe frozen snapshot as live. | bounded event coverage + authoritative signal validity |
+| R-004 | P1 | rtl/channelized_x_pipeline.sv | 512-bank RAM read/write with pipelined first/last and global advance. Verify no same-address read-after-write dependency and no inter-window corruption at M=1, stalls and resets. | randomized stalls/window/BRAM RTL comparison + resource inference |
+| R-005 | P1 | rtl/fft_pair_512_pipeline.sv | Separate FFT AXI pending/ready logic, expected-bin pairing and sticky error. Inspect source backpressure with independent A/B ready and sticky errors. | varied skew, reset/reconfig, missing/extra TLAST tests |
+| R-006 | P1 | rtl/pfb_fir_pair_512_pipeline.sv | PFB 4-tap historical RAM and delayed valid masking. Test corrupted/missing history, output stalls, saturation and startup across epoch boundary. | exact bit comparisons plus negative vectors |
+| R-007 | P1 | rtl/two_channel_pfb_fx_pipeline.sv | 16-depth tags FIFO, frame header/input streaming and epoch/config snapshot; verify queue wrap, flush and metadata stays with FFT output. | randomized overlap/window/induced congestion assertions |
+| R-008 | P1 | ingress absent | No independent real-time producer + whole-frame admission + loss placeholders; AXI stalling alone cannot protect time-driven RFSoC input. | F1 producer, conservation, bounded overload |
+| R-009 | P1 | numeric contract | Current requantize ties-even and 64-bit accumulator. Check signed magnitude bounds, clipping semantics, V_ab conjugate convention, W=0 and normalized units. | golden max-sign/noise/RFI sweeps with reported tolerances |
+| R-010 | P1 | 16-stream architecture | 136 product/scheduler and storage-bank proof missing; full-band 13.6 G products/s @ 100 MS/s. | 4 -> 8 -> 16 resource and timed architecture proof |
+| R-011 | P1 | XDC/Tcl build | Historical build paths, generated AMD IP, exact part, timing and CDC coverage. Review scripts for hardware side effects and report acceptance. | clean fresh reproducible build; no stale reports |
+| R-012 | P1 | network interface | Candidate RFSoC format and 100G CMAC link are not real hardware; source mapping/UDP checksum/missing packet handling. | signed live fixture and 100G link packet checks |
+| R-013 | P1 | hardcoded reset | e4 reset bridge differs from e0 baseline, e0 prior CDC issues differ from e4 zero Critical. Need design-specific CDC and recovery evidence. | independent reset assertion/release, fail/recovery |
+| R-014 | P2 | repo organization | Draft PR #1 aggregates algorithm, old lessons, current diagnostics; main only bootstrap. | focused reviewed PRs and source-of-truth docs |
+| R-015 | P2 | science metadata | No fully qualified UTC/PPS, antenna-pol map, calibration scale, spectrum frequency mapping. | packet schema + bench/sky comparison |
+| R-016 | P2 | security/licensing | Local vendor schematic and RFSoC original project, license hostid, raw captures must not be uploaded. | staged diff/secrets/license/source provenance audit |
+
+## Review discipline
+
+For each R-xxx: mark OPEN / CONFIRMED_DEFECT / VERIFIED_OK / DEFERRED / BLOCKED, include the exact source SHA, line or test, falsifiable expected vs observed, what was run and what was not, and next permission gate. Do not silently mark OPEN rows fixed by updating documentation. Historical tests remain in docs/lessonXX-*.md and docs/validation/*.json; do not rewrite them.
+
+First offline review priority after resume: R-004 through R-007 and R-011 with focused self-checking tests; hardware R-001 through R-003 require separate approval. Prior user request is HOLD for implementation, so this backlog is guidance, not queued executable work.
