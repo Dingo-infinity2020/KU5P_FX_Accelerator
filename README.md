@@ -27,6 +27,7 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 | [docs/rfsoc-interface.md](docs/rfsoc-interface.md) | RFSoC 数据源核对、320 MS/s 接口与同步边界、容量影响 |
 | [docs/dual-rfsoc-plan.md](docs/dual-rfsoc-plan.md) | 两台 RFSoC、16 路范围、100/320 MS/s 对比与接入路线 |
 | [docs/implementation-roadmap.md](docs/implementation-roadmap.md) | 当前实施顺序、学习验收与长期 FFTT 方向 |
+| [docs/review-and-recovery-plan-2026-10-29.md](docs/review-and-recovery-plan-2026-10-29.md) | 已知问题与误判复盘、物理参考路由新证据、CPLL实板优先的恢复决策树和FX并行路线 |
 | [docs/lesson01-power.md](docs/lesson01-power.md) | 第一课：复数功率/累加、参考值、仿真与综合复现 |
 | [docs/lesson02-correlation.md](docs/lesson02-correlation.md) | 第二课：两通道相关、流水线、相位检查及可操作的 Vivado 工程 |
 | [docs/lesson03-fft-fx.md](docs/lesson03-fft-fx.md) | 第三课：双 512 点时间 FFT、定点标度、逐频道积分与完整链路验证 |
