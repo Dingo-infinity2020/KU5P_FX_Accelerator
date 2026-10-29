@@ -70,6 +70,8 @@ RFSoC 原始工程、厂家资料包和原始采样/抓包留在仓库外；只�
 - 第四课 `scripts/run_lesson04.ps1` 生成自行定义的 PFB 系数与逐位参考，冻结源码/数据哈希后运行仿真和可选独立综合；`tcl/run_lesson04.tcl` 的 prepare 模式也可在 MCP 会话中驱动相同工程，再由 `lesson04_manifest.py finish` 验证新结果。
 - 第五课 `scripts/run_lesson05.ps1 -Implement` 经唯一入口 `tcl/build.tcl` 构建 `lesson05_board_top`。`lesson05_project.tcl` 提供同源的 MCP 分段启动/收集函数；`lesson05_manifest.py` 核对构建，`lesson05_hardware.tcl` 显式执行 JTAG SRAM 配置与抓取，`check_lesson05_hardware.py` 独立验证真实 CSV 和 VIO 状态。
 - 05D 的 `scripts/run_lesson05d.ps1` 经同一入口构建 `lesson05d_pcie_top`；应用仿真、物理实现证明和真实硬件观察分别保存。Windows 用户态测试及其模拟端点不计为 PCIe DMA 验收。
+- 05F 的 `scripts/run_si5338_readonly.ps1` 先仿真并冻结输入，再经同一入口构建 `lesson05f_si5338_top`，接受开漏/引脚、时序、路由与未豁免 CDC 后才生成 proof；不自动上板，不写时钟芯片配置。
+- 缩小的 GT/CPLL 动态仿真由 `tcl/simulate_gt_cpll_reduced.tcl` 单独生成仿真 IP，不产出位流；其通过不替代原 QPLL1/8 Gb/s 仿真或真实 PCIe 验收。
 - GUI 工程本身不入库；交付的是能重建它的源码、参考模型、脚本和说明。GUI 中的实验结果不自动替换脚本验证记录。
 - 板级构建读取 `constr/`；课堂脚本显式读取各课 `constraints/lesson*_ooc.xdc`，其中只有算术模块时钟目标。
 

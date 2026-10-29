@@ -41,6 +41,12 @@ log "part      = $part"
 log "top       = $top"
 log "build_dir = $build_dir"
 
+if {$top eq "lesson05f_si5338_top"} {
+    source -notrace [file join $repo_dir tcl lesson05f_si5338_project.tcl]
+    lesson05f_si5338_build $build_dir $part
+    return
+}
+
 if {$top eq "lesson05e_gt_top"} {
     set action [lindex $argv 3]
     if {$action eq ""} {set action all}

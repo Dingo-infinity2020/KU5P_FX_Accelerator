@@ -25,7 +25,7 @@ GT 内部时钟/复位控制由新生成的 Wizard 负责；未复制或修改�
 
 完整四通道真实 GT 模型达到 94904 个实例，超过当前 Vivado BASIC 仿真的 50000 个实例上限，未能运行。没有将这项记录为通过，也没有通过修改许可或模型规避限制。
 
-缩小为单通道后仍超限：与 MMCM 合并时 63341 实例，独立 GT 测试为 63337 实例。因此 **GT 动态仿真没有执行成功**。保留单通道 testbench 供具备足够许可时使用；当前只验证它可以编译、展开并生成仿真快照，不能把 elaboration 当成运行通过。
+缩小为单通道后仍超限：与 MMCM 合并时 63341 实例，独立 GT 测试为 63337 实例。因此 **原 8 Gb/s/QPLL1 动态仿真没有执行成功**。保留该单通道 testbench 供具备足够许可时使用；它只完成编译、展开并生成仿真快照，不能把 elaboration 当成运行通过。后续独立 CPLL 测试见下节，覆盖范围不同。
 
 当前实际运行的仿真为：复位控制 4 项（无锁定保持、锁定后延时释放、手动复位及失锁恢复），真实 SYS_CLK/MMCM 包装模块 4 项（100 MHz、输入停止、复位恢复、125 MHz）。MMCM 与 GT 逻辑已分成独立模块，单 GT testbench 的资格输入由测试激励提供。仿真模式的其余三路状态补零，不表示三路已模拟成功；硬件顶层固定使用四通道分支。
 
@@ -39,7 +39,9 @@ GT 内部时钟/复位控制由新生成的 Wizard 负责；未复制或修改�
 
 AMD IP 自带的 CDC waivers 可能随生成文件进入工程。报告使用 `report_cdc -no_waiver` 忽略这些豁免，并保存厂商 waiver 列表；不增加自定义豁免。不能以 IP 默认报告隐藏的路径声称整体 CDC clean。
 
-首轮完整实现虽时序通过，但 CDC 检查指出诊断模块为 TX/RX RESETDONE 和 user-clock ACTIVE 增加了与 Wizard 内部并行的同步链，共 20 条 CDC-11。该版本没有接受或上板。修正方式是移除这十个重复观测位，改用 Wizard 已同步到管理时钟域的 aggregate TX/RX reset-done，并保留八位逐通道 PMARESETDONE。位13–20、23–24成为保留位，解析器对应原始 per-channel RESETDONE/user-clock ACTIVE 返回 null，不能把保留零解释成硬件状态为零。没有修改厂商 RTL、添加 waiver 或降低严重度。
+首轮完整实现虽时序通过，但 CDC 检查指出诊断模块为 TX/RX RESETDONE 和 user-clock ACTIVE 增加了与 Wizard 内部并行的同步链，共 20 条 CDC-11。该版本没有接受或上板。修正方式是移除这十个重复观测位，改用 Wizard 的 aggregate TX/RX reset-done，再经诊断两级同步进入管理时钟域，并保留八位逐通道 PMARESETDONE。位13–20、23–24成为保留位，解析器对应原始 per-channel RESETDONE/user-clock ACTIVE 返回 null，不能把保留零解释成硬件状态为零。没有修改厂商 RTL、添加 waiver 或降低严重度。
+
+此前文字把 aggregate reset-done 的源时钟域写错了：TX done 同步到 TXUSRCLK2，RX done 同步到 RXUSRCLK2；并非 Wizard 已替外部诊断同步到管理时钟域。RTL 原本已有诊断两级同步，本次只纠正文档。[PG182 复位状态机说明](https://docs.amd.com/r/en-US/pg182-gtwizard-ultrascale/Reset-State-Machines) 给出了两种 done 的时钟域。
 
 另一项构建修正是把仿真专用单通道 IP 的源/XDC 排除在硬件综合和实现之外，避免其 scoped XDC 在四通道硬件中找不到对应实例。IP-XACT XML 文档没有 synthesis/implementation 标志，不对文档对象强设不存在的属性。板级 XDC 使用显式引脚赋值，避免当前约束解析器不支持循环语句的问题；没有放松引脚或时序约束。
 
@@ -64,7 +66,36 @@ AMD IP 自带的 CDC waivers 可能随生成文件进入工程。报告使用 `r
 
 本阶段已完成独立 GT 对照，**没有恢复 PCIe 建链，也没有通过 BAR/DMA 测试**。独立工程同样未锁定，支持继续检查参考输入及 GT 初始化条件，不能将根因归结为 Windows 驱动或只剩某一个配置错误。未重启主机、移卡、写 Flash、安装驱动或改变 BIOS。
 
-8 项控制/时钟仿真、33 项 Python 测试通过；GT 动态模型受许可限制仍未运行。完整哈希、原始采集摘要、回退证明及验证边界见[本阶段验证记录](validation/lesson05e-gt-isolation-2026-10-29.json)。
+e1 阶段的 8 项控制/时钟仿真、33 项 Python 测试通过；原 QPLL1 GT 动态模型受许可限制仍未运行。完整哈希、原始采集摘要、回退证明及验证边界见[本阶段验证记录](validation/lesson05e-gt-isolation-2026-10-29.json)。
+
+## 后续：减少实例后的动态仿真
+
+2026-10-29 继续尝试减少实例。单 GT/QPLL1 的 `xelab --debug off` 仍产生 63337 个实例，xsim 因 BASIC 上限 50000 拒绝启动；不能靠去掉调试信息解决。安装的 GT 模型已用 FAST 模式与 reset speedup，未修改厂商模型或许可检查。
+
+另建**一个 GTY 通道、5 Gb/s、CPLL、100 MHz 参考输入**的独立测试，生成参数确认 CHANNELS=1、COMMONS=0。它成功运行到 435810 ns，输出 `PASS gt_cpll_reduced_checks=4`，native 日志也检查此标记后才输出 `CPLL_REDUCED_SIMULATION_COMPLETE`。实际通过：
+
+1. 上电时管理复位请求保持，TX 初始化尚未完成。
+2. 释放后 CPLL 锁定、GT power-good、TX PMA ready、TX helper done 成立。
+3. 再次请求复位时管理控制正确保持。
+4. 请求释放后实际观察到 CPLL 解锁、TX done 拉低，随后两者恢复。
+
+第一次测试错误地要求 reset-all 请求保持高时 CPLL 必须立即解锁。按 PG182 和本机生成的 helper，reset-all 状态机在同步请求的**下降沿**启动；已改为在释放后等待并检查真实解锁及恢复，而非删去恢复检查。失败尝试留在仓库外。
+
+该模型沿用生成 IP 的 `C_SIM_CPLL_CAL_BYPASS=1`，不验证模拟 CPLL 校准精度。TX 发送保持禁止，没有 RX 数据源，不验证 RX 数据恢复、BER、PCIe 训练或 DMA。它没有 QPLL common，**不能替代原 8 Gb/s/QPLL1 工程的动态仿真**，原缺口仍为未通过。硬件 e1 和 e0 均未因此改成 5 Gb/s/CPLL。
+
+复现时在全新仓库外目录运行（不会生成位流或自动上板）：
+
+```powershell
+New-Item -ItemType Directory -Path D:/work/build/KU5P_FX_Accelerator/cpll_fresh
+Push-Location D:/work/build/KU5P_FX_Accelerator/cpll_fresh
+& D:/AMDDesignTools/2026.1/Vivado/bin/vivado.bat -mode batch `
+  -source D:/work/KU5P_FX_Accelerator/tcl/simulate_gt_cpll_reduced.tcl `
+  -log D:/work/build/KU5P_FX_Accelerator/cpll_fresh/native_sim.log `
+  -tclargs D:/work/build/KU5P_FX_Accelerator/cpll_fresh
+Pop-Location
+```
+
+工作目录设为 `cpll_fresh`，避免在源码目录产生工具临时文件。需同时检查实际 runtime PASS、结束时间和完成标记；xsim 在许可失败时也可能返回退出码 0。结果及源文件哈希见[缩小仿真验证记录](validation/lesson05e-cpll-reduced-2026-10-29.json)。
 
 ## 原理图复核与下一步
 
@@ -72,4 +103,4 @@ AMD IP 自带的 CDC waivers 可能随生成文件进入工程。报告使用 `r
 
 时钟页还表明 X2 是 **25 MHz**，经时钟选择器送入 Si5338。厂家 XDC 对 QSFP 参考的“161.1328125 MHz / from X2”注释不能证明当前硬件上电即输出该频率；PCIe 注释中的 bank225 也与实际 AB7/AB6 的 bank224 不符。实际连接优先以原理图网络和器件封装核对，最终频率仍需配置读回与测量。
 
-下一阶段先核对 Si5338 I2C 引脚、电压及开漏方式，读取器件 ID、锁定/失锁状态和当前配置。之后再准备针对 GT 的本地参考时钟对照方案，审核共享 PLL/其他输出的影响，验证后才考虑可恢复的寄存器配置。本轮没有访问或改写 Si5338，也没有将本地参考直接替换进 PCIe 端点。
+e1 阶段没有访问或改写 Si5338。后续已完成引脚、电压、开漏审计及实板只读采集，见[第五课 F](lesson05f-si5338-readonly.md)。本地参考仍需配置计划与独立测量，不能直接替换进 PCIe 端点。

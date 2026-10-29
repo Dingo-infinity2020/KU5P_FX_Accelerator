@@ -30,7 +30,7 @@
 | 参考时钟 | PCIe 插槽目标 100 MHz 差分输入 AB7/AB6，PERSTn=T19/LVCMOS12；缓冲后计数有活动但重复 ILA 采集的边沿间隔不稳定，同域 256 点校验通过；尚无稳定 100 MHz 或电气测量证据 |
 | 用户时钟 | 厂家资料：100 MHz 单端 SYS_CLK，AB21 / LVCMOS18，BANK64 的 VCCO 为 1.8 V；第五课采用 IBUF/BUFG 接入 |
 | 独立 GT 对照 | SYS_CLK 管理复位、四通道固定 8 Gb/s/QPLL1 的 e1 已实现并上板，PLL 仍未锁定；SYS_CLK 主机时间粗测约 100 MHz，e1 参考计数两次短采集无边沿。已恢复同一 e0，见[第五课 E](lesson05e-gt-isolation.md) |
-| 板载可编程时钟 | 原理图：X2 为 25 MHz，Si5338 CLK2 经 B225_CLK0 到 V7/V6，独立于插槽 AB7/AB6；I2C 状态/配置待读回，不能假定 QSFP 参考已按厂家 XDC 注释运行 |
+| 板载可编程时钟 | 原理图：X2 为 25 MHz，Si5338 CLK2 经 B225_CLK0 到 V7/V6，独立于插槽 AB7/AB6；已在0x70只读两份page0，均LOS_CLKIN=1、输入选择IN1/2而板载源接IN3、输出格式保留值0。尚无有效输出频率证明，未写配置，见[第五课 F](lesson05f-si5338-readonly.md) |
 
 ## 高速接口
 
