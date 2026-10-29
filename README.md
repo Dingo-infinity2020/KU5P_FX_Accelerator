@@ -17,6 +17,8 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 
 ## 快速索引
 
+当前按用户安排集中打通板卡，暂缓新增 FX 学习任务。单通道 CPLL 的跨 quad 与本 quad 两版都完成实现、三轮实板复位对照，但均未锁定；已恢复原 e0/reset0，下一项是保留配置的主机启动对照。见[两版 CPLL 实板记录](docs/lesson05g-h-cpll-board.md)和[Si5338 配置准备](docs/si5338-configuration-plan.md)。
+
 完整进度、云端保存范围和重建入口见[2026-10-28 进度快照](docs/progress-2026-10-28.md)。当前 PCIe 尚未建链，不能把源码同步理解为驱动或 DMA 已验收。
 
 | 文档 | 内容 |
@@ -43,6 +45,8 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 | [docs/lesson05d-ref-prescale.md](docs/lesson05d-ref-prescale.md) | 无需重启的硬件预分频、诊断门控旁路与 SYS_CLK MMCM 监测，PLL 未锁定的当前边界 |
 | [docs/lesson05e-gt-isolation.md](docs/lesson05e-gt-isolation.md) | 独立 GT 实现/实板对照、SYS_CLK 主机时间粗测、CDC 修正、仿真许可边界与 e0 回退 |
 | [docs/lesson05f-si5338-readonly.md](docs/lesson05f-si5338-readonly.md) | Si5338 开漏读取、两份实板快照/物理波形、输入配置异常与 e0 回退 |
+| [docs/lesson05g-h-cpll-board.md](docs/lesson05g-h-cpll-board.md) | 单通道 CPLL 跨 quad/本 quad 对照、六轮实板阴性结果、实际控制观察与回退 |
+| [docs/si5338-configuration-plan.md](docs/si5338-configuration-plan.md) | 实际型号/电压证据缺口、完整 RAM 频率计划与多页恢复契约，尚不可上板写入 |
 | [docs/rfsoc-preparation.md](docs/rfsoc-preparation.md) | RFSoC 接入前：现有光模块/ConnectX-5、PCIe 限制、候选协议工具及分阶段验收 |
 | [docs/vivado-first-steps.md](docs/vivado-first-steps.md) | 怎样在 Vivado 中查看本课综合网表、资源和波形 |
 | [docs/vivado-mcp.md](docs/vivado-mcp.md) | 本地 Vivado MCP 的安装配置、兼容修正、实测与连接刷新 |

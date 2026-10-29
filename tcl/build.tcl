@@ -41,6 +41,22 @@ log "part      = $part"
 log "top       = $top"
 log "build_dir = $build_dir"
 
+if {$top eq "lesson05h_cpll_source_top"} {
+    set action [lindex $argv 3]
+    if {$action eq ""} {set action all}
+    source -notrace [file join $repo_dir tcl lesson05h_cpll_source_project.tcl]
+    lesson05h_cpll_build $build_dir $part $action
+    return
+}
+
+if {$top eq "lesson05g_cpll_top"} {
+    set action [lindex $argv 3]
+    if {$action eq ""} {set action all}
+    source -notrace [file join $repo_dir tcl lesson05g_cpll_project.tcl]
+    lesson05g_cpll_build $build_dir $part $action
+    return
+}
+
 if {$top eq "lesson05f_si5338_top"} {
     source -notrace [file join $repo_dir tcl lesson05f_si5338_project.tcl]
     lesson05f_si5338_build $build_dir $part

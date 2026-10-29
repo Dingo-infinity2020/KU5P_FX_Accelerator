@@ -1,0 +1,20 @@
+# Scalar serial port is original connector lane3, GTYE4_CHANNEL_X0Y4.
+set_property -dict {PACKAGE_PIN AB21 IOSTANDARD LVCMOS18} [get_ports SYS_CLK]
+create_clock -name monitor_clk -period 10.000 [get_ports SYS_CLK]
+set_property -dict {PACKAGE_PIN AF14 IOSTANDARD LVCMOS33} [get_ports LED1]
+set_property -dict {PACKAGE_PIN AF15 IOSTANDARD LVCMOS33} [get_ports LED2]
+set_false_path -to [get_ports {LED1 LED2}]
+set_property PACKAGE_PIN AB7 [get_ports pcie_refclk_p]
+set_property PACKAGE_PIN AB6 [get_ports pcie_refclk_n]
+create_clock -name pcie_mgt_refclk -period 10.000 [get_ports pcie_refclk_p]
+set_property -dict {PACKAGE_PIN T19 IOSTANDARD LVCMOS12} [get_ports pcie_reset_n]
+set_false_path -from [get_ports pcie_reset_n]
+set_property PACKAGE_PIN Y2 [get_ports pcie_rx_p]
+set_property PACKAGE_PIN Y1 [get_ports pcie_rx_n]
+set_property PACKAGE_PIN AA5 [get_ports pcie_tx_p]
+set_property PACKAGE_PIN AA4 [get_ports pcie_tx_n]
+# Flags are independent sustained levels, not a coherently sampled encoded bus.
+set_false_path -to [get_pins -hier -filter {NAME =~ *diagnostics/flag_monitor/sample1_reg*/D}]
+set_false_path -to [get_pins -hier -filter {NAME =~ *diagnostics/control_meta_reg*/D}]
+create_generated_clock -name diagnostic_ref_div8 -source [get_pins body/reference_input/ODIV2] -divide_by 8 [get_pins body/reference_divider/O]
+# Gray counter timing/CDC constraints are provided by the xpm_cdc_gray macro.
