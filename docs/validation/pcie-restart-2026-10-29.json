@@ -1,0 +1,371 @@
+{
+  "observed_at_utc": "2026-10-29T10:56:58.989559+00:00",
+  "build_id": "465805e0",
+  "boot_before": {
+    "LastBootUpTime": "2026-10-28T18:38:06.5+08:00",
+    "LocalDateTime": "2026-10-29T14:40:08.232+08:00"
+  },
+  "boot_after": {
+    "LastBootUpTime": "2026-10-29T18:45:52.5+08:00",
+    "LocalDateTime": "2026-10-29T18:51:28.477+08:00"
+  },
+  "retention": {
+    "observed_unix": "1793271104",
+    "configuration_done": "1",
+    "programmed_after_restart": "false",
+    "reset_written_after_restart": "false",
+    "jtag_hz": "6000000",
+    "vio_count": "1",
+    "observed_build": "465805e0",
+    "observed_status": "f0",
+    "local_reset_readback": "0"
+  },
+  "verified_sources": {
+    "tcl/build.tcl": "source_snapshot",
+    "tcl/lesson05d_monitor_pll.tcl": "workspace",
+    "tcl/lesson05d_ref_prescale.tcl": "workspace",
+    "sim/tb_pcie_monitor_pll.sv": "workspace",
+    "scripts/run_pcie_monitor_pll_test.ps1": "workspace"
+  },
+  "artifact_sha256": {
+    "lesson05d_pcie_top.bit": "b302bd9db6eedc213a492ae9f175f4cdb606251f3c53bbceccc6295136e4ed0d",
+    "lesson05d_pcie_top.ltx": "3db45996e028b4fbbee75bc7000115cd8f35aea0495c36c8d29f66d89fc81c91",
+    "lesson05d_pcie_top_routed.dcp": "edd1384f98f90746ab1140775311fb082b9a544ab3a06159aca0708dba678c27"
+  },
+  "before_restart": {
+    "phy_current_hex": "00002c0f0000",
+    "phy": {
+      "txresetdone": 0,
+      "rxresetdone": 0,
+      "rxpmaresetdone": 0,
+      "txpmaresetdone": 0,
+      "ip_power_on": 1,
+      "cplllock": 0,
+      "qpll_locks": 0,
+      "phy_reset_flags": 2,
+      "txprogdivresetdone": 0,
+      "txsyncdone": 0,
+      "rxsyncdone": 0,
+      "rxcdrlock": 0,
+      "qpll1lock": false,
+      "qpll0lock": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false,
+      "raw_gt_powergood": {
+        "GTYE4_CHANNEL_X0Y4": true,
+        "GTYE4_CHANNEL_X0Y5": true,
+        "GTYE4_CHANNEL_X0Y6": true,
+        "GTYE4_CHANNEL_X0Y7": true
+      },
+      "monitor_mmcm_locked": true,
+      "monitor_clkin_stopped": false
+    },
+    "status_hex_values": [
+      "f0"
+    ],
+    "training_states": [
+      "Detect.Quiet"
+    ],
+    "training_sequences": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "training_sequence_changes_observed": false,
+    "transition_counts": [
+      0
+    ],
+    "states_seen": [
+      {
+        "hex": "00",
+        "name": "Detect.Quiet"
+      }
+    ],
+    "l0_ever_seen": false,
+    "endpoint_count": 0
+  },
+  "retained_startup_before_any_reset": {
+    "phy_current_hex": "f0ff7c1fffff",
+    "phy": {
+      "txresetdone": 15,
+      "rxresetdone": 15,
+      "rxpmaresetdone": 15,
+      "txpmaresetdone": 15,
+      "ip_power_on": 1,
+      "cplllock": 1,
+      "qpll_locks": 0,
+      "phy_reset_flags": 7,
+      "txprogdivresetdone": 15,
+      "txsyncdone": 15,
+      "rxsyncdone": 0,
+      "rxcdrlock": 15,
+      "qpll1lock": false,
+      "qpll0lock": false,
+      "phy_rst_idle": true,
+      "phy_rrst_n": true,
+      "phy_prst_n": true,
+      "raw_gt_powergood": {
+        "GTYE4_CHANNEL_X0Y4": true,
+        "GTYE4_CHANNEL_X0Y5": true,
+        "GTYE4_CHANNEL_X0Y6": true,
+        "GTYE4_CHANNEL_X0Y7": true
+      },
+      "monitor_mmcm_locked": true,
+      "monitor_clkin_stopped": false
+    },
+    "status_hex_values": [
+      "f0"
+    ],
+    "training_states": [
+      "Polling.Compliance"
+    ],
+    "training_sequences": [
+      180,
+      224,
+      179,
+      202,
+      77,
+      242,
+      201,
+      131,
+      0,
+      44,
+      60,
+      169
+    ],
+    "training_sequence_changes_observed": true,
+    "transition_counts": [
+      3
+    ],
+    "states_seen": [
+      {
+        "hex": "00",
+        "name": "Detect.Quiet"
+      },
+      {
+        "hex": "01",
+        "name": "Detect.Active"
+      },
+      {
+        "hex": "02",
+        "name": "Polling.Active"
+      },
+      {
+        "hex": "03",
+        "name": "Polling.Compliance"
+      }
+    ],
+    "l0_ever_seen": false,
+    "endpoint_count": 0
+  },
+  "local_reset_actions": [
+    {
+      "unix_ms": "1793271247501",
+      "requested": "1",
+      "readback": "1"
+    },
+    {
+      "unix_ms": "1793271250768",
+      "requested": "0",
+      "readback": "0"
+    }
+  ],
+  "final_after_local_reset": {
+    "phy_current_hex": "00f02c0f0000",
+    "phy": {
+      "txresetdone": 0,
+      "rxresetdone": 0,
+      "rxpmaresetdone": 0,
+      "txpmaresetdone": 0,
+      "ip_power_on": 1,
+      "cplllock": 0,
+      "qpll_locks": 0,
+      "phy_reset_flags": 2,
+      "txprogdivresetdone": 0,
+      "txsyncdone": 15,
+      "rxsyncdone": 0,
+      "rxcdrlock": 0,
+      "qpll1lock": false,
+      "qpll0lock": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false,
+      "raw_gt_powergood": {
+        "GTYE4_CHANNEL_X0Y4": true,
+        "GTYE4_CHANNEL_X0Y5": true,
+        "GTYE4_CHANNEL_X0Y6": true,
+        "GTYE4_CHANNEL_X0Y7": true
+      },
+      "monitor_mmcm_locked": true,
+      "monitor_clkin_stopped": false
+    },
+    "status_hex_values": [
+      "b0",
+      "f0"
+    ],
+    "training_states": [
+      "Detect.Quiet"
+    ],
+    "training_sequences": [
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111,
+      111
+    ],
+    "training_sequence_changes_observed": false,
+    "transition_counts": [
+      4
+    ],
+    "states_seen": [
+      {
+        "hex": "00",
+        "name": "Detect.Quiet"
+      },
+      {
+        "hex": "01",
+        "name": "Detect.Active"
+      },
+      {
+        "hex": "02",
+        "name": "Polling.Active"
+      },
+      {
+        "hex": "03",
+        "name": "Polling.Compliance"
+      }
+    ],
+    "l0_ever_seen": false,
+    "endpoint_count": 0
+  },
+  "clock_startup": {
+    "csv_sha256": "92931aa693025179f1fbc3dd9e18f9633662d74245a5125cf1beb1ba87307cc9",
+    "samples": 4096,
+    "nominal_sysclk_mhz": 100.0,
+    "source_divisor": 256,
+    "ref": {
+      "rising_edges": 10,
+      "full_periods": 9,
+      "stable_periods_observed": false,
+      "frequency_mhz_relative_to_nominal_sysclk": null,
+      "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+      "period_monitor_samples_min": 216,
+      "period_monitor_samples_max": 545,
+      "period_monitor_samples_mean": 381.55555555555554,
+      "mean_edge_rate_mhz_equivalent": 67.09376820034944
+    },
+    "scope": "Reference observer total divide256; same-clock heartbeat calibration; relative to nominal SYS_CLK, not calibrated frequency, jitter or PCIe acceptance",
+    "monitor_calibration": {
+      "rising_edges": 16,
+      "full_periods": 15,
+      "stable_periods_observed": true,
+      "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+      "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+      "period_monitor_samples_min": 256,
+      "period_monitor_samples_max": 256,
+      "period_monitor_samples_mean": 256,
+      "mean_edge_rate_mhz_equivalent": 100.0,
+      "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+    },
+    "calibration_pass": true
+  },
+  "clock_final": {
+    "csv_sha256": "304fa4ce6d43370344e772cfd9ddbd33d22f97b5f921d4f5dc5c211e2bb9db10",
+    "samples": 4096,
+    "nominal_sysclk_mhz": 100.0,
+    "source_divisor": 256,
+    "ref": {
+      "rising_edges": 0,
+      "full_periods": 0,
+      "stable_periods_observed": false,
+      "frequency_mhz_relative_to_nominal_sysclk": null
+    },
+    "scope": "Reference observer total divide256; same-clock heartbeat calibration; relative to nominal SYS_CLK, not calibrated frequency, jitter or PCIe acceptance",
+    "monitor_calibration": {
+      "rising_edges": 16,
+      "full_periods": 15,
+      "stable_periods_observed": true,
+      "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+      "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+      "period_monitor_samples_min": 256,
+      "period_monitor_samples_max": 256,
+      "period_monitor_samples_mean": 256,
+      "mean_edge_rate_mhz_equivalent": 100.0,
+      "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+    },
+    "calibration_pass": true
+  },
+  "final_local_reset": 0,
+  "reprogrammed_this_session": false,
+  "si5338_written": false,
+  "bios_changed": false,
+  "flash_written": false,
+  "driver_installed": false,
+  "link_up_observed": false,
+  "host_dma_tested": false,
+  "input_sha256": {
+    "after_current_host_restart_clock.json": "5e7e04cccbe58b55798ce7a3e49c72e9e362df73ad3f60c4184876333d18947f",
+    "after_current_host_restart_final_clock.json": "19a6c4d1f04daf825d89e70b02f1d5327b4d93b321f2813c3e7df43bc0e7da36",
+    "after_current_host_restart_final_phy.json": "261b252cde0f1a31c2c8cd0a04314f80de3010196d5110a2b3a3b47b7b98ffc3",
+    "after_current_host_restart_final_training.json": "67c17324206bcdfa58f46626393d5feaa4c0dc85cbc67aa19e664d88ae164565",
+    "after_current_host_restart_phy.json": "e4bfa8948253245e9d651663014260f878635f65d1574bb590d9a6bf9d2e8f95",
+    "after_current_host_restart_reset_held_phy.json": "b2a45646653aa93aa502b9f8512b83f96745eb93a1b5e2fef14999014d3272b7",
+    "after_current_host_restart_reset_released_phy.json": "340be34147bf2729f00695c2639c26c309af35ce7de599caa7055ae2f05aa21a",
+    "after_current_host_restart_reset_released_training.json": "377ec0e7e81d536b183e4f7710b2a3fe732ec2815dfa537d16d0e6579fdde95e",
+    "after_current_host_restart_training.json": "8a49779752f91a3d5bef92137ff26f00f0553875fb7b707797fd42adae91ab40",
+    "boot_time_after_current_host_restart.json": "9a7ff6fc4fc4ea8b666f7c19750fc4a3a95aca0f3382c8ff56ab89784f286d00",
+    "boot_time_before.json": "a15752fc190ff5ae3330937a2a7822c7625daac3c5b3ac0b108ea6e50bd0933d",
+    "hardware/after_current_host_restart.tsv": "0965618ec9999f7b7aed318d532c6a3758aa19e7116e1bd44f0ca6e0d2529a76",
+    "hardware/after_current_host_restart_clock.csv": "92931aa693025179f1fbc3dd9e18f9633662d74245a5125cf1beb1ba87307cc9",
+    "hardware/after_current_host_restart_clock.ila": "ff87a5a46feb737866b7593dc957e8405db293e394d5ba25c6a35881f44636a5",
+    "hardware/after_current_host_restart_final.tsv": "15783960350483733b307fd69601f05fb3b2678e69f4bcfd3de4d75177eaf768",
+    "hardware/after_current_host_restart_final_clock.csv": "304fa4ce6d43370344e772cfd9ddbd33d22f97b5f921d4f5dc5c211e2bb9db10",
+    "hardware/after_current_host_restart_final_clock.ila": "8ad0a46aab45d7007a51feb5c889fe802a1ae90407f71f0affacb6afee59afe1",
+    "hardware/after_current_host_restart_final_phy.tsv": "dccc6683b63a5b7730894400d481d586f5d0a32e07c3df4d3a5d6f4fdb45bd1b",
+    "hardware/after_current_host_restart_final_reset_readback.txt": "65da1c241261daec4a0dc1b5cf5e23a7ac7eff74c1b32571b919795e313b3942",
+    "hardware/after_current_host_restart_final_training.tsv": "bdb86788ab9d4136d5d2477546feec6a9cbf7940a65fe8a3e3d3f628cd3fa41f",
+    "hardware/after_current_host_restart_local_reset.tsv": "88d56cb5ecbcd5fec1b80cfeeaf33a7bcb0db0d0ef01d47714138162376926f8",
+    "hardware/after_current_host_restart_phy.tsv": "4c0944443bb35de5de8482259ba54d8d3ca6b6f1912d96ffa7d42a5b7b885ef8",
+    "hardware/after_current_host_restart_reset_held_phy.tsv": "51f0659b7e2edbdf63ed0ecf3575eb58d0925639df92516062ccccd5bfdc693a",
+    "hardware/after_current_host_restart_reset_released.tsv": "15783960350483733b307fd69601f05fb3b2678e69f4bcfd3de4d75177eaf768",
+    "hardware/after_current_host_restart_reset_released_phy.tsv": "8202fe5b4eb5b335b54ef0df36ed509a10b8735c9fe7bf38e6a00cdb2c277739",
+    "hardware/after_current_host_restart_reset_released_training.tsv": "bdb86788ab9d4136d5d2477546feec6a9cbf7940a65fe8a3e3d3f628cd3fa41f",
+    "hardware/after_current_host_restart_retention.tcldict": "32d5fa6bb4b62f67ca962764e2b1589a75297b53a3aef31047f4674ce32378a7",
+    "hardware/after_current_host_restart_training.tsv": "625601b5a6f579f31bae1cfba21550b714c87665e946bb0d78111b8401e27685",
+    "hardware_verification_before_current_host_restart.json": "af765a86364290c9319d6fd8c3684cea5de1a1afae09625392cd0774d2f60825",
+    "ready_for_optional_restart_phy.json": "8ebb83738fa20ec1c17b88e3c5720505e535c10fea8ca26bc1193078a846d10b",
+    "ready_for_optional_restart_training.json": "91770328fa30e008be3320ca6e3eec26ceab9317216753266dd7d886b7635acd",
+    "summarize_restart_observation.py": "4728e2900f1a1415511c491c3f0a420753b3b413d5fcee5e93e1454248fce367",
+    "verification.json": "881d866bfa04f0eee84d86c2e516d51ea1287b771e4cd69469b720f9c05b49a3",
+    "windows_after_current_host_restart.json": "62c079bfe6a2c686232f74d315ee0a4aa07a0070a726b0ae5188b7e7ff28c8a1",
+    "windows_after_current_host_restart_final.json": "3fdc4adf7daa2c627cfe67be5d47decd74d0fe41fc1f09ffb7ddc6a0c2e0a3e0",
+    "windows_after_current_host_restart_reset_released.json": "4cd0772f948b7a8ae429887daa6b8ba6ebd3740092ccc7b5e12c142c4273bf21",
+    "windows_ready_for_optional_restart.json": "5fdaa71836f5998c6b66dc050d3402ae34224c1cc727c9ade20358f1b113e056"
+  },
+  "conclusions": [
+    "The retained e0/reset0 image participated in a real Windows restart.",
+    "At first read, CPLL mask 0001 and all four TX/RX resetdone bits were high.",
+    "Live training snapshots stayed in Polling.Compliance; L0 and enumeration failed.",
+    "One subsequent endpoint-local reset did not recover PLL/GT initialization.",
+    "The final Detect.Quiet snapshot is frozen and must not be treated as live training.",
+    "Host clock gating, electrical quality and the exact root cause remain unproven.",
+    "Historical e2/e3 failures have not been repeated or reclassified after this restart."
+  ]
+}

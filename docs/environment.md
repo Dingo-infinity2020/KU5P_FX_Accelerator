@@ -65,5 +65,6 @@ vivado -mode batch -source <(单行提交)   # get_parts -quiet xcku5p*  -> 36 �
 ## 已知限制
 
 - 32GB 内存对 KU5P（475K LC）足够；若后续加入大容量 DDR4 控制器 + 多路 ILA，建议加到 64GB。
-- Windows 主机侧缺少官方 XDMA 驱动，主机软件路线见 `docs/workflow.md`。
+- Vivado 2026.1 BASIC 的调试范围为一个 ILA、最多五个物理探针、每个最多 1024 位；第五课已将实部/虚部合并为总线以符合该范围。依据 [AMD 授权表](https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/vivado/vivado-buy.html)，不能把支持 KU5P 综合/实现理解为所有调试功能均包含。
+- Windows 主机目前未发现已安装的 Xilinx/MicroPhase XDMA 驱动，也未取得兼容、可加载的驱动包；继续 Windows 路线，历史 Windows 参考驱动与当前可用性需区分，见 `docs/workflow.md`。
 - 卡未配置时 PCIe 不枚举，属正常现象；需先下载含 PCIe 的 bitstream。

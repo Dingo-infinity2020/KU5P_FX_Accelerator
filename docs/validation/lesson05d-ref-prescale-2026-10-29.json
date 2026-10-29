@@ -1,0 +1,465 @@
+{
+  "saved_utc": "2026-10-29T03:47:36.582131+00:00",
+  "host_rebooted_by_agent": false,
+  "configuration": "JTAG_SRAM",
+  "current_build": "465805e0",
+  "jtag_hz": 6000000,
+  "local_reset": 0,
+  "experiments": [
+    {
+      "profile": "lesson05d_pcie_ref_prescale",
+      "build_id": "465805de",
+      "bitstream_sha256": "74ff6bd4d975ec717301febb94dedf2b9c3c75894557f11d50e97620efcc57c1",
+      "ltx_sha256": "daa2fa8377bbb215bdbc71ee064ef235b46bcb5cac702c674e384d5754978358",
+      "checkpoint_sha256": "ba2373cb779c1ca8d1f463e276390402a5cfee3dec24f8bcc8b2b4fd8a9c9f7c",
+      "parent_checkpoint_sha256": "b23cb98bfec7878e6ebd526239340f2bdc0973f36616b5d938ebc58f5ae0d40c",
+      "sources": {
+        "tcl/build.tcl": "a9db6c2957741e9ee0f872eebde34d743e3bab0b2b71ab52ac8315fc6c4ef56c",
+        "tcl/lesson05d_ref_prescale.tcl": "df301207f3f5f5b5a70b9846fef7322f3bfa26470ac95e9f349b3ad32a20a9d6",
+        "sim/tb_pcie_ref_prescale.sv": "83f4a24acf3597a799bbdabdce97c5923c0ebb868fdb42a61346b2e2d874cc4c",
+        "scripts/run_pcie_ref_prescale_test.ps1": "17e15abc49f072a06b541a944ef89a882c5cbc9b5d8dbe4c976e26a7b56e6ec0"
+      },
+      "verification_sha256": "882524b21c6d9666b9e1e01fe62921302748a22c0361591bfd202fed8b6aaee7",
+      "hardware_verification_sha256": "8e78a2debb1a2442731791bec749b7a8edf3747024d756179dff944c1520c627",
+      "implementation_log_sha256": "1cc74d1447a6b2f11fe9740b41681cc66cbede99f6dff684b3999f5dfb5289ae",
+      "acceptance_script_sha256": "8445bca09566b92b762e28b0bb10f455d1963f9eecf5d129583517838e0ba9ee",
+      "route": {
+        "routable": 43108,
+        "routed": 43108,
+        "errors": 0
+      },
+      "timing": {
+        "wns": 1.256,
+        "whs": 0.01,
+        "tns": 0.0,
+        "ths": 0.0,
+        "met": true
+      },
+      "unchanged_functional_input_count": 6267,
+      "native_critical_warnings": 0,
+      "cdc_critical_count": 2,
+      "phy_current": {
+        "txresetdone": 0,
+        "rxresetdone": 0,
+        "rxpmaresetdone": 0,
+        "txpmaresetdone": 0,
+        "ip_power_on": 1,
+        "cplllock": 0,
+        "qpll_locks": 0,
+        "phy_reset_flags": 6,
+        "txprogdivresetdone": 0,
+        "txsyncdone": 0,
+        "rxsyncdone": 0,
+        "rxcdrlock": 0,
+        "qpll1lock": false,
+        "qpll0lock": false,
+        "phy_rst_idle": false,
+        "phy_rrst_n": true,
+        "phy_prst_n": true,
+        "raw_gt_powergood": {
+          "GTYE4_CHANNEL_X0Y4": true,
+          "GTYE4_CHANNEL_X0Y5": true,
+          "GTYE4_CHANNEL_X0Y6": true,
+          "GTYE4_CHANNEL_X0Y7": true
+        }
+      },
+      "phy_raw": "0000640f0000",
+      "phy_capture_sha256": "2281ba0c16be76fb77b7d597b673ceeb4779fc9ec2dacd4a58709bfdb33427ca",
+      "training_capture_sha256": "4d60bd5fa7a054159212471d65f9dc8ea93bd27fe419c6dd8e9969402d73ca8c",
+      "training_states": [
+        {
+          "hex": "00",
+          "name": "Detect.Quiet"
+        }
+      ],
+      "training_sequences": [
+        5,
+        8,
+        55,
+        61,
+        88,
+        110,
+        122,
+        125,
+        172,
+        214,
+        224
+      ],
+      "host_endpoint_count": 0,
+      "clock_captures": {
+        "clock_a": {
+          "csv_sha256": "09f424c7d3338abdfa0ee099aac2be74feca7e2a56f9c8f1251195f8bb47d2b8",
+          "samples": 4096,
+          "nominal_sysclk_mhz": 100.0,
+          "source_divisor": 256,
+          "ref": {
+            "rising_edges": 18,
+            "full_periods": 17,
+            "stable_periods_observed": false,
+            "frequency_mhz_relative_to_nominal_sysclk": null,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 107,
+            "period_monitor_samples_max": 403,
+            "period_monitor_samples_mean": 222.64705882352942,
+            "mean_edge_rate_mhz_equivalent": 114.98018494055482
+          },
+          "scope": "Two-stage synchronized counter bit 7; relative to nominal board SYS_CLK; not calibrated frequency, jitter, PLL lock or PCIe acceptance",
+          "monitor_calibration": {
+            "rising_edges": 16,
+            "full_periods": 15,
+            "stable_periods_observed": true,
+            "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 256,
+            "period_monitor_samples_max": 256,
+            "period_monitor_samples_mean": 256,
+            "mean_edge_rate_mhz_equivalent": 100.0,
+            "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+          },
+          "calibration_pass": true
+        },
+        "clock_b": {
+          "csv_sha256": "c7bb868683c9349e39dcc5b7a2a0ec2d4fc46c0433c734c080a1c5f00dff34c5",
+          "samples": 4096,
+          "nominal_sysclk_mhz": 100.0,
+          "source_divisor": 256,
+          "ref": {
+            "rising_edges": 17,
+            "full_periods": 16,
+            "stable_periods_observed": false,
+            "frequency_mhz_relative_to_nominal_sysclk": null,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 95,
+            "period_monitor_samples_max": 622,
+            "period_monitor_samples_mean": 218.5,
+            "mean_edge_rate_mhz_equivalent": 117.16247139588101
+          },
+          "scope": "Two-stage synchronized counter bit 7; relative to nominal board SYS_CLK; not calibrated frequency, jitter, PLL lock or PCIe acceptance",
+          "monitor_calibration": {
+            "rising_edges": 16,
+            "full_periods": 15,
+            "stable_periods_observed": true,
+            "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 256,
+            "period_monitor_samples_max": 256,
+            "period_monitor_samples_mean": 256,
+            "mean_edge_rate_mhz_equivalent": 100.0,
+            "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+          },
+          "calibration_pass": true
+        }
+      },
+      "hardware_sources_reconstructed_by_digest": [
+        "scripts/check_pcie_training.py",
+        "scripts/check_pcie_phy.py"
+      ]
+    },
+    {
+      "profile": "lesson05d_pcie_ref_ungated",
+      "build_id": "465805df",
+      "bitstream_sha256": "9c840066650e11b1f87ad74792adfa705f4389fa6bdfa84c2ec4b4a1b6428ee3",
+      "ltx_sha256": "adbc3ddf1e7a75b37858112dafe1c72c6dd4ea03fe0bb6899d73340d7dbe8e54",
+      "checkpoint_sha256": "4530b06f90b5b0eb4cf1186448a16b43786c7dde1be34f2d40d682db8b8617dd",
+      "parent_checkpoint_sha256": "ba2373cb779c1ca8d1f463e276390402a5cfee3dec24f8bcc8b2b4fd8a9c9f7c",
+      "sources": {
+        "tcl/build.tcl": "4e6d93fa83f5649832c144c01ca610a48d2a18998b70ca44f8ea258ee5917b5c",
+        "tcl/lesson05d_ref_ungated.tcl": "d9991591073986378fd6c628f8a64bc474e664c1cd68f5b201fe3d1382c66b4d",
+        "tcl/lesson05d_ref_prescale.tcl": "df301207f3f5f5b5a70b9846fef7322f3bfa26470ac95e9f349b3ad32a20a9d6"
+      },
+      "verification_sha256": "90bddb789a8c451334963871d3f1d917cfea83e722a144cd73cb5ea1ecd27a6b",
+      "hardware_verification_sha256": "b76a5e49fd407c64760df48e34a704df306f4f82868726f4e391bd21c1d477ae",
+      "implementation_log_sha256": "8a0d7bee56c11a5c8c21fa6244b450d92fea2f0a6fa97abfc825c30cb5245ff0",
+      "acceptance_script_sha256": "8983ffa739760704d74683c0bbc67abe59991e9a6897ce56765e11b266812af6",
+      "route": {
+        "routable": 43108,
+        "routed": 43108,
+        "errors": 0
+      },
+      "timing": {
+        "wns": 1.256,
+        "whs": 0.01,
+        "tns": 0.0,
+        "ths": 0.0,
+        "met": true
+      },
+      "unchanged_functional_input_count": 6267,
+      "native_critical_warnings": 0,
+      "cdc_critical_count": 2,
+      "phy_current": {
+        "txresetdone": 0,
+        "rxresetdone": 0,
+        "rxpmaresetdone": 0,
+        "txpmaresetdone": 0,
+        "ip_power_on": 1,
+        "cplllock": 0,
+        "qpll_locks": 0,
+        "phy_reset_flags": 2,
+        "txprogdivresetdone": 0,
+        "txsyncdone": 0,
+        "rxsyncdone": 0,
+        "rxcdrlock": 0,
+        "qpll1lock": false,
+        "qpll0lock": false,
+        "phy_rst_idle": false,
+        "phy_rrst_n": true,
+        "phy_prst_n": false,
+        "raw_gt_powergood": {
+          "GTYE4_CHANNEL_X0Y4": true,
+          "GTYE4_CHANNEL_X0Y5": true,
+          "GTYE4_CHANNEL_X0Y6": true,
+          "GTYE4_CHANNEL_X0Y7": true
+        }
+      },
+      "phy_raw": "0000240f0000",
+      "phy_capture_sha256": "a20ff5a5771bffa613efd57e3e59e9859ff3a6f166fb3a59ed87a10e9248d723",
+      "training_capture_sha256": "7afb0b806f1b3d68b59d208e6e63e144e6914fff0cdabbe8163f8137df3d5592",
+      "training_states": [
+        {
+          "hex": "00",
+          "name": "Detect.Quiet"
+        }
+      ],
+      "training_sequences": [
+        1
+      ],
+      "host_endpoint_count": 0,
+      "clock_captures": {
+        "clock_a": {
+          "csv_sha256": "b3d7d190915475d64b0f2d55e67f3e1f3461b79c1854d7c908d953f16f49ce4d",
+          "samples": 4096,
+          "nominal_sysclk_mhz": 100.0,
+          "source_divisor": 256,
+          "ref": {
+            "rising_edges": 44,
+            "full_periods": 43,
+            "stable_periods_observed": false,
+            "frequency_mhz_relative_to_nominal_sysclk": null,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 49,
+            "period_monitor_samples_max": 186,
+            "period_monitor_samples_mean": 92.83720930232558,
+            "mean_edge_rate_mhz_equivalent": 275.75150300601206
+          },
+          "scope": "Two-stage synchronized counter bit 7; relative to nominal board SYS_CLK; not calibrated frequency, jitter, PLL lock or PCIe acceptance",
+          "monitor_calibration": {
+            "rising_edges": 16,
+            "full_periods": 15,
+            "stable_periods_observed": true,
+            "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 256,
+            "period_monitor_samples_max": 256,
+            "period_monitor_samples_mean": 256,
+            "mean_edge_rate_mhz_equivalent": 100.0,
+            "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+          },
+          "calibration_pass": true
+        },
+        "clock_b": {
+          "csv_sha256": "3ef6ef3fc72c828d1bf232a50d5ac39d90d54ef42f046353542fa992a9866774",
+          "samples": 4096,
+          "nominal_sysclk_mhz": 100.0,
+          "source_divisor": 256,
+          "ref": {
+            "rising_edges": 58,
+            "full_periods": 57,
+            "stable_periods_observed": false,
+            "frequency_mhz_relative_to_nominal_sysclk": null,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 46,
+            "period_monitor_samples_max": 123,
+            "period_monitor_samples_mean": 70.42105263157895,
+            "mean_edge_rate_mhz_equivalent": 363.5276532137519
+          },
+          "scope": "Two-stage synchronized counter bit 7; relative to nominal board SYS_CLK; not calibrated frequency, jitter, PLL lock or PCIe acceptance",
+          "monitor_calibration": {
+            "rising_edges": 16,
+            "full_periods": 15,
+            "stable_periods_observed": true,
+            "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 256,
+            "period_monitor_samples_max": 256,
+            "period_monitor_samples_mean": 256,
+            "mean_edge_rate_mhz_equivalent": 100.0,
+            "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+          },
+          "calibration_pass": true
+        }
+      },
+      "hardware_sources_reconstructed_by_digest": [
+        "scripts/check_pcie_training.py",
+        "scripts/check_pcie_phy.py"
+      ]
+    },
+    {
+      "profile": "lesson05d_pcie_monitor_pll",
+      "build_id": "465805e0",
+      "bitstream_sha256": "b302bd9db6eedc213a492ae9f175f4cdb606251f3c53bbceccc6295136e4ed0d",
+      "ltx_sha256": "3db45996e028b4fbbee75bc7000115cd8f35aea0495c36c8d29f66d89fc81c91",
+      "checkpoint_sha256": "edd1384f98f90746ab1140775311fb082b9a544ab3a06159aca0708dba678c27",
+      "parent_checkpoint_sha256": "4530b06f90b5b0eb4cf1186448a16b43786c7dde1be34f2d40d682db8b8617dd",
+      "sources": {
+        "tcl/build.tcl": "f1d830668173f5645a52bdb9e113b7bc25fc33c06f51cfedc06268bdd9bb4df1",
+        "tcl/lesson05d_monitor_pll.tcl": "a7dac8ad6c3ce112ccd6856fefa026487fde96ddee9383651279e32305039c1c",
+        "tcl/lesson05d_ref_prescale.tcl": "df301207f3f5f5b5a70b9846fef7322f3bfa26470ac95e9f349b3ad32a20a9d6",
+        "sim/tb_pcie_monitor_pll.sv": "d5e13918eced0f4057ca27e7dab29f997142709bde05bd734be942ab1d7a1a6d",
+        "scripts/run_pcie_monitor_pll_test.ps1": "509e876a167c3f922c012547809d75a0ba589afb3569b79c7f7baa44ca76c550"
+      },
+      "verification_sha256": "881d866bfa04f0eee84d86c2e516d51ea1287b771e4cd69469b720f9c05b49a3",
+      "hardware_verification_sha256": "389af230d5e2366bb4375bd052c5ad73c28ee7f2c6435945bbc08d787d7beea0",
+      "implementation_log_sha256": "2b89f27df372a542006775a375d7ebdd5cbc4a6f38ac9eb131d86f236f6d9c59",
+      "acceptance_script_sha256": "81370934633c33fabb6f7502692c51fc0493ed1b36f8433a2ef1579a4e5708ac",
+      "route": {
+        "routable": 43112,
+        "routed": 43112,
+        "errors": 0
+      },
+      "timing": {
+        "wns": 1.256,
+        "whs": 0.01,
+        "tns": 0.0,
+        "ths": 0.0,
+        "met": true
+      },
+      "unchanged_functional_input_count": 6267,
+      "native_critical_warnings": 0,
+      "cdc_critical_count": 2,
+      "phy_current": {
+        "txresetdone": 0,
+        "rxresetdone": 0,
+        "rxpmaresetdone": 0,
+        "txpmaresetdone": 0,
+        "ip_power_on": 1,
+        "cplllock": 0,
+        "qpll_locks": 0,
+        "phy_reset_flags": 2,
+        "txprogdivresetdone": 0,
+        "txsyncdone": 0,
+        "rxsyncdone": 0,
+        "rxcdrlock": 0,
+        "qpll1lock": false,
+        "qpll0lock": false,
+        "phy_rst_idle": false,
+        "phy_rrst_n": true,
+        "phy_prst_n": false,
+        "raw_gt_powergood": {
+          "GTYE4_CHANNEL_X0Y4": true,
+          "GTYE4_CHANNEL_X0Y5": true,
+          "GTYE4_CHANNEL_X0Y6": true,
+          "GTYE4_CHANNEL_X0Y7": true
+        },
+        "monitor_mmcm_locked": true,
+        "monitor_clkin_stopped": false
+      },
+      "phy_raw": "00002c0f0000",
+      "phy_capture_sha256": "fcb6cc283034d360ad1175437bdfea50cd263289a2e2747e01081495cd26317a",
+      "training_capture_sha256": "ce26bd64a30c58d861527eb7ef7d76bb60b02c9bb0c124de0c8ef43d1f0c92f7",
+      "training_states": [
+        {
+          "hex": "00",
+          "name": "Detect.Quiet"
+        }
+      ],
+      "training_sequences": [
+        1
+      ],
+      "host_endpoint_count": 0,
+      "clock_captures": {
+        "clock_a": {
+          "csv_sha256": "fc766e0ae43849c506e52c2900cb617119532452519ee0053161e017f8037def",
+          "samples": 4096,
+          "nominal_sysclk_mhz": 100.0,
+          "source_divisor": 256,
+          "ref": {
+            "rising_edges": 50,
+            "full_periods": 49,
+            "stable_periods_observed": false,
+            "frequency_mhz_relative_to_nominal_sysclk": null,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 48,
+            "period_monitor_samples_max": 145,
+            "period_monitor_samples_mean": 82.18367346938776,
+            "mean_edge_rate_mhz_equivalent": 311.49739259995033
+          },
+          "scope": "Reference observer total divide256; same-clock heartbeat calibration; relative to nominal SYS_CLK, not calibrated frequency, jitter or PCIe acceptance",
+          "monitor_calibration": {
+            "rising_edges": 16,
+            "full_periods": 15,
+            "stable_periods_observed": true,
+            "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 256,
+            "period_monitor_samples_max": 256,
+            "period_monitor_samples_mean": 256,
+            "mean_edge_rate_mhz_equivalent": 100.0,
+            "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+          },
+          "calibration_pass": true
+        },
+        "clock_b": {
+          "csv_sha256": "fcd4effa9872ac4748f107314f19fa3307da90eb1f7d6ce53d179478a9653056",
+          "samples": 4096,
+          "nominal_sysclk_mhz": 100.0,
+          "source_divisor": 256,
+          "ref": {
+            "rising_edges": 27,
+            "full_periods": 26,
+            "stable_periods_observed": false,
+            "frequency_mhz_relative_to_nominal_sysclk": null,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 70,
+            "period_monitor_samples_max": 584,
+            "period_monitor_samples_mean": 154.3846153846154,
+            "mean_edge_rate_mhz_equivalent": 165.8196312904833
+          },
+          "scope": "Reference observer total divide256; same-clock heartbeat calibration; relative to nominal SYS_CLK, not calibrated frequency, jitter or PCIe acceptance",
+          "monitor_calibration": {
+            "rising_edges": 16,
+            "full_periods": 15,
+            "stable_periods_observed": true,
+            "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+            "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+            "period_monitor_samples_min": 256,
+            "period_monitor_samples_max": 256,
+            "period_monitor_samples_mean": 256,
+            "mean_edge_rate_mhz_equivalent": 100.0,
+            "scope": "Same-clock heartbeat bit7, one diagnostic FF delay; checks capture sample spacing, not absolute SYS_CLK frequency"
+          },
+          "calibration_pass": true
+        }
+      },
+      "hardware_sources_reconstructed_by_digest": [],
+      "mmcm_net_audit": {
+        "source": "1",
+        "reset": "1",
+        "feedback_raw": "1",
+        "feedback_buffered": "1",
+        "locked": "1",
+        "stopped": "1",
+        "reset_dont_touch": "1",
+        "async_reg_1_27": "1",
+        "async_reg_2_27": "1",
+        "async_reg_1_31": "1",
+        "async_reg_2_31": "1",
+        "mmcm_loc": "MMCM_X0Y0"
+      },
+      "mmcm_net_audit_sha256": "ca905ed26cd3afc9f0cf6e7c569934ae73c2a4c40f7ea7fe8f644da77def5be0",
+      "held_reset_phy_sha256": "c9f3da31fffa0c3e426fb7b0cffa2cc76fb231ea9c5b7c47241fe2098333846c",
+      "later_check_phy_sha256": "fcb6cc283034d360ad1175437bdfea50cd263289a2e2747e01081495cd26317a",
+      "monitor_pll_simulation": "PASS monitor_pll_checks=4"
+    }
+  ],
+  "python_tests_passed": 30,
+  "new_unisim_checks": 8,
+  "pci_endpoint_enumerated": false,
+  "host_dma_tested": false,
+  "interpretation": "SYS_CLK diagnostic MMCM locks, but PCIe PLLs remain unlocked; irregular divided reference observations do not establish analog frequency, jitter, board failure or root cause",
+  "cdc_notes": [
+    "CDC-10 manual-reset combinational logic before synchronizer",
+    "CDC-1 unused old AXI observer stage with zero Q loads; no waivers"
+  ],
+  "future_independent_gt_test_implemented": false,
+  "rfsoc_original_projects_included": false
+}

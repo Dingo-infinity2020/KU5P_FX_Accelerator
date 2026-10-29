@@ -1,0 +1,360 @@
+{
+  "verified_at_utc": "2026-10-29T05:34:32.936567+00:00",
+  "build_id": "465805f1",
+  "build": {
+    "verified_utc": "2026-10-29T05:17:56.471150+00:00",
+    "build_id": "465805f1",
+    "sources": {
+      "tcl/build.tcl": "4c6a05567ea4eabf1106eb59cb10315409da7ba412811d70e5e93fee1c94439a",
+      "tcl/lesson05f_si5338_project.tcl": "cff2c4ecb6f81a8bbcb47ae87300d4ddba0077b7124aa2bbc647250a516012b1",
+      "constr/lesson05f_si5338.xdc": "c0967b41eee79a757654a12cf926e5d07ea982b6be8d11955fcefffeda109cc9",
+      "rtl/i2c_register_readonly.sv": "bdf6e38ef07f778390b0b779398954757e9fd0e413fd805fefd1553efc355916",
+      "rtl/lesson05f_si5338_top.sv": "20a984a641f8d5585ae7232f5eca8e927908ff08e961819e9d7d52e8f5716c93",
+      "sim/tb_i2c_register_readonly.sv": "b6034dfb9845caadbe3bad41a422612926103afa081004a8ca27b007ad23e459",
+      "scripts/run_i2c_readonly_test.ps1": "682b1753316e93085287b5e98e73418fe57711d17c0df19d8ab4dac47cd749fa"
+    },
+    "artifacts": {
+      "lesson05f_si5338_top.bit": "64c454cb6c68119e66864202af4da32d1544d47e935286eaaedb840ffdbc46a1",
+      "lesson05f_si5338_top.ltx": "e14be28efcc9d3ad7c56a62bea74830589f4849f631de442014f5a630bcc0b1f",
+      "lesson05f_si5338_top_routed.dcp": "e4b28fe1d392239dfa3aeee8db178f7451a73aa89432263456f49f7704a3981b"
+    },
+    "timing": {
+      "wns": 6.912,
+      "tns": 0.0,
+      "whs": 0.016,
+      "ths": 0.0,
+      "wpws": 4.427,
+      "tpws": 0.0,
+      "failing_endpoints": 0,
+      "met": true,
+      "scope": "Reported constrained paths only; inspect check_timing and design stage separately",
+      "constraint_checks": {
+        "no_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 5,
+        "no_output_delay": 4
+      },
+      "parser": "ku5p-vivado-table-v1"
+    },
+    "route": {
+      "routable": 3958,
+      "routed": 3958,
+      "errors": 0
+    },
+    "cdc_critical_no_waiver": 0,
+    "simulation": "PASS i2c_readonly_checks=10",
+    "simulation_sha256": "caf90f87dd5b2006bc0a4f216207b3766d4341187370d96b9885d9feb00b2cb9",
+    "utilization": {
+      "parser": "ku5p-vivado-table-v1",
+      "lut": {
+        "used": 1709.0,
+        "available": 216960.0,
+        "percent": 0.79,
+        "parsed": true
+      },
+      "ff": {
+        "used": 2953.0,
+        "available": 433920.0,
+        "percent": 0.68,
+        "parsed": true
+      },
+      "bram": {
+        "used": 2.5,
+        "available": 480.0,
+        "percent": 0.52,
+        "parsed": true
+      },
+      "dsp": {
+        "used": 0.0,
+        "available": 1824.0,
+        "percent": 0.0,
+        "parsed": true
+      },
+      "io": {
+        "used": 8.0,
+        "available": 280.0,
+        "percent": 2.86,
+        "parsed": true
+      }
+    },
+    "native_log_sha256": "75ffbf89f667b49045ddda7ad36d585f0770d7581cbc9511b68628cbb9d043b0",
+    "acceptance_script_sha256": "333bfad046575e75297dde3b8bb0a1175cd2d0e544cd5a170a766da6aadb8b1e",
+    "audit_sha256": {
+      "pins.tsv": "2321f9663237097e75143847626656d5de64a072845db821ca9db0928ba1d938",
+      "open_drain.tsv": "7b5d89fc1da510139535b55b00230c3ac21b097dd5b1016d415f8a49b48cd668"
+    },
+    "scope": "Fixed0x70 pointer-only writes followed by byte reads; no configuration-data, page selector or clock output writes"
+  },
+  "dcp_reopened_audit": {
+    "equal": true,
+    "capture_period_ns": 80.0
+  },
+  "source_sha256": {
+    "tcl/build.tcl": "4c6a05567ea4eabf1106eb59cb10315409da7ba412811d70e5e93fee1c94439a",
+    "tcl/lesson05f_si5338_project.tcl": "cff2c4ecb6f81a8bbcb47ae87300d4ddba0077b7124aa2bbc647250a516012b1",
+    "constr/lesson05f_si5338.xdc": "c0967b41eee79a757654a12cf926e5d07ea982b6be8d11955fcefffeda109cc9",
+    "rtl/i2c_register_readonly.sv": "bdf6e38ef07f778390b0b779398954757e9fd0e413fd805fefd1553efc355916",
+    "rtl/lesson05f_si5338_top.sv": "20a984a641f8d5585ae7232f5eca8e927908ff08e961819e9d7d52e8f5716c93",
+    "sim/tb_i2c_register_readonly.sv": "b6034dfb9845caadbe3bad41a422612926103afa081004a8ca27b007ad23e459",
+    "scripts/run_i2c_readonly_test.ps1": "682b1753316e93085287b5e98e73418fe57711d17c0df19d8ab4dac47cd749fa",
+    "tcl/lesson05f_si5338_hardware.tcl": "701c6062f078b4d75cea0d90c1401b6e5cd5e7a60f67209f539c84634a58a8cf",
+    "scripts/si5338_readonly.py": "fc5c8454677976409b3d964fac4d36fd7bdf6fbb44c37e9f43b06aa9a5bb3952",
+    "scripts/check_si5338_build.py": "333bfad046575e75297dde3b8bb0a1175cd2d0e544cd5a170a766da6aadb8b1e",
+    "scripts/si5338_manifest.py": "ff026456a15e55ae6a40039e36f4fc337313091b798781f1559eab3a9c9d0fa8",
+    "scripts/run_si5338_readonly.ps1": "4c99ea5f1f1c56da5ad111ff009ab8e6fe5d21ba0dee6114ce3b64e351adf151",
+    "tests/test_si5338_readonly.py": "fbea8b3a5c1ceeb84bd59bf7329e5e35f6bd18fb7aa034907918bd2b71cdf78e"
+  },
+  "local_evidence_directory": "D:/work/build/KU5P_FX_Accelerator/lesson05f_si5338_readonly",
+  "dumps": {
+    "dump_a": {
+      "sha256": "f5318e2b0aa1f16e02b4f14101db7fa80128bd789a0c6fc8ba33b4f5affd8c8e",
+      "transactions": 257,
+      "page": 0,
+      "decoded": {
+        "page": 0,
+        "identified": true,
+        "revision_code": 1,
+        "part_suffix_decimal": 38,
+        "grade_code": 2,
+        "pll_loss_of_lock_reported": false,
+        "feedback_los_reported": false,
+        "input_los_reported": true,
+        "calibration_in_progress": false,
+        "pll_lol_reporting_enabled": true,
+        "i2c_1p8_mode": false,
+        "i2c_address_register": 112,
+        "p1_input_selection": 0,
+        "pfd_reference_selection": 0,
+        "outputs": [
+          {
+            "index": 0,
+            "power_down_bit": false,
+            "multisynth_power_down": true,
+            "r_input_selection": 0,
+            "r_divider_code": 0,
+            "disabled_by_oeb_register": false,
+            "driver_format_code": 0,
+            "driver_format_reserved": true
+          },
+          {
+            "index": 1,
+            "power_down_bit": false,
+            "multisynth_power_down": true,
+            "r_input_selection": 0,
+            "r_divider_code": 0,
+            "disabled_by_oeb_register": false,
+            "driver_format_code": 0,
+            "driver_format_reserved": true
+          },
+          {
+            "index": 2,
+            "power_down_bit": false,
+            "multisynth_power_down": true,
+            "r_input_selection": 0,
+            "r_divider_code": 0,
+            "disabled_by_oeb_register": false,
+            "driver_format_code": 0,
+            "driver_format_reserved": true
+          },
+          {
+            "index": 3,
+            "power_down_bit": false,
+            "multisynth_power_down": true,
+            "r_input_selection": 0,
+            "r_divider_code": 0,
+            "disabled_by_oeb_register": false,
+            "driver_format_code": 0,
+            "driver_format_reserved": true
+          }
+        ],
+        "scope": "Register controls/status only; not proof of output frequency, jitter or PCIe reference-clock health"
+      }
+    },
+    "dump_b": {
+      "sha256": "1c3b1d7ed1ba54173bea44f42d32c91acfbe837fc4d814eb6a56532770efa67a",
+      "transactions": 257,
+      "page": 0,
+      "decoded": {
+        "page": 0,
+        "identified": true,
+        "revision_code": 1,
+        "part_suffix_decimal": 38,
+        "grade_code": 2,
+        "pll_loss_of_lock_reported": false,
+        "feedback_los_reported": false,
+        "input_los_reported": true,
+        "calibration_in_progress": false,
+        "pll_lol_reporting_enabled": true,
+        "i2c_1p8_mode": false,
+        "i2c_address_register": 112,
+        "p1_input_selection": 0,
+        "pfd_reference_selection": 0,
+        "outputs": [
+          {
+            "index": 0,
+            "power_down_bit": false,
+            "multisynth_power_down": true,
+            "r_input_selection": 0,
+            "r_divider_code": 0,
+            "disabled_by_oeb_register": false,
+            "driver_format_code": 0,
+            "driver_format_reserved": true
+          },
+          {
+            "index": 1,
+            "power_down_bit": false,
+            "multisynth_power_down": true,
+            "r_input_selection": 0,
+            "r_divider_code": 0,
+            "disabled_by_oeb_register": false,
+            "driver_format_code": 0,
+            "driver_format_reserved": true
+          },
+          {
+            "index": 2,
+            "power_down_bit": false,
+            "multisynth_power_down": true,
+            "r_input_selection": 0,
+            "r_divider_code": 0,
+            "disabled_by_oeb_register": false,
+            "driver_format_code": 0,
+            "driver_format_reserved": true
+          },
+          {
+            "index": 3,
+            "power_down_bit": false,
+            "multisynth_power_down": true,
+            "r_input_selection": 0,
+            "r_divider_code": 0,
+            "disabled_by_oeb_register": false,
+            "driver_format_code": 0,
+            "driver_format_reserved": true
+          }
+        ],
+        "scope": "Register controls/status only; not proof of output frequency, jitter or PCIe reference-clock health"
+      }
+    }
+  },
+  "all_register_bytes_equal_between_dumps": true,
+  "physical_trace": {
+    "frames": [
+      [
+        {
+          "byte_hex": "e0",
+          "ack_bit": 0
+        },
+        {
+          "byte_hex": "da",
+          "ack_bit": 0
+        }
+      ],
+      [
+        {
+          "byte_hex": "e1",
+          "ack_bit": 0
+        },
+        {
+          "byte_hex": "04",
+          "ack_bit": 1
+        }
+      ]
+    ],
+    "register": 218,
+    "data": 4,
+    "configuration_data_bytes_written": 0,
+    "scope": "Selected physical trace: pointer-only write, then one-byte read; no configuration-data write",
+    "capture_clock_calibration": {
+      "rising_edges": 256,
+      "full_periods": 255,
+      "stable_periods_observed": true,
+      "frequency_mhz_relative_to_nominal_sysclk": 100.0,
+      "stability_screen": "period range <= max(4 monitor samples, 2% mean)",
+      "period_monitor_samples_min": 32,
+      "period_monitor_samples_max": 32,
+      "period_monitor_samples_mean": 32,
+      "mean_edge_rate_mhz_equivalent": 100.0
+    },
+    "csv_sha256": "fadca19c4ac1d4f1822603ac3361a500ca6778d6021342956eafd2ac758f8751",
+    "layout_sha256": "32717c2dc0a31cf57dfca3c2f512eb1d3cdd6dd473d6a824b20ba6f17d3f63cb"
+  },
+  "total_successful_read_transactions": 516,
+  "final_reader_status": {
+    "raw": "03000204000cff00",
+    "data": "0",
+    "reg": "255",
+    "busy": "0",
+    "err": "0",
+    "seq": "516",
+    "phase": "0",
+    "straps": "3",
+    "heartbeat": "6c622edd",
+    "t0": "1793251620138643",
+    "t1": "1793251620142529"
+  },
+  "python_test_count": 40,
+  "python_log_sha256": "936afc97d3752ce8aaf6d41273db56e0bcbdb0654a8872f626cb3b66d980488b",
+  "no_configuration_data_writes": true,
+  "no_page_selection_writes": true,
+  "no_nvm_writes": true,
+  "schematic": {
+    "local_source": "FNIC-KU5P_SCH_Rev1.0.pdf",
+    "pdf_pages": [
+      5,
+      12
+    ],
+    "sha256": "a5ffa7e0ed9de002e1375e2c088e008ac4997a2f35d8c4c8188d495822d18b49",
+    "clock_source_routing": "25MHz selector -> IN3; CLK2 -> V7/V6, separate from PCIe AB7/AB6",
+    "fpga_lsb_net": "E12 isolated from chip strap by default-NC R95; do not infer address from E12"
+  },
+  "rollback": {
+    "build_id": "465805e0",
+    "exact_artifacts_match_original": true,
+    "bitstream_sha256": "b302bd9db6eedc213a492ae9f175f4cdb606251f3c53bbceccc6295136e4ed0d",
+    "ltx_sha256": "3db45996e028b4fbbee75bc7000115cd8f35aea0495c36c8d29f66d89fc81c91",
+    "checkpoint_sha256": "edd1384f98f90746ab1140775311fb082b9a544ab3a06159aca0708dba678c27",
+    "local_reset": 0,
+    "jtag_hz": 6000000,
+    "status_samples": 6,
+    "phy_samples": 12,
+    "training_samples": 12,
+    "current_phy_hex": "00002c0f0000",
+    "phy_current": {
+      "txresetdone": 0,
+      "rxresetdone": 0,
+      "rxpmaresetdone": 0,
+      "txpmaresetdone": 0,
+      "ip_power_on": 1,
+      "cplllock": 0,
+      "qpll_locks": 0,
+      "phy_reset_flags": 2,
+      "txprogdivresetdone": 0,
+      "txsyncdone": 0,
+      "rxsyncdone": 0,
+      "rxcdrlock": 0,
+      "qpll1lock": false,
+      "qpll0lock": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false,
+      "raw_gt_powergood": {
+        "GTYE4_CHANNEL_X0Y4": true,
+        "GTYE4_CHANNEL_X0Y5": true,
+        "GTYE4_CHANNEL_X0Y6": true,
+        "GTYE4_CHANNEL_X0Y7": true
+      },
+      "monitor_mmcm_locked": true,
+      "monitor_clkin_stopped": false
+    },
+    "training_state": "Detect.Quiet",
+    "training_sequence": 1,
+    "training_snapshot_may_be_stale": true,
+    "windows_endpoint_count": 0,
+    "host_dma_tested": false,
+    "hardware_verification_sha256": "c2e37ba696c89b93d781e363a1f0e5b770020cc9e52c3417234e6089785352e4",
+    "phy_capture_sha256": "fcb6cc283034d360ad1175437bdfea50cd263289a2e2747e01081495cd26317a",
+    "training_capture_sha256": "ce26bd64a30c58d861527eb7ef7d76bb60b02c9bb0c124de0c8ef43d1f0c92f7",
+    "local_reset_log_sha256": "a7cfa2195aa7e0914f427631c47a85da1039dd37b06a930cbe5b7c8fa81f035e",
+    "windows_report_sha256": "f853dc0b9b2e50ae03eccca431aad820b74c0de9b5424605dbf3977d3ba8c3eb"
+  },
+  "scope": "Read-only inventory and selected I2C waveform; output frequency/jitter and PCIe reference health not established; original e0 restored"
+}

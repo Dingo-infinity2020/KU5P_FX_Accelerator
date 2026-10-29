@@ -1,0 +1,37 @@
+{
+  "verified_at_utc": "2026-10-29T05:34:32.940646+00:00",
+  "configuration": "One GTY X0Y4, TX/RX5Gbps, CPLL, ref100MHz, user32/internal40",
+  "common_instances": 0,
+  "channel_instances": 1,
+  "simulation_cpll_calibration_bypass": 1,
+  "runtime_passed": true,
+  "checks_passed": 4,
+  "finish_time_ns": 435810,
+  "source_sha256": {
+    "rtl/gt_isolation_reset.sv": "2785eea6cfeffa8e147ffa9ffca1736f2038dd246b428d72426e664f32a3529f",
+    "sim/tb_gt_cpll_reduced.sv": "f349ad4dfcef19321daa4c8b31df93c9b7df0d5ca561285ee458444e7f648af7",
+    "tcl/simulate_gt_cpll_reduced.tcl": "109054d2147d6db209502e54e3f08d33aaa8b9ce74d5bccbfe18fbe414314d16"
+  },
+  "source_snapshot_created_after_run": true,
+  "source_files_not_newer_than_pass_marker": true,
+  "native_log_sha256": "496225d6ee9bdfae27f2a6d37d42a7458635920e708638e456e64bd015602ae1",
+  "pass_marker_sha256": "de9852233a1015a55d9e6fba54b72ee720e2e2db9a5d5052c3b974c40fcf88b0",
+  "ip_properties_sha256": "bd8a30e7409da6cc7ec987e8e97a1d6a2d3103e51ac0ac18c15a8705a596b212",
+  "generated_sim_wrapper_sha256": "c7b68f0c585db25f0d8efc57f774f6288646c67a67fd0e4aedb48ddea221759b",
+  "checks": [
+    "Initial management reset request held",
+    "CPLL lock and TX helper/PMA/power ready",
+    "Manual management reset request held",
+    "After release, actual CPLL unlock and TXdone low then both recover"
+  ],
+  "original_qpll1_8gbps": {
+    "dynamic_simulation_passed": false,
+    "debug_off_instances": 63337,
+    "basic_limit": 50000,
+    "runtime_started": false,
+    "debugoff_log_sha256": "84d11f6e0ff0562450e8157b88af678d2e325390b0a82a5f1dbb250b93b787f6"
+  },
+  "bitstream_generated": false,
+  "hardware_programmed": false,
+  "scope": "Distinct reduced CPLL test under BASIC; no QPLL model, RX data/BER, analog CPLL calibration, PCIe training or DMA coverage"
+}

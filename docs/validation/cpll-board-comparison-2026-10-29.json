@@ -1,0 +1,876 @@
+{
+  "saved_utc": "2026-10-29T06:46:05.465250+00:00",
+  "experiment": "CPLL5Gbps bank225 shared-reference and bank224 source-quad hardware comparison",
+  "no_si5338_configuration_writes": true,
+  "no_flash_writes": true,
+  "host_restart_executed": false,
+  "fx_learning_paused_by_user": true,
+  "experiments": {
+    "bank225_shared": {
+      "build_id": "465805e2",
+      "local_evidence_directory": "D:/work/build/KU5P_FX_Accelerator/lesson05g_cpll_pcie_ref",
+      "artifact_prefix": "lesson05g_cpll_top",
+      "implementation": {
+        "verification_sha256": "6c0e2848ce1f7bba74df07f343bcb25842165bc1425a244c0c58e062b5bc0180",
+        "artifacts": {
+          "lesson05g_cpll_top.bit": "4b23cee44f557d3bafc3ac14d3a6a8b3e36a8e5613f2282b98301396afc17ab5",
+          "lesson05g_cpll_top.ltx": "0ec5d55ffa248ca3ae0d7915740939ed498cf872d0cea9403cb316d0c88f19dc",
+          "lesson05g_cpll_top_routed.dcp": "71b9ae225fa829bce35709d66418c02d6b08a1b78632309089c2a3640da95710"
+        },
+        "source_sha256": {
+          "tcl/build.tcl": "562841fa51bb5181cba59dfe9c043a74641509b09e5927da81f9da81597cd32f",
+          "tcl/lesson05g_cpll_project.tcl": "22d1f83a51950ecfedc0e2603731fd390a0d69ee5cb99c0fcec7cc04f6e30bd6",
+          "constr/lesson05g_cpll.xdc": "a5304e29a03f51fed0bb0ce5a604d0de2a7e184d538f75b81de504d343b71fac",
+          "rtl/lesson05g_cpll_top.sv": "f32ae0be6cc862e28d8646351eb628164a5ff845ff3c8dc955e1f4c595d91b7e",
+          "rtl/lesson05g_cpll_body.sv": "c7f9b010a5ba0fa77c5807b2775b8593e7e3a0d792dabc1687341647d13b62dd",
+          "rtl/cpll_diagnostics.sv": "529cb34e971480637a2a74b311a3550ea11e091dc8fed95ce2fdc511c58b0871",
+          "rtl/gt_isolation_clocking.sv": "059cef20dff7fa22194db6640e28167c7384406b68c23bf10b85da7a7a27a97c",
+          "rtl/pcie_phy_monitor.sv": "37db13725528ea866b993ea0f0f13d6b1ea27c19439a99e57892b0b09037e05a",
+          "sim/tb_cpll_board.sv": "c71b3b37dc04fefcc06d0eab07ae2fab5194f25f9ce7eda6e9fcaa607c02bf19",
+          "scripts/cpll_board_manifest.py": "9572b3f40df73e7b9a1d702d588322a94409960a2424a15dabaea30f9b40caa4",
+          "scripts/check_cpll_board.py": "e7165895b3a82216599c6f1b343a7b482cf9b8c1e9aeb0b879f3c0fd48fe3e94",
+          "scripts/run_cpll_board.ps1": "5df021faf84ddc8c6a0325d5be345e0811cc30fedcab1bcc0b9750c8e42e7079"
+        },
+        "simulation": {
+          "result": "PASS cpll_board_checks=12",
+          "reset_recovery_cycles": 3,
+          "sha256": "9c10ed165d39ef92228e6e7f79c74af82f6e99a6f90af9f57741fdadae52c4ce",
+          "simulation_calibration_bypass": true,
+          "hardware_cpll_calibration_simulated": false
+        },
+        "timing": {
+          "wns": 5.876,
+          "tns": 0.0,
+          "whs": 0.012,
+          "ths": 0.0,
+          "wpws": 0.514,
+          "tpws": 0.0,
+          "failing_endpoints": 0,
+          "met": true,
+          "scope": "Reported constrained paths only; inspect check_timing and design stage separately",
+          "constraint_checks": {
+            "no_clock": 0,
+            "unconstrained_internal_endpoints": 0,
+            "no_input_delay": 1,
+            "no_output_delay": 2
+          },
+          "parser": "ku5p-vivado-table-v1"
+        },
+        "route": {
+          "routable": 7187,
+          "routed": 7187,
+          "errors": 0
+        },
+        "cdc_critical_no_waiver": 0,
+        "dcp_reopened_audit_equal": true,
+        "gt_functional_inputs_unchanged": true,
+        "audit_sha256": {
+          "primitive_audit.tsv": "c8b17f6952cfea41670e507b0a0787034937627120f8f7208e31c83b04c88fb2",
+          "pins.tsv": "a4a68f5e7e6a534f0d45545fc19bf7e20915e0658c64771f544320b35c6856bd",
+          "control_observers.tsv": "252c495f1b87394aec8a3c86180bc9e8d8bac7e3f230570e7c3b1768941f8908",
+          "reference_route.tsv": "88a7fe92fa957d1cacfc0725fd4c2818fb70fd4f44723250dceecb0c73f75943",
+          "gt_inputs_before.tsv": "5a3afad4da7484884e54650e596d9a5877b15b327ad331d6a09ec8e4bf5b2853",
+          "gt_inputs_after.tsv": "5a3afad4da7484884e54650e596d9a5877b15b327ad331d6a09ec8e4bf5b2853",
+          "gt_hier_inputs_before.tsv": "e7b805da0af69eb15b05b16a2ea02770fc2a014764e51bba9c1c124b23b7d719",
+          "gt_hier_inputs_after.tsv": "a678a899402bfec8792107883f9c0d066e3f647249ebc6d4e2e9e732f0a0c0c5",
+          "hierarchical_alias_changes.tsv": "a1683199b549f6406e8c327becf0a437a1f1ec288ce51df74b83373e12089c8e"
+        }
+      },
+      "root_independent_observer_audit": {
+        "passed": true,
+        "sha256": "1bb0453f0ea6a30cb364ad1f341626e9503bd8385f3bbc7fb0e6d0170556f976",
+        "tcl_sha256": "34c892f8f238b89ae2814842b4b558d2acc023d01c8f49148c845f53e5d4ea33",
+        "summary": {
+          "reference_divider": "DIV111 CEMASK0 CLRMASK1 CLR0 CE=body/BUFG_GT_SYNC/CESYNC source=body/ref_qualified_reg/Q",
+          "reference_binary_flops": "32 all from body/reference_divider/O",
+          "control_sync_bit0": "body/diagnostics/control_meta_reg[0]/Q -> body/diagnostics/control_sync_reg[0]/D ASYNC_REG1",
+          "control_sync_bit1": "body/diagnostics/control_meta_reg[1]/Q -> body/diagnostics/control_sync_reg[1]/D ASYNC_REG1",
+          "control_sync_bit2": "body/diagnostics/control_meta_reg[2]/Q -> body/diagnostics/control_sync_reg[2]/D ASYNC_REG1",
+          "gray_async_flops": "64",
+          "audit": "PASS"
+        }
+      },
+      "reference_route": [
+        {
+          "property": "LOC",
+          "value": "GTYE4_COMMON_X0Y0"
+        },
+        {
+          "property": "ROUTE_STATUS",
+          "value": "ROUTED"
+        },
+        {
+          "property": "ROUTE",
+          "value": " { GTY_R_X74Y0/GTY_COMMON_BLH_0_MGTREFCLK0 GTY_R_X74Y0/CLKOUT_NORTH1 GTY_R_X74Y60/GTY_CHANNEL_BLH_4_NORTHREFCLK1_PIN }  "
+        },
+        {
+          "property": "PIPS",
+          "value": "GTY_R_X74Y0/GTY_R.GTY_COMMON_BLH_0_MGTREFCLK0->>CLKOUT_NORTH1 GTY_R_X74Y60/GTY_R.GTY_CHANNEL_BLH_1_NORTHREFCLK1->GTY_CHANNEL_BLH_4_NORTHREFCLK1_PIN"
+        },
+        {
+          "property": "BEL_PIN",
+          "value": "GTYE4_CHANNEL_X0Y4/GTYE4_CHANNEL/GTNORTHREFCLK1"
+        },
+        {
+          "property": "SITE_PIN",
+          "value": "GTYE4_CHANNEL_X0Y4/NORTHREFCLK1"
+        }
+      ],
+      "hardware": {
+        "evidence_valid": true,
+        "hardware_passed": false,
+        "cycle_count": 3,
+        "suite_sha256": "90d5b42ac294d7ae118b6eaa1450f8566b94354c8742ea2086187411a40098b1",
+        "decoder_sha256": "6c3fe5592121883dc9ba0fea459575af69827b0160188d4bffaea33a518bf25e",
+        "decoder_source_available": true,
+        "compatibility_decoder_sha256": "2d688c4f9ab2756f2882ae408ead4d78c85375f9caaed0c2260b1035bfcf66a5",
+        "compatibility_redecode_matches_original_samples_and_decisions": true,
+        "reset_actions_sha256": "e6ba0d0d848622441b8cb277d2109302b131100f0c3311d1d75006f232f668a8",
+        "programmed_sha256": "644264755662dbbfffe366b5931872f2557f02e389da26af66193f1c7410aa2b",
+        "cycles": [
+          {
+            "cycle": 1,
+            "hardware_passed": false,
+            "checks": {
+              "held_request_and_sequence": true,
+              "held_heartbeat_advances": true,
+              "released_window_passed": false,
+              "heartbeat_advances_across_release": true,
+              "real_lock_and_txdone_recovery": false
+            },
+            "held_samples": 4,
+            "released_samples": 12,
+            "observed_window_lower_us": 2058009,
+            "observed_window_upper_us": 2063652,
+            "held_capture_sha256": "3a6acfac350a02a3fafc9e70d75cffd61ef942774f903b26c278d85688c99489",
+            "released_capture_sha256": "1a6583c83d8c814cccd719647dd98a09ac2b21fc1cd583a8a2e4001a2f5093c6",
+            "last_released_state": {
+              "gt_powergood": true,
+              "cpll_lock": false,
+              "tx_pma_done": false,
+              "rx_pma_done": false,
+              "tx_helper_done": false,
+              "rx_helper_done": false,
+              "sys_mmcm_locked": true,
+              "sys_clock_stopped": false,
+              "cpllreset_raw": false,
+              "cpllpd_raw": false,
+              "manual_reset": false,
+              "reset_all": false,
+              "reference_qualified": true,
+              "reference_recent": false,
+              "physical_perst_n": true,
+              "heartbeat_bit7": true,
+              "controls_valid": true,
+              "initialization_releases": 1,
+              "cpllreset": false,
+              "cpllpd": false
+            },
+            "events_across_release": {
+              "lock_rise": 0,
+              "lock_fall": 0,
+              "txdone_rise": 0,
+              "txdone_fall": 0
+            },
+            "heartbeat_delta_range": [
+              17478941,
+              19647763
+            ],
+            "reference_counter_delta_range": [
+              93,
+              986
+            ],
+            "reference_ratio_matches_nominal": false
+          },
+          {
+            "cycle": 2,
+            "hardware_passed": false,
+            "checks": {
+              "held_request_and_sequence": true,
+              "held_heartbeat_advances": true,
+              "released_window_passed": false,
+              "heartbeat_advances_across_release": true,
+              "real_lock_and_txdone_recovery": false
+            },
+            "held_samples": 4,
+            "released_samples": 12,
+            "observed_window_lower_us": 2119148,
+            "observed_window_upper_us": 2124986,
+            "held_capture_sha256": "476d67a7768f105eee3263b742d6e3036bc25c6aab9a894fd0fa03ef53ba31e9",
+            "released_capture_sha256": "80bfa7d7ef1e99a09446c6c0233859dc2d85322f836620510fc2466f8b6c8c53",
+            "last_released_state": {
+              "gt_powergood": true,
+              "cpll_lock": false,
+              "tx_pma_done": false,
+              "rx_pma_done": false,
+              "tx_helper_done": false,
+              "rx_helper_done": false,
+              "sys_mmcm_locked": true,
+              "sys_clock_stopped": false,
+              "cpllreset_raw": false,
+              "cpllpd_raw": false,
+              "manual_reset": false,
+              "reset_all": false,
+              "reference_qualified": true,
+              "reference_recent": false,
+              "physical_perst_n": true,
+              "heartbeat_bit7": false,
+              "controls_valid": true,
+              "initialization_releases": 2,
+              "cpllreset": false,
+              "cpllpd": false
+            },
+            "events_across_release": {
+              "lock_rise": 0,
+              "lock_fall": 0,
+              "txdone_rise": 0,
+              "txdone_fall": 0
+            },
+            "heartbeat_delta_range": [
+              17292004,
+              20103050
+            ],
+            "reference_counter_delta_range": [
+              19,
+              522
+            ],
+            "reference_ratio_matches_nominal": false
+          },
+          {
+            "cycle": 3,
+            "hardware_passed": false,
+            "checks": {
+              "held_request_and_sequence": true,
+              "held_heartbeat_advances": true,
+              "released_window_passed": false,
+              "heartbeat_advances_across_release": true,
+              "real_lock_and_txdone_recovery": false
+            },
+            "held_samples": 4,
+            "released_samples": 12,
+            "observed_window_lower_us": 2103222,
+            "observed_window_upper_us": 2106574,
+            "held_capture_sha256": "b8b182e3836b1e7023759a1a73bc1dabd557b26a5f15fc56cee8f4c8e0bf6a93",
+            "released_capture_sha256": "3d15684868080f71b50d3cc7f8295d33116c759df7f3fcb0b264174b10eb34a6",
+            "last_released_state": {
+              "gt_powergood": true,
+              "cpll_lock": false,
+              "tx_pma_done": false,
+              "rx_pma_done": false,
+              "tx_helper_done": false,
+              "rx_helper_done": false,
+              "sys_mmcm_locked": true,
+              "sys_clock_stopped": false,
+              "cpllreset_raw": false,
+              "cpllpd_raw": false,
+              "manual_reset": false,
+              "reset_all": false,
+              "reference_qualified": true,
+              "reference_recent": false,
+              "physical_perst_n": true,
+              "heartbeat_bit7": false,
+              "controls_valid": true,
+              "initialization_releases": 3,
+              "cpllreset": false,
+              "cpllpd": false
+            },
+            "events_across_release": {
+              "lock_rise": 0,
+              "lock_fall": 0,
+              "txdone_rise": 0,
+              "txdone_fall": 0
+            },
+            "heartbeat_delta_range": [
+              18089248,
+              21354467
+            ],
+            "reference_counter_delta_range": [
+              64,
+              507
+            ],
+            "reference_ratio_matches_nominal": false
+          }
+        ]
+      },
+      "steady_ila": {
+        "json_sha256": "40c5de18e4b57f2c2d7d01b0cb52f05de3cfad8504cb23bd35237611b8d95f45",
+        "csv_sha256": "0828a2972ab356bee8d5a8da7f50c3cab4248aab5ed5b273e026b50484ab0820",
+        "layout_sha256": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196",
+        "decoder_sha256": "6c3fe5592121883dc9ba0fea459575af69827b0160188d4bffaea33a518bf25e",
+        "samples": 8192,
+        "heartbeat_period_samples": [
+          256
+        ],
+        "same_domain_heartbeat_passed": true,
+        "first_status": {
+          "gt_powergood": true,
+          "cpll_lock": false,
+          "tx_pma_done": false,
+          "rx_pma_done": false,
+          "tx_helper_done": false,
+          "rx_helper_done": false,
+          "sys_mmcm_locked": true,
+          "sys_clock_stopped": false,
+          "cpllreset_raw": false,
+          "cpllpd_raw": false,
+          "manual_reset": false,
+          "reset_all": false,
+          "reference_qualified": true,
+          "reference_recent": false,
+          "physical_perst_n": true,
+          "heartbeat_bit7": true,
+          "controls_valid": true,
+          "initialization_releases": 3,
+          "cpllreset": false,
+          "cpllpd": false
+        },
+        "last_status": {
+          "gt_powergood": true,
+          "cpll_lock": false,
+          "tx_pma_done": false,
+          "rx_pma_done": false,
+          "tx_helper_done": false,
+          "rx_helper_done": false,
+          "sys_mmcm_locked": true,
+          "sys_clock_stopped": false,
+          "cpllreset_raw": false,
+          "cpllpd_raw": false,
+          "manual_reset": false,
+          "reset_all": false,
+          "reference_qualified": true,
+          "reference_recent": false,
+          "physical_perst_n": true,
+          "heartbeat_bit7": true,
+          "controls_valid": true,
+          "initialization_releases": 3,
+          "cpllreset": false,
+          "cpllpd": false
+        },
+        "first_events": {
+          "lock_rise": 0,
+          "lock_fall": 0,
+          "txdone_rise": 0,
+          "txdone_fall": 0
+        },
+        "last_events": {
+          "lock_rise": 0,
+          "lock_fall": 0,
+          "txdone_rise": 0,
+          "txdone_fall": 0
+        },
+        "observed_transitions": {
+          "reset_all": 0,
+          "cpll_lock": 0,
+          "tx_helper_done": 0
+        },
+        "scope": "Short selected transition or immediate window; no PLL transition required, not a one-second steady-state or full-suite proof"
+      },
+      "raw_capture_sha256": {
+        "cycle1_held.tsv": "3a6acfac350a02a3fafc9e70d75cffd61ef942774f903b26c278d85688c99489",
+        "cycle1_release.csv": "a288ab91d63eded1a6870a0a65318266cdb2bfb1c7d394e6351a310ca382dd8f",
+        "cycle1_release.ila": "0cf1b41bafe8338efb28ca16dc12a20390e4391e58b7f1ef331d0943adf27e9e",
+        "cycle1_release_layout.tsv": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196",
+        "cycle1_released.tsv": "1a6583c83d8c814cccd719647dd98a09ac2b21fc1cd583a8a2e4001a2f5093c6",
+        "cycle2_held.tsv": "476d67a7768f105eee3263b742d6e3036bc25c6aab9a894fd0fa03ef53ba31e9",
+        "cycle2_release.csv": "1f1023a9384db158cccbf9fc5c9c7b552cc4874a25f388fc9d91648d01fd2e53",
+        "cycle2_release.ila": "6bb915e8e9af67a0d185ae4a05e168d39698c790ccd14ffbcf45a7b939977f49",
+        "cycle2_release_layout.tsv": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196",
+        "cycle2_released.tsv": "80bfa7d7ef1e99a09446c6c0233859dc2d85322f836620510fc2466f8b6c8c53",
+        "cycle3_held.tsv": "b8b182e3836b1e7023759a1a73bc1dabd557b26a5f15fc56cee8f4c8e0bf6a93",
+        "cycle3_release.csv": "2d6bc3ac2c2d1b730b83bdd977664d6b610192807e29f37625b207354bcc0b87",
+        "cycle3_release.ila": "ba2acbf5a90e5f2bcae642548f090da57093d0d0e77970a403c8ec209a2c81b5",
+        "cycle3_release_layout.tsv": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196",
+        "cycle3_released.tsv": "3d15684868080f71b50d3cc7f8295d33116c759df7f3fcb0b264174b10eb34a6",
+        "extended_wait.csv": "9a7b7e08a681b94b0bb945307296b842fde7a4a0042573bb205216a6491d25f0",
+        "extended_wait.ila": "6fc04bf8bd02db54c503559b93e91d1b37c0a0132fdc730e5a2700e6c1a87ed3",
+        "extended_wait.tsv": "42a6345cafab97cf75ca62d5aed763d75e26f67616bc70f7b65ca5f7fcc8cb32",
+        "extended_wait_layout.tsv": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196",
+        "reset_actions.tsv": "e6ba0d0d848622441b8cb277d2109302b131100f0c3311d1d75006f232f668a8",
+        "steady_later.csv": "0828a2972ab356bee8d5a8da7f50c3cab4248aab5ed5b273e026b50484ab0820",
+        "steady_later.ila": "889f34dd6271ad2cc49a401e39eb2a5bbc771a8c04da1838b42318677553d158",
+        "steady_later_layout.tsv": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196"
+      },
+      "physical_reference_clock_frequency_mhz": null,
+      "scope": "Negative synchronized digital observations; not analog voltage/jitter/frequency, RX data/BER, PCIe or DMA validation"
+    },
+    "bank224_local": {
+      "build_id": "465805e3",
+      "local_evidence_directory": "D:/work/build/KU5P_FX_Accelerator/lesson05h_cpll_source_quad",
+      "artifact_prefix": "lesson05h_cpll_source_top",
+      "implementation": {
+        "verification_sha256": "9673184a31cd1776e77f9f404fbe9d4924712a1ab741f4f5640bec52c285277a",
+        "artifacts": {
+          "lesson05h_cpll_source_top.bit": "7ecc3162bc5115b0421e88bbc57377510c83b4a23c435aaf3f124bbbf1bbed41",
+          "lesson05h_cpll_source_top.ltx": "ef056b1ec0f019a763652a2a960978d64e56a5d11a6f89e2240c0d0de1d38182",
+          "lesson05h_cpll_source_top_routed.dcp": "9bb1001480c15183440449ee7ba4e3629cf80f8e7d9bd721b7d23e69bac4a437"
+        },
+        "source_sha256": {
+          "tcl/build.tcl": "5e98d292ee609a3584a8a1ceca64cb7033ae23fc4a657273eb87d28359779f63",
+          "tcl/lesson05h_cpll_source_project.tcl": "cd7e54c147d546f1b3b381c834642a69476e5574b1d13d41fedd6069c5b9abae",
+          "constr/lesson05h_cpll_source.xdc": "2e5e53d04b6f67123fa89db7a23e86ce78431c9b3aef076aaa37f15b9c76ded5",
+          "rtl/lesson05h_cpll_source_top.sv": "9d7c499e45b6cc61adac9c9b9d721e33122baefbf130e78e7658800d0cd2fdae",
+          "rtl/lesson05g_cpll_body.sv": "c7f9b010a5ba0fa77c5807b2775b8593e7e3a0d792dabc1687341647d13b62dd",
+          "rtl/cpll_diagnostics.sv": "529cb34e971480637a2a74b311a3550ea11e091dc8fed95ce2fdc511c58b0871",
+          "rtl/gt_isolation_clocking.sv": "059cef20dff7fa22194db6640e28167c7384406b68c23bf10b85da7a7a27a97c",
+          "rtl/pcie_phy_monitor.sv": "37db13725528ea866b993ea0f0f13d6b1ea27c19439a99e57892b0b09037e05a",
+          "sim/tb_cpll_board.sv": "c71b3b37dc04fefcc06d0eab07ae2fab5194f25f9ce7eda6e9fcaa607c02bf19",
+          "scripts/cpll_source_manifest.py": "8fc2b306fdf517c904f2a3bbaca07af7896d61e637da0cbe13546c4341344204",
+          "scripts/check_cpll_source.py": "310a4a54c41ad0642eb8c5cf33994821e471cea2dd85ef378d2e25a73ccb5586",
+          "scripts/run_cpll_source.ps1": "80ed5f0f66424cffc2c7d192db6cfc132e235110fea0f5b8e4f906d2f0bdae50"
+        },
+        "simulation": {
+          "result": "PASS cpll_board_checks=12",
+          "reset_recovery_cycles": 3,
+          "sha256": "9c10ed165d39ef92228e6e7f79c74af82f6e99a6f90af9f57741fdadae52c4ce",
+          "simulation_calibration_bypass": true,
+          "hardware_cpll_calibration_simulated": false
+        },
+        "timing": {
+          "wns": 5.284,
+          "tns": 0.0,
+          "whs": 0.024,
+          "ths": 0.0,
+          "wpws": 0.514,
+          "tpws": 0.0,
+          "failing_endpoints": 0,
+          "met": true,
+          "scope": "Reported constrained paths only; inspect check_timing and design stage separately",
+          "constraint_checks": {
+            "no_clock": 0,
+            "unconstrained_internal_endpoints": 0,
+            "no_input_delay": 1,
+            "no_output_delay": 2
+          },
+          "parser": "ku5p-vivado-table-v1"
+        },
+        "route": {
+          "routable": 7180,
+          "routed": 7180,
+          "errors": 0
+        },
+        "cdc_critical_no_waiver": 0,
+        "dcp_reopened_audit_equal": true,
+        "gt_functional_inputs_unchanged": true,
+        "audit_sha256": {
+          "primitive_audit.tsv": "0e3a086a448d8f2dfd0d84a5b779f52561f8cf794e926277bb46ab53a20f9bd5",
+          "pins.tsv": "dd9c8fee102ae827ece5da2c222341a85af47a2076e29621c5b768299cf70f5c",
+          "control_observers.tsv": "252c495f1b87394aec8a3c86180bc9e8d8bac7e3f230570e7c3b1768941f8908",
+          "reference_route.tsv": "c0ccd4a6af66ff9dbcda43f5232cb7325ff694b85e727618266022b8a93b2c59",
+          "gt_inputs_before.tsv": "70c7f978e1dbc55fe49f16ae4f57027273d73446d4a8779bf099264a3b5e6d5c",
+          "gt_inputs_after.tsv": "70c7f978e1dbc55fe49f16ae4f57027273d73446d4a8779bf099264a3b5e6d5c",
+          "gt_hier_inputs_before.tsv": "fe16abf3e87b6d4221a23373f9a4b01b3c3c773deca8c5b572e52186eb92d884",
+          "gt_hier_inputs_after.tsv": "a7252de02b834da8275e2fa96e305dea91a57848f2170f7c36ffb126210e0bbe",
+          "hierarchical_alias_changes.tsv": "601518cf0df804cc570723ae4a6507f228cfd33ba785ed7049e184e12c59c6c3"
+        }
+      },
+      "root_independent_observer_audit": {
+        "passed": true,
+        "sha256": "1bb0453f0ea6a30cb364ad1f341626e9503bd8385f3bbc7fb0e6d0170556f976",
+        "tcl_sha256": "d1126c37068d98986d0d7bf2a97af9de6dbc647ade01046066f0883e510bb154",
+        "summary": {
+          "reference_divider": "DIV111 CEMASK0 CLRMASK1 CLR0 CE=body/BUFG_GT_SYNC/CESYNC source=body/ref_qualified_reg/Q",
+          "reference_binary_flops": "32 all from body/reference_divider/O",
+          "control_sync_bit0": "body/diagnostics/control_meta_reg[0]/Q -> body/diagnostics/control_sync_reg[0]/D ASYNC_REG1",
+          "control_sync_bit1": "body/diagnostics/control_meta_reg[1]/Q -> body/diagnostics/control_sync_reg[1]/D ASYNC_REG1",
+          "control_sync_bit2": "body/diagnostics/control_meta_reg[2]/Q -> body/diagnostics/control_sync_reg[2]/D ASYNC_REG1",
+          "gray_async_flops": "64",
+          "audit": "PASS"
+        }
+      },
+      "reference_route": [
+        {
+          "property": "LOC",
+          "value": "GTYE4_COMMON_X0Y0"
+        },
+        {
+          "property": "ROUTE_STATUS",
+          "value": "ROUTED"
+        },
+        {
+          "property": "ROUTE",
+          "value": " { GTY_R_X74Y0/GTY_COMMON_BLH_0_MGTREFCLK0 GTY_R_X74Y0/GTY_CHANNEL_BLH_4_MGTREFCLK0_PIN }  "
+        },
+        {
+          "property": "PIPS",
+          "value": "GTY_R_X74Y0/GTY_R.GTY_COMMON_BLH_0_MGTREFCLK0->GTY_CHANNEL_BLH_4_MGTREFCLK0_PIN"
+        },
+        {
+          "property": "BEL_PIN",
+          "value": "GTYE4_CHANNEL_X0Y0/GTYE4_CHANNEL/GTREFCLK0"
+        },
+        {
+          "property": "SITE_PIN",
+          "value": "GTYE4_CHANNEL_X0Y0/MGTREFCLK0"
+        }
+      ],
+      "hardware": {
+        "evidence_valid": true,
+        "hardware_passed": false,
+        "cycle_count": 3,
+        "suite_sha256": "cd29b39dbd5384aaf6aa16322090155545a118704c99561bf376a8e0bb77db19",
+        "decoder_sha256": "2d688c4f9ab2756f2882ae408ead4d78c85375f9caaed0c2260b1035bfcf66a5",
+        "decoder_source_available": true,
+        "compatibility_decoder_sha256": "2d688c4f9ab2756f2882ae408ead4d78c85375f9caaed0c2260b1035bfcf66a5",
+        "compatibility_redecode_matches_original_samples_and_decisions": true,
+        "reset_actions_sha256": "50dc47b9229a14ef44a8b8a06cdeca469d8067c08be332f9e50ec74ebe6d58f9",
+        "programmed_sha256": "f0185c1b0492ade2ab75eedd06b1f0b2649c6940835c64d6c6953c6c85b0afb7",
+        "cycles": [
+          {
+            "cycle": 1,
+            "hardware_passed": false,
+            "checks": {
+              "held_request_and_sequence": true,
+              "held_heartbeat_advances": true,
+              "released_window_passed": false,
+              "heartbeat_advances_across_release": true,
+              "real_lock_and_txdone_recovery": false
+            },
+            "held_samples": 4,
+            "released_samples": 12,
+            "observed_window_lower_us": 2064633,
+            "observed_window_upper_us": 2076775,
+            "held_capture_sha256": "f5d4cb82fa99da273e2484b1176c48f4e10d2dad94079ccebf38a9c63227ed89",
+            "released_capture_sha256": "e27a412249cf7795adc8f02feeeda261d21e8bddc43b76e931027e6005997299",
+            "last_released_state": {
+              "gt_powergood": true,
+              "cpll_lock": false,
+              "tx_pma_done": false,
+              "rx_pma_done": false,
+              "tx_helper_done": false,
+              "rx_helper_done": false,
+              "sys_mmcm_locked": true,
+              "sys_clock_stopped": false,
+              "cpllreset_raw": false,
+              "cpllpd_raw": false,
+              "manual_reset": false,
+              "reset_all": false,
+              "reference_qualified": true,
+              "reference_recent": false,
+              "physical_perst_n": true,
+              "heartbeat_bit7": true,
+              "controls_valid": true,
+              "initialization_releases": 1,
+              "cpllreset": false,
+              "cpllpd": false
+            },
+            "events_across_release": {
+              "lock_rise": 0,
+              "lock_fall": 0,
+              "txdone_rise": 0,
+              "txdone_fall": 0
+            },
+            "heartbeat_delta_range": [
+              17188939,
+              20203042
+            ],
+            "reference_counter_delta_range": [
+              16,
+              278
+            ],
+            "reference_ratio_matches_nominal": false
+          },
+          {
+            "cycle": 2,
+            "hardware_passed": false,
+            "checks": {
+              "held_request_and_sequence": true,
+              "held_heartbeat_advances": true,
+              "released_window_passed": false,
+              "heartbeat_advances_across_release": true,
+              "real_lock_and_txdone_recovery": false
+            },
+            "held_samples": 4,
+            "released_samples": 12,
+            "observed_window_lower_us": 2042388,
+            "observed_window_upper_us": 2046171,
+            "held_capture_sha256": "2ad0325902a70b3b101b9e006a86e8b40d2649ce08df79d30a5005727a9d23e7",
+            "released_capture_sha256": "a43fd33510fa97ce872affadcb619fc3d6bba395bb2e2dec18c425663f03fd93",
+            "last_released_state": {
+              "gt_powergood": true,
+              "cpll_lock": false,
+              "tx_pma_done": false,
+              "rx_pma_done": false,
+              "tx_helper_done": false,
+              "rx_helper_done": false,
+              "sys_mmcm_locked": true,
+              "sys_clock_stopped": false,
+              "cpllreset_raw": false,
+              "cpllpd_raw": false,
+              "manual_reset": false,
+              "reset_all": false,
+              "reference_qualified": true,
+              "reference_recent": false,
+              "physical_perst_n": true,
+              "heartbeat_bit7": false,
+              "controls_valid": true,
+              "initialization_releases": 2,
+              "cpllreset": false,
+              "cpllpd": false
+            },
+            "events_across_release": {
+              "lock_rise": 0,
+              "lock_fall": 0,
+              "txdone_rise": 0,
+              "txdone_fall": 0
+            },
+            "heartbeat_delta_range": [
+              17120787,
+              19689224
+            ],
+            "reference_counter_delta_range": [
+              46,
+              419
+            ],
+            "reference_ratio_matches_nominal": false
+          },
+          {
+            "cycle": 3,
+            "hardware_passed": false,
+            "checks": {
+              "held_request_and_sequence": true,
+              "held_heartbeat_advances": true,
+              "released_window_passed": false,
+              "heartbeat_advances_across_release": true,
+              "real_lock_and_txdone_recovery": false
+            },
+            "held_samples": 4,
+            "released_samples": 12,
+            "observed_window_lower_us": 2067339,
+            "observed_window_upper_us": 2071081,
+            "held_capture_sha256": "65f088cdc109bb8b567c9baf7459110a7cbe6c0b6e6ea7888d035415c229a604",
+            "released_capture_sha256": "a749f763fd7933782a972927adfd39617f45e08a3a0a7adf21513b98ca896df1",
+            "last_released_state": {
+              "gt_powergood": true,
+              "cpll_lock": false,
+              "tx_pma_done": false,
+              "rx_pma_done": false,
+              "tx_helper_done": false,
+              "rx_helper_done": false,
+              "sys_mmcm_locked": true,
+              "sys_clock_stopped": false,
+              "cpllreset_raw": false,
+              "cpllpd_raw": false,
+              "manual_reset": false,
+              "reset_all": false,
+              "reference_qualified": true,
+              "reference_recent": false,
+              "physical_perst_n": true,
+              "heartbeat_bit7": false,
+              "controls_valid": true,
+              "initialization_releases": 3,
+              "cpllreset": false,
+              "cpllpd": false
+            },
+            "events_across_release": {
+              "lock_rise": 0,
+              "lock_fall": 0,
+              "txdone_rise": 0,
+              "txdone_fall": 0
+            },
+            "heartbeat_delta_range": [
+              17967872,
+              20525696
+            ],
+            "reference_counter_delta_range": [
+              68,
+              981
+            ],
+            "reference_ratio_matches_nominal": false
+          }
+        ]
+      },
+      "steady_ila": {
+        "json_sha256": "4b3ddadfd65666ccd8a882901b1e476a78640e53efb0f04abee1668f0b11174b",
+        "build_id": "465805e3",
+        "identity_scope": "Provided by accepted build/provenance; ILA ports do not embed build ID",
+        "csv_sha256": "4d2e62656eb934a279ff4aca4efbec22f63d10f096816cff427768f05ed32df9",
+        "layout_sha256": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196",
+        "decoder_sha256": "2d688c4f9ab2756f2882ae408ead4d78c85375f9caaed0c2260b1035bfcf66a5",
+        "samples": 8192,
+        "heartbeat_period_samples": [
+          256
+        ],
+        "same_domain_heartbeat_passed": true,
+        "first_status": {
+          "gt_powergood": true,
+          "cpll_lock": false,
+          "tx_pma_done": false,
+          "rx_pma_done": false,
+          "tx_helper_done": false,
+          "rx_helper_done": false,
+          "sys_mmcm_locked": true,
+          "sys_clock_stopped": false,
+          "cpllreset_raw": false,
+          "cpllpd_raw": false,
+          "manual_reset": false,
+          "reset_all": false,
+          "reference_qualified": true,
+          "reference_recent": false,
+          "physical_perst_n": true,
+          "heartbeat_bit7": true,
+          "controls_valid": true,
+          "initialization_releases": 3,
+          "cpllreset": false,
+          "cpllpd": false
+        },
+        "last_status": {
+          "gt_powergood": true,
+          "cpll_lock": false,
+          "tx_pma_done": false,
+          "rx_pma_done": false,
+          "tx_helper_done": false,
+          "rx_helper_done": false,
+          "sys_mmcm_locked": true,
+          "sys_clock_stopped": false,
+          "cpllreset_raw": false,
+          "cpllpd_raw": false,
+          "manual_reset": false,
+          "reset_all": false,
+          "reference_qualified": true,
+          "reference_recent": false,
+          "physical_perst_n": true,
+          "heartbeat_bit7": true,
+          "controls_valid": true,
+          "initialization_releases": 3,
+          "cpllreset": false,
+          "cpllpd": false
+        },
+        "first_events": {
+          "lock_rise": 0,
+          "lock_fall": 0,
+          "txdone_rise": 0,
+          "txdone_fall": 0
+        },
+        "last_events": {
+          "lock_rise": 0,
+          "lock_fall": 0,
+          "txdone_rise": 0,
+          "txdone_fall": 0
+        },
+        "observed_transitions": {
+          "reset_all": 0,
+          "cpll_lock": 0,
+          "tx_helper_done": 0
+        },
+        "scope": "Short selected transition or immediate window; no PLL transition required, not a one-second steady-state or full-suite proof"
+      },
+      "raw_capture_sha256": {
+        "cycle1_held.tsv": "f5d4cb82fa99da273e2484b1176c48f4e10d2dad94079ccebf38a9c63227ed89",
+        "cycle1_release.csv": "5681d91a798f44436b0f989bd9fea0b1157224d6aab2ef7b1e65399b93906e9f",
+        "cycle1_release.ila": "20e2eef413a3a2acd56637993ffc93094b2c226541aff8a201b83ddbbfd4b2b0",
+        "cycle1_release_layout.tsv": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196",
+        "cycle1_released.tsv": "e27a412249cf7795adc8f02feeeda261d21e8bddc43b76e931027e6005997299",
+        "cycle2_held.tsv": "2ad0325902a70b3b101b9e006a86e8b40d2649ce08df79d30a5005727a9d23e7",
+        "cycle2_release.csv": "2e85a09717d4d4b3a6eb7251c3f738467dfe606994bb106553b1ae90b6d5f134",
+        "cycle2_release.ila": "40101f8cf3c6bd3a72b76eab2f3355f01673b947459e48de9d7b3ae5cf2c33f2",
+        "cycle2_release_layout.tsv": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196",
+        "cycle2_released.tsv": "a43fd33510fa97ce872affadcb619fc3d6bba395bb2e2dec18c425663f03fd93",
+        "cycle3_held.tsv": "65f088cdc109bb8b567c9baf7459110a7cbe6c0b6e6ea7888d035415c229a604",
+        "cycle3_release.csv": "d5136a2a9d062728543547087cb645e24cdfd333bafbfec23db901b9be362304",
+        "cycle3_release.ila": "607213314218df5e76948385d4d95c5442b5c0d8061f89bdc5328091b90aa5ec",
+        "cycle3_release_layout.tsv": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196",
+        "cycle3_released.tsv": "a749f763fd7933782a972927adfd39617f45e08a3a0a7adf21513b98ca896df1",
+        "reset_actions.tsv": "50dc47b9229a14ef44a8b8a06cdeca469d8067c08be332f9e50ec74ebe6d58f9",
+        "steady_later.csv": "4d2e62656eb934a279ff4aca4efbec22f63d10f096816cff427768f05ed32df9",
+        "steady_later.ila": "b9e281b7decfd318483831c8cb79dc620bce48064fd8d606a2eb3ece4990e493",
+        "steady_later_layout.tsv": "924f7588a480fcd7b24d6a030e9a8185be39637bf47234362e610711d3279196"
+      },
+      "physical_reference_clock_frequency_mhz": null,
+      "scope": "Negative synchronized digital observations; not analog voltage/jitter/frequency, RX data/BER, PCIe or DMA validation",
+      "final_before_restore_sha256": "8f96fbde16a3cf9f4002a48a9b5f05ef3e01e2bfcf654b7c258aa49f50d4b525"
+    }
+  },
+  "shared_source_sha256": {
+    "rtl/lesson05g_cpll_body.sv": "c7f9b010a5ba0fa77c5807b2775b8593e7e3a0d792dabc1687341647d13b62dd",
+    "rtl/cpll_diagnostics.sv": "529cb34e971480637a2a74b311a3550ea11e091dc8fed95ce2fdc511c58b0871",
+    "rtl/gt_isolation_clocking.sv": "059cef20dff7fa22194db6640e28167c7384406b68c23bf10b85da7a7a27a97c",
+    "rtl/pcie_phy_monitor.sv": "37db13725528ea866b993ea0f0f13d6b1ea27c19439a99e57892b0b09037e05a",
+    "sim/tb_cpll_board.sv": "c71b3b37dc04fefcc06d0eab07ae2fab5194f25f9ce7eda6e9fcaa607c02bf19"
+  },
+  "shared_source_bytes_identical": true,
+  "e2_historical_decoder_snapshot": {
+    "manifest": {
+      "saved_utc": "2026-10-29T06:27:43.327706+00:00",
+      "build_id": "465805e2",
+      "decoder_sha256": "6c3fe5592121883dc9ba0fea459575af69827b0160188d4bffaea33a518bf25e",
+      "tests_sha256": "ff1ddaab6b26f09c20e30737b094263a55325747bc00f098cb39ce19eb66b1ed",
+      "original_suite_sha256": "90d5b42ac294d7ae118b6eaa1450f8566b94354c8742ea2086187411a40098b1",
+      "original_suite_decoder_sha256": "6c3fe5592121883dc9ba0fea459575af69827b0160188d4bffaea33a518bf25e",
+      "scope": "Pre-e3 decoder/test snapshot; original e2 captures and JSON unchanged"
+    },
+    "manifest_sha256": "729101dcb312bcc2a04de6b405a9d287a5cd475aadf7f835374abc09c70ea796"
+  },
+  "e2_preserved_attempt": {
+    "directory": "D:/work/build/KU5P_FX_Accelerator/lesson05g_cpll_pcie_ref/attempt_hierarchical_driver_aliases",
+    "first_attempt_stopped_before_implementation": true,
+    "reason": "Initial driver comparison included hierarchical alias output pins",
+    "normalized_primitive_and_top_input_driver_sets_equal": true,
+    "normalized_before_sha256": "5a3afad4da7484884e54650e596d9a5877b15b327ad331d6a09ec8e4bf5b2853",
+    "normalized_after_sha256": "5a3afad4da7484884e54650e596d9a5877b15b327ad331d6a09ec8e4bf5b2853",
+    "removed_hierarchical_aliases": 0,
+    "added_alias_counts": {
+      "CPLLPD": 3,
+      "CPLLRESET": 3
+    },
+    "first_attempt_native_log_sha256": "ecdc97e2def69de85e9a70b512e79df439f230e3347c2ec791e1086241bf709d"
+  },
+  "additional_diagnostic_simulation": {
+    "checks_passed": 8,
+    "finish_ns": 43400,
+    "marker_sha256": "9444b80e754de72c6805e869798200730e1c23e82f4d7c82fb3b1d7e13d659f6",
+    "runtime_log_sha256": "f9c652136d4e55edb98c6550618aaae8d1cf3926b031460565ce71564fae2311",
+    "testbench_sha256": "37f2c2fb0538d8cb10f8e5e0047651ddefdad002a2772e4e1cef79f99a6ff5f2",
+    "scope": "Reference activity timeout, event counting/history and mock-control validity; actual post-synthesis GT control taps not RTL-simulated"
+  },
+  "rollback": {
+    "completed": true,
+    "build_id": "465805e0",
+    "local_reset": 0,
+    "jtag_hz": 6000000,
+    "local_evidence_directory": "D:/work/build/KU5P_FX_Accelerator/lesson05g_cpll_pcie_ref/restore_e0",
+    "artifacts_match_original": true,
+    "artifacts": {
+      "lesson05d_pcie_top.bit": "b302bd9db6eedc213a492ae9f175f4cdb606251f3c53bbceccc6295136e4ed0d",
+      "lesson05d_pcie_top.ltx": "3db45996e028b4fbbee75bc7000115cd8f35aea0495c36c8d29f66d89fc81c91",
+      "lesson05d_pcie_top_routed.dcp": "edd1384f98f90746ab1140775311fb082b9a544ab3a06159aca0708dba678c27"
+    },
+    "evidence_sha256": {
+      "hardware_verification.json": "af765a86364290c9319d6fd8c3684cea5de1a1afae09625392cd0774d2f60825",
+      "windows_ready_for_optional_restart.json": "5fdaa71836f5998c6b66dc050d3402ae34224c1cc727c9ade20358f1b113e056",
+      "ready_for_optional_restart_phy.json": "8ebb83738fa20ec1c17b88e3c5720505e535c10fea8ca26bc1193078a846d10b",
+      "ready_for_optional_restart_training.json": "91770328fa30e008be3320ca6e3eec26ceab9317216753266dd7d886b7635acd",
+      "hardware/ready_for_optional_restart.tsv": "0965618ec9999f7b7aed318d532c6a3758aa19e7116e1bd44f0ca6e0d2529a76",
+      "hardware/ready_for_optional_restart_phy.tsv": "fcb6cc283034d360ad1175437bdfea50cd263289a2e2747e01081495cd26317a",
+      "hardware/ready_for_optional_restart_training.tsv": "ce26bd64a30c58d861527eb7ef7d76bb60b02c9bb0c124de0c8ef43d1f0c92f7",
+      "hardware/local_reset_actions.tsv": "505a370e1d3e0f05b2d40994a90abdae705c1d216b851ad432ac25ca786c016f"
+    },
+    "status_samples": 6,
+    "phy_samples": 12,
+    "training_samples": 12,
+    "current_phy_hex": "00002c0f0000",
+    "physical_link_observed": false,
+    "windows_endpoint_count": 0,
+    "training_last_snapshot": "Detect.Quiet",
+    "training_sequence": 1,
+    "snapshot_may_be_stale": true,
+    "host_dma_tested": false,
+    "host_restart_executed": false,
+    "si5338_configuration_changed": false
+  },
+  "python_tests": {
+    "passed": 54,
+    "log_sha256": "7f1501cb9e62b0bbddb9ecec35ab6d119e3d172da9d269fcd35da13fa51f1045"
+  },
+  "restart_preparation": {
+    "host_restart_executed": false,
+    "dry_run_is_post_restart_evidence": false,
+    "readonly_script_sha256": "c5583fd5ba572a677db7997f57cbc7fa085a6342d2673722d5969e61134f912e",
+    "pre_restart_evidence_sha256": {
+      "pre_restart_dry_run.tsv": "0965618ec9999f7b7aed318d532c6a3758aa19e7116e1bd44f0ca6e0d2529a76",
+      "pre_restart_dry_run_phy.tsv": "fcb6cc283034d360ad1175437bdfea50cd263289a2e2747e01081495cd26317a",
+      "pre_restart_dry_run_training.tsv": "ce26bd64a30c58d861527eb7ef7d76bb60b02c9bb0c124de0c8ef43d1f0c92f7",
+      "pre_restart_dry_run_retention.tcldict": "7a54977262ed73c1eaef57d572d366d62194ff1b655517f223e519150a36c7a5",
+      "restart_preflight_reset_readback.txt": "36bb6aaf48c1fe7472f8925054ea7a82b40118ed94b8250383255a4d89b046e5"
+    }
+  }
+}
