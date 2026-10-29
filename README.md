@@ -2,6 +2,8 @@
 
 基于 AMD Kintex UltraScale+ **XCKU5P** 的 FPGA 加速卡开发仓库。
 
+**最新状态（2026-10-29）：按用户要求，最后一次尝试结束后开发暂停。** 新e4独立启动记录器完成实现、CDC和实板观察，WNS=+1.174ns、未豁免CDC Critical=0；已保存完整512条事件和ILA。CPLL有瞬态指示但没有稳定初始化，GT TX/RX done低，Windows未枚举。当前SRAM为e4、reset0，板卡仍未打通；见[最后一次尝试与停止点](docs/lesson05i-pcie-boot-recorder.md)。下文e0等为此前阶段记录。
+
 卡片插在主机 PCIe 插槽上，通过 PCIe DMA 与主机交互；FPGA 侧无 ARM 核，因此不涉及
 PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 
@@ -47,6 +49,7 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 | [docs/lesson05f-si5338-readonly.md](docs/lesson05f-si5338-readonly.md) | Si5338 开漏读取、两份实板快照/物理波形、输入配置异常与 e0 回退 |
 | [docs/lesson05g-h-cpll-board.md](docs/lesson05g-h-cpll-board.md) | 单通道 CPLL 跨 quad/本 quad 对照、六轮实板阴性结果、实际控制观察与回退 |
 | [docs/pcie-restart-observation-2026-10-29.md](docs/pcie-restart-observation-2026-10-29.md) | e0 保留配置启动、实时 Polling.Compliance、局部复位未恢复及三阶段证据 |
+| [docs/lesson05i-pcie-boot-recorder.md](docs/lesson05i-pcie-boot-recorder.md) | e4独立时间线、59条实际观察、512条完整事件、最后实板结果及暂停状态 |
 | [docs/si5338-configuration-plan.md](docs/si5338-configuration-plan.md) | 实际型号/电压证据缺口、完整 RAM 频率计划与多页恢复契约，尚不可上板写入 |
 | [docs/rfsoc-preparation.md](docs/rfsoc-preparation.md) | RFSoC 接入前：现有光模块/ConnectX-5、PCIe 限制、候选协议工具及分阶段验收 |
 | [docs/vivado-first-steps.md](docs/vivado-first-steps.md) | 怎样在 Vivado 中查看本课综合网表、资源和波形 |

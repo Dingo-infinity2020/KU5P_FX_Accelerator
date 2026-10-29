@@ -41,6 +41,12 @@ log "part      = $part"
 log "top       = $top"
 log "build_dir = $build_dir"
 
+if {$top eq "lesson05i_pcie_boot_top"} {
+    source -notrace [file join $repo_dir tcl lesson05i_boot_project.tcl]
+    lesson05i_boot_build $build_dir $part
+    return
+}
+
 if {$top eq "lesson05h_cpll_source_top"} {
     set action [lindex $argv 3]
     if {$action eq ""} {set action all}
