@@ -23,6 +23,8 @@
 
 ## Review discipline
 
+2026-10-30 M0/H1 update (source `fb7a0d9`, [evidence](m0-night-development-2026-10-30.md)): R-001/R-002 remain BLOCKED for LINK, waiting for a retained-e4 host restart/positive control; R-003 remains OPEN because the same 512-entry prefix is retained, not new startup coverage. R-004..R-007 remain OPEN for their targeted audits although the existing full 226-frame regression passed again. R-011 baseline reproducibility subtask VERIFIED_OK: fresh offline run, source freeze, artifact hashes, generated FFT/XDMA configuration, and exact recovery of historical 05A build source; broader build/board coverage remains OPEN. R-016 this PR's source/provenance and staged-secret scan are checked before push; no vendor/RFSoC original files are added. This update does not close the other risks.
+
 For each R-xxx: mark OPEN / CONFIRMED_DEFECT / VERIFIED_OK / DEFERRED / BLOCKED, include the exact source SHA, line or test, falsifiable expected vs observed, what was run and what was not, and next permission gate. Do not silently mark OPEN rows fixed by updating documentation. Historical tests remain in docs/lessonXX-*.md and docs/validation/*.json; do not rewrite them.
 
 First offline review priority after resume: R-004 through R-007 and R-011 with focused self-checking tests; hardware R-001 through R-003 require separate approval. Prior user request is HOLD for implementation, so this backlog is guidance, not queued executable work.

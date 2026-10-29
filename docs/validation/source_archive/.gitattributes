@@ -1,0 +1,2 @@
+# Keep recovered historical source byte-identical to its original proof.
+lesson05a-build.tcl -text

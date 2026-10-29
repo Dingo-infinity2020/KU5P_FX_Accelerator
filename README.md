@@ -1,6 +1,8 @@
 # KU5P_FX_Accelerator
 
-**本地 Codex/下一次开发入口（2026-10-29）：** [AGENTS.md](AGENTS.md)（工作约束与授权边界）→ [当前真实状态](docs/CURRENT_STATE.md) → [详细开发里程碑](docs/DEVELOPMENT_PLAN.md) → [接口与科学数据合同](docs/INTERFACE_CONTRACTS.md) → [代码审查清单](docs/REVIEW_BACKLOG.md)。开发分支仍在 Draft PR #1；此前 e4 硬件实验之后的暂停决定仍有效，文档路线本身不代表授权新的上板、构建或软件开发。
+**最新停止点（2026-10-30）：** 夜间已完成 M0 离线回归与 e4 只读复核，停在需用户手动重启的节点。见[本轮报告](docs/m0-night-development-2026-10-30.md)及[当前状态](docs/CURRENT_STATE.md)。当前 PCIe 仍未建链/枚举；以下 2026-10-29 暂停说明为历史记录，本轮新授权已在报告中说明。
+
+**本地 Codex/下一次开发入口：** [AGENTS.md](AGENTS.md)（工作约束与授权边界）→ [当前真实状态](docs/CURRENT_STATE.md) → [详细开发里程碑](docs/DEVELOPMENT_PLAN.md) → [接口与科学数据合同](docs/INTERFACE_CONTRACTS.md) → [代码审查清单](docs/REVIEW_BACKLOG.md)。原开发分支仍在 Draft PR #1；新工作使用独立专题分支。文档路线本身不代表新的执行授权。
 
 
 基于 AMD Kintex UltraScale+ **XCKU5P** 的 FPGA 加速卡开发仓库。
