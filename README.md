@@ -9,7 +9,7 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 
 第五课 A 已通过当前聊天的 Vivado MCP 完成片内回放的板级实现与真实 FPGA 验证：两次独立抓取各 2048 行，全部 650 位逐行匹配。含 ROM/ILA/VIO 的板级设计使用 9526 LUT、16977 FF、56 DSP、62.5 BRAM36 等效块，10 ns 约束下布线后 WNS=+3.339 ns。RFSoC 暂不可连接时，先推进候选协议测试、PC/ConnectX-5↔KU5P 链路准备与连续处理；当前算术硬件仍为可暂停的合成数据回放。
 
-第五课 D 已完成独立 XDMA 测试端点、仿真、板级布线和 JTAG SRAM 配置。当前 ×4 主机上板 e0 时钟诊断版，WNS=+1.256 ns；新增 SYS_CLK 监测 MMCM 已锁定，四路 raw GT power-good 为高，但 PCIe CPLL/QPLL1 未锁定，GT TX/RX 复位未完成。硬件预分频、诊断门控旁路后，参考路径计数边沿仍不稳定；同域心跳采集严格每 256 点重复。Windows 尚未枚举，真实 BAR/DMA 待验收。见[无需重启的时钟交叉核验](docs/lesson05d-ref-prescale.md)、[PLL/时钟排查与证据修正](docs/lesson05d-pll-clock.md)与[原 d5 诊断](docs/lesson05d-phy.md)。
+第五课 D 已完成独立 XDMA 测试端点、仿真、板级布线和 JTAG SRAM 配置。当前 ×4 主机上板 e0 时钟诊断版，WNS=+1.256 ns。2026-10-29 主机重新启动后，首次只读确认 e0/reset0 保留，CPLL mask0001、四路 GT TX/RX 初始化完成，训练实时到达 Polling.Compliance；未进入 L0、Windows 未枚举。随后一次局部复位后初始化没有恢复，最终复位仍为0。参考观察链尚不能证明稳定物理频率。见[重启三阶段实测](docs/pcie-restart-observation-2026-10-29.md)；真实 BAR/DMA 待验收，不能把首次初始化成功写成问题已解决。
 
 第五课 E 已完成独立四通道 GT Wizard 对照：使用 SYS_CLK 管理复位，固定 8 Gb/s/QPLL1，发送保持禁止。布线 WNS=+4.005 ns，未豁免 CDC Critical=0；实板 SYS_CLK 粗测约 100 MHz，QPLL1 仍未锁定，参考计数两次短采集均无边沿。实验后已恢复同一 e0，PCIe 状态仍未改善。8 项控制/时钟仿真与 33 项 Python 测试通过；原 8 Gb/s/QPLL1 GT 动态仿真受 BASIC 实例上限限制，不能记为通过。见[独立 GT 隔离实验](docs/lesson05e-gt-isolation.md)。
 
@@ -17,7 +17,7 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 
 ## 快速索引
 
-当前按用户安排集中打通板卡，暂缓新增 FX 学习任务。单通道 CPLL 的跨 quad 与本 quad 两版都完成实现、三轮实板复位对照，但均未锁定；已恢复原 e0/reset0，下一项是保留配置的主机启动对照。见[两版 CPLL 实板记录](docs/lesson05g-h-cpll-board.md)和[Si5338 配置准备](docs/si5338-configuration-plan.md)。
+当前按用户安排集中打通板卡，暂缓新增 FX 学习任务。单通道 CPLL 的跨 quad 与本 quad 两版均完成三轮实板对照且未锁定；这些历史结果保留。原 e0 的保留配置启动对照已完成，发现启动时能初始化、运行中局部复位不能恢复的差异；下一步记录启动时钟/复位时间线和收发训练条件。见[重启实测](docs/pcie-restart-observation-2026-10-29.md)、[两版 CPLL 实板记录](docs/lesson05g-h-cpll-board.md)和[Si5338 配置准备](docs/si5338-configuration-plan.md)。
 
 完整进度、云端保存范围和重建入口见[2026-10-28 进度快照](docs/progress-2026-10-28.md)。当前 PCIe 尚未建链，不能把源码同步理解为驱动或 DMA 已验收。
 
@@ -46,6 +46,7 @@ PetaLinux / Vitis 嵌入式流程，全部逻辑在 Vivado 中完成。
 | [docs/lesson05e-gt-isolation.md](docs/lesson05e-gt-isolation.md) | 独立 GT 实现/实板对照、SYS_CLK 主机时间粗测、CDC 修正、仿真许可边界与 e0 回退 |
 | [docs/lesson05f-si5338-readonly.md](docs/lesson05f-si5338-readonly.md) | Si5338 开漏读取、两份实板快照/物理波形、输入配置异常与 e0 回退 |
 | [docs/lesson05g-h-cpll-board.md](docs/lesson05g-h-cpll-board.md) | 单通道 CPLL 跨 quad/本 quad 对照、六轮实板阴性结果、实际控制观察与回退 |
+| [docs/pcie-restart-observation-2026-10-29.md](docs/pcie-restart-observation-2026-10-29.md) | e0 保留配置启动、实时 Polling.Compliance、局部复位未恢复及三阶段证据 |
 | [docs/si5338-configuration-plan.md](docs/si5338-configuration-plan.md) | 实际型号/电压证据缺口、完整 RAM 频率计划与多页恢复契约，尚不可上板写入 |
 | [docs/rfsoc-preparation.md](docs/rfsoc-preparation.md) | RFSoC 接入前：现有光模块/ConnectX-5、PCIe 限制、候选协议工具及分阶段验收 |
 | [docs/vivado-first-steps.md](docs/vivado-first-steps.md) | 怎样在 Vivado 中查看本课综合网表、资源和波形 |

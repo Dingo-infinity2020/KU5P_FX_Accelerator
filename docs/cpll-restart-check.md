@@ -1,6 +1,6 @@
 # 当前 e0 的保留配置启动对照
 
-2026-10-29。准备已完成，**本次启动对照尚未执行，由用户选择何时手动进行**。两版CPLL实板各三轮均未锁，当前恢复了哈希相同的e0、VIO本地复位0、JTAG6MHz。没有改Si5338、BIOS或Flash。
+2026-10-29，**本次启动对照已完成**：保留 e0/reset0，首次只读观察到 CPLL mask0001、四路 TX/RX 初始化完成，实时训练到达 Polling.Compliance，但未枚举；随后一次局部复位后初始化未恢复。见[本次实测与最终状态](pcie-restart-observation-2026-10-29.md)。以下操作步骤保留作实验方案，不代表仍等待用户重启，也不要原标签重跑。
 
 目的：检查重新插牢后的当前e0能否在主机启动期间完成初始化/枚举，并区分运行中JTAG配置与主机启动时序。它不是保证修复，也不证明本机一定门控了参考时钟。[AMD PG213系统启动说明](https://docs.amd.com/r/en-US/pg213-pcie4-ultrascale-plus/System-Bring-Up)包含JTAG配置后主机重新启动的场景。
 
@@ -10,7 +10,7 @@
 
 在工程提交和独立备份确认完成后，使用Windows菜单的**“重新启动”**，保持供电。回来告诉助手“已重启”。不需要先运行重扫设备命令，也不用先重新下载FPGA。
 
-若选择暂不重启，板卡仍停留在已记录的e0/reset0；本次启动对照继续标为未执行。
+该步骤本次已经完成，Windows 启动时间读回为 2026-10-29 18:45:52.5（UTC+8）。
 
 ## 助手返回后的先读规则
 
@@ -25,7 +25,7 @@ source -notrace {D:/work/KU5P_FX_Accelerator/tcl/read_cpll_restart_retention.tcl
 lesson05gh_read_restart_retention {D:/work/build/KU5P_FX_Accelerator/lesson05g_cpll_pcie_ref/restore_e0} after_current_host_restart
 ```
 
-该过程已用 `pre_restart_dry_run` 在当前启动会话只读试跑成功；这不是重启后的证据。真正的 `after_current_host_restart` 标签尚未使用，程序拒绝覆盖已有记录。
+该过程此前用 `pre_restart_dry_run` 在重启前会话只读试跑成功；它不是重启后证据。真正的 `after_current_host_restart` 标签本次已经使用，保留记录确认 DONE1/e0/reset0；程序拒绝覆盖已有记录。
 
 基线与精确回退文件在 `D:/work/build/KU5P_FX_Accelerator/lesson05g_cpll_pcie_ref/restore_e0`：
 
