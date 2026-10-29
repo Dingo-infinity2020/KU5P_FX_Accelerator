@@ -50,6 +50,10 @@ def accept_result(code, text, marker=None, expected=None):
         if not re.fullmatch(expected, value):
             raise ValueError(f'Incomplete PASS marker: {value}')
         return value
+    if expected is not None:
+        if not re.search('^'+expected+'$', text, re.M):
+            raise ValueError('Missing reference-generation completion marker')
+        return dict(reference_generation=True)
     matches = re.findall(r'^Ran (\d+) tests? in .*$', text, re.M)
     if len(matches) != 1 or int(matches[0]) == 0 or not re.search(r'^OK\s*$', text, re.M):
         raise ValueError('Missing complete unittest result')
@@ -182,6 +186,9 @@ def main():
             ('training', 'run_pcie_training_monitor_test.ps1', 240, 'simulation_pass.txt', r'PASS training_monitor_checks=9'),
             ('application', 'run_pcie_application_test.ps1', 240, 'simulation_pass.txt', r'PASS packets=29 beats=3712 .+'),
             ('pipeline', 'run_pipeline.ps1', 900, 'simulation_pass.txt', r'PASS windows=90 .+')]:
+            if name == 'application':
+                jobs.append(('application_vectors', [sys.executable, '-B', str(ROOT/'scripts/generate_pcie_vectors.py'),
+                    '--output-dir', str(output/'application')], 30, None, r'PCIE_VECTORS packets=29 beats=3712'))
             command = [shell, '-NoProfile', '-File', str(ROOT/'scripts'/script), '-VivadoBin', str(args.vivado_bin), '-BuildDir', str(output/name)]
             if name == 'pipeline':
                 command += ['-Python', sys.executable]
