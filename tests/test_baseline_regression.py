@@ -5,7 +5,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from run_baseline_regression import accept_result, new_output
+from run_baseline_regression import accept_result, new_output, qualify_version
 
 
 class AcceptanceTests(unittest.TestCase):
@@ -40,6 +40,14 @@ class AcceptanceTests(unittest.TestCase):
 
     def test_unittest_count(self):
         self.assertEqual(accept_result(0, 'Ran 7 tests in 0.01s\n\nOK\n')['tests'], 7)
+
+    def test_version_informational_exit_is_not_simulation_exit(self):
+        self.assertEqual(qualify_version(1, 'vivado v2026.1 (64-bit)')['informational_exit_code'], 1)
+        for code, text in [(1, 'vivado v2025.2'), (1, 'Error: vivado v2026.1'), (2, 'vivado v2026.1')]:
+            with self.subTest(code=code, text=text), self.assertRaises(ValueError):
+                qualify_version(code, text)
+        with self.assertRaises(ValueError):
+            self.marker_case(1, 'vivado v2026.1 (64-bit)')
 
     def test_existing_evidence_never_reused(self):
         with tempfile.TemporaryDirectory() as folder:

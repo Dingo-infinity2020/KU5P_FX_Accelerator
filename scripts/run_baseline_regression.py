@@ -58,6 +58,14 @@ def accept_result(code, text, marker=None, expected=None):
     return dict(tests=int(matches[0]), failures=0, skipped=0)
 
 
+def qualify_version(code, text):
+    # The 2026.1 Windows launcher returns 1 for informational -version.
+    # This exception is restricted to that probe, never simulation/builds.
+    if code not in (0, 1) or ERROR.search(text) or not re.search(r'^vivado v2026\.1\b', text, re.I | re.M):
+        raise ValueError('Expected exact Vivado 2026.1 version output')
+    return dict(version=text.splitlines()[0], informational_exit_code=code)
+
+
 def run_job(name, command, output, timeout, marker=None, expected=None):
     log = output / (name + '.log')
     started = time.time()
@@ -155,12 +163,10 @@ def main():
     save()
     try:
         version = subprocess.run([str(args.vivado_bin/'vivado.bat'), '-version'], cwd=output,
-                                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=60, check=True)
+                                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=60)
         version_text = version.stdout.decode('utf-8', errors='replace')
         (output/'vivado_version.txt').write_text(version_text, encoding='utf-8')
-        if not re.search(r'Vivado v2026\.1\b', version_text):
-            raise ValueError('Expected Vivado 2026.1; requalify other versions separately')
-        manifest['tools'] = dict(vivado_version=version_text.splitlines()[0], numpy_version=importlib.metadata.version('numpy'))
+        manifest['tools'] = dict(vivado=qualify_version(version.returncode, version_text), numpy_version=importlib.metadata.version('numpy'))
     except (ValueError, OSError, subprocess.SubprocessError, importlib.metadata.PackageNotFoundError) as error:
         manifest.update(status='HOLD', reason=f'Tool qualification failed: {error}')
         save()
