@@ -1,5 +1,9 @@
 # CURRENT_STATE — KU5P FX Accelerator
 
+**最新实测覆盖段：2026-10-30 22:07–22:11，用户新授权的一轮第二长槽 e4 测试结束。** 进入源 `cad2269`，分支 `codex/slot2-e4-trial-2026-10-30`。用户更正旧FPGA实际在第三长槽，现确认在第二长槽；ConnectX-5在第一长槽、GPU第三长槽。初始DONE1但无e4调试核，镜像UNKNOWN；原已验收e4 ×4仅下载一次，arm一次、仅释放一次reset，保存512条epoch1新事件、40个VIO样本和4096点ILA。最终e4/DONE1/reset0/arm0/读址1ff，PLL/GT done低、AXI÷8固定10、Detect.Quiet快照冻结，无L0/10EE枚举；网卡Gen3×16、显卡Gen4×4，主机WHEA仍0。没有Flash/Si5338/BIOS/驱动/内存设置变更。见[本轮记录](slot2-e4-trial-2026-10-30.md)与[验证摘要](validation/slot2-e4-trial-2026-10-30.json)。
+
+**当前停止点 WAIT_FOR_USER_WARM_RESTART_SLOT2：** Hardware Manager关闭，无构建/仿真/采集进行。如继续新第二槽的启动对照，需要用户手动Windows“重新启动”并保持板卡供电/JTAG；不得自动重启。返回后先只读保全DONE/身份/真实控制/epoch，不能先program/reset/arm。下方主机恢复时UNKNOWN及早上第三槽epoch2为历史状态，不是当前镜像；旧槽号错误不抹去原实测。
+
 **最新覆盖段：2026-10-30 晚，主机黑屏事故后逐卡恢复。** 用户完全断电拆卡、内存由5400降至4000并调整后确认A2/B2；Windows内存诊断通过，MemTest86四轮48/48项通过、零错误。随后用户依次装回ConnectX-5、FPGA及RTX 5060 Ti，21:35主机只读检查：网卡Gen3 x16、显卡Gen4 x4、USB调试桥均正常枚举，本次启动WHEA为0；FPGA无10EE枚举，100G端口未连通。详见[事故与恢复历史](host-black-screen-triage-2026-10-30.md)。根因未确定；不是FPGA或系统链路验收通过。
 
 **当前停止点 HOST_RECOVERED_FPGA_STATE_UNKNOWN / WAIT_FOR_AUTH：** 下午断电后不能继续假定早上e4 SRAM现场保留；当前镜像/DONE/GT/LTSSM均未读，本轮未连接Vivado或操作FPGA。原e4实验和原始证据保持不变，下面“保留现场”属于早上历史。下一次FPGA实验需新授权并重建可核对的当前硬件基线，H1/H2/H3仍未通过。
@@ -69,6 +73,6 @@ P2: wide PR mixes mature FX, experimental GT diagnostics and unmerged lessons; r
 
 ## Next authorized action and safe next development package
 
-Latest stop point is H1_HOLD_POSITIVE_CONTROL in the top override: user completed the retained-e4 host restart, new events are saved, GT initialization observed, but no L0/enumeration. Preserve this state; no repeated reset/reboot or driver installation. A new causal experiment needs an available independent positive-control condition and a concrete scope. Earlier WAIT_FOR_HOST_RESTART and documentation-only sections are historical.
+Latest stop point is WAIT_FOR_USER_WARM_RESTART_SLOT2 in the top override. The current user authorized one firmware/PCIe trial in the corrected second long slot; this is completed with e4 loaded and reset0, no GT initialization/L0/enum. A retained-e4 Windows restart in this new configuration is a user action, never automatic. Earlier morning positive-control hold and post-black-screen UNKNOWN are historical.
 
 The plan in [DEVELOPMENT_PLAN](DEVELOPMENT_PLAN.md) is prospective. For raw report and latest real status, the dated experimental record takes precedence over a progress checkbox.

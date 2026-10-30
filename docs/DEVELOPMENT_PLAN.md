@@ -50,6 +50,8 @@ PASS: clean reproducible source baseline; known tests with exact counts; no secr
 
 ### H1 — causal PCIe electrical/clock/reset investigation (BOARD approval separately required)
 
+2026-10-30 evening: user corrected previous FPGA location to the third long slot and explicitly authorized one trial in the now-confirmed second long slot. Same accepted e4 programmed once after host boot; no GT initialization/L0/enum, full new evidence saved, final reset0. WAIT_FOR_USER_WARM_RESTART_SLOT2 before a retained-firmware startup comparison in this new configuration. [Trial and corrected slot history](slot2-e4-trial-2026-10-30.md). Host recovery changed multiple conditions; no single-slot causal verdict.
+
 2026-10-30 retained-e4 restart completed by the user: epoch2/512 new events saved, all four TX/RX reset-done observed and fresh Polling.Compliance; no L0 or enumeration. H1 overall HOLD pending an independent positive control, not another identical reboot/reset. See [the new observation](e4-restart-observation-2026-10-30.md); this does not advance H2/H3 or qualify physical reference quality.
 
 Question: why did retained e0 first show CPLL/GT initialized and live Polling.Compliance, then fail after local reset, while e4 showed intermittent CPLL and no TX/RX done? Preserve these distinct histories.
