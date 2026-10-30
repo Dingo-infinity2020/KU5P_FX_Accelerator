@@ -1,0 +1,420 @@
+{
+  "verified_at_utc": "2026-10-30T14:12:51.807143+00:00",
+  "source_commit": "cad226928156a4dcefd3ffddcc8191ac1f6f82f5",
+  "worktree": "D:/work/KU5P_FX_Accelerator",
+  "branch": "codex/slot2-e4-trial-2026-10-30",
+  "authorization": "Current user authorized one on-board firmware and PCIe identification trial after correcting physical slot history",
+  "slot_correction": {
+    "previous_fpga_slot_user_corrected": "third long slot",
+    "current_fpga_slot_user_confirmed": "second long slot",
+    "current_nic_slot": "first long slot",
+    "gpu_slot_other_chat": "third long slot",
+    "photo_or_silkscreen_independently_verified": false,
+    "warning": "Historical electrical-width observations remain evidence; precise historical physical slot number is corrected, not a single-variable causal proof"
+  },
+  "initial": {
+    "done": 1,
+    "image_identity": "UNKNOWN",
+    "e4_vio_found": false,
+    "baseline_read_before_program": true
+  },
+  "build": {
+    "id": "465805e4",
+    "loaded_existing_accepted_artifacts": true,
+    "new_build": false,
+    "proof_sha256": "456784e7c5da8d727ac7ee0680b96e7168938517a88a1441fbba652da49d05ec",
+    "artifacts": {
+      "lesson05i_pcie_boot_top.bit": "a12257b3eddf1a1160be04e23d1e7374103c05e2c19c5e3c56ebb6abfd9eb300",
+      "lesson05i_pcie_boot_top.ltx": "4c8d23e196eb2c5de522a88a0b120561929ece30adf43e72f3f2012e62d652df",
+      "lesson05i_pcie_boot_top_routed.dcp": "8980fbddd1dd87e1e3d47070b306b658d6c0b5a48adbac341cf9aac5c7e1f1af"
+    },
+    "original_routed_timing_scope": "Historical e4 WNS+1.174ns/WHS+0.010ns/CDC Critical0; NOT rerun"
+  },
+  "action_counts": {
+    "sram_program": 1,
+    "recorder_arm": 1,
+    "local_reset_release": 1,
+    "ila4096_capture": 1
+  },
+  "controls": {
+    "held_readback_reset1": true,
+    "final_done": 1,
+    "final_reset": 0,
+    "final_arm": 0,
+    "final_ram_address": "1ff",
+    "final_epoch": 1,
+    "hardware_manager_closed": true
+  },
+  "phase_samples": {
+    "held": 4,
+    "released": 12,
+    "later": 12,
+    "final": 12
+  },
+  "current": {
+    "raw_hex": "a0000f000f00000f",
+    "raw": {
+      "valid": true,
+      "groups": {
+        "powergood": 15,
+        "cplllock": 0,
+        "txresetdone": 0,
+        "rxresetdone": 0,
+        "txpmaresetdone": 0,
+        "rxpmaresetdone": 0,
+        "rxelecidle": 15,
+        "rxvalid": 0,
+        "rxcommadet": 0,
+        "rxcdrlock": 0,
+        "txelecidle": 15,
+        "txinhibit": 0,
+        "cpllreset": 0,
+        "cpllpd": 0
+      },
+      "qpll1lock": false,
+      "qpll1reset": null,
+      "qpll1pd": null,
+      "qpll0lock": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false
+    },
+    "controls": {
+      "physical_perst_n": true,
+      "manual_reset": false,
+      "endpoint_reset_n": true,
+      "reference_recent": true,
+      "reference_window_good": false,
+      "axi_div8_recent": false,
+      "sys_mmcm_locked": true,
+      "sys_clock_stopped": false,
+      "any_cpll_locked": false,
+      "qpll1_locked": false,
+      "all_txresetdone": false,
+      "all_rxresetdone": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false,
+      "link_up": false,
+      "axi_reset_n": false,
+      "raw_observers_valid": true,
+      "ltssm_raw": 0,
+      "ltssm_name": "Detect.Quiet",
+      "training_recent": false,
+      "all_gt_powergood": true
+    },
+    "axi_div8_count": 10,
+    "training_sequence": 1,
+    "training_sequence_changes": false,
+    "dropped_events": 8694
+  },
+  "events": {
+    "count": 512,
+    "epoch": 1,
+    "span_cycles": 507658293,
+    "nominal_span_seconds": 5.07658293,
+    "cpll_record_counts": {
+      "0": 512
+    },
+    "tx_done_record_counts": {
+      "0": 512
+    },
+    "rx_done_record_counts": {
+      "0": 512
+    },
+    "ltssm_record_counts": {
+      "Detect.Quiet": 512
+    },
+    "reference_good_records": 1,
+    "scope": "Nominal SYS_CLK-relative prefix; no absolute frequency or UTC claim; frozen on full with dropped-event count"
+  },
+  "ila": {
+    "csv_sha256": "9ed4648922082ec7f0f0d86a77097f7bc5061db7493ce6705e5927fcbb52c64e",
+    "layout_sha256": "44e53a0d0f6c8f60b14f367f1f15f67ecc999ea60093c1b47ac14cdbed003af8",
+    "samples": 4096,
+    "heartbeat_period_samples": [
+      256
+    ],
+    "same_clock_calibration_passed": true,
+    "first_controls": {
+      "physical_perst_n": true,
+      "manual_reset": false,
+      "endpoint_reset_n": true,
+      "reference_recent": true,
+      "reference_window_good": false,
+      "axi_div8_recent": false,
+      "sys_mmcm_locked": true,
+      "sys_clock_stopped": false,
+      "any_cpll_locked": false,
+      "qpll1_locked": false,
+      "all_txresetdone": false,
+      "all_rxresetdone": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false,
+      "link_up": false,
+      "axi_reset_n": false,
+      "raw_observers_valid": true,
+      "ltssm_raw": 0,
+      "ltssm_name": "Detect.Quiet",
+      "training_recent": false,
+      "all_gt_powergood": true
+    },
+    "last_controls": {
+      "physical_perst_n": true,
+      "manual_reset": false,
+      "endpoint_reset_n": true,
+      "reference_recent": true,
+      "reference_window_good": false,
+      "axi_div8_recent": false,
+      "sys_mmcm_locked": true,
+      "sys_clock_stopped": false,
+      "any_cpll_locked": false,
+      "qpll1_locked": false,
+      "all_txresetdone": false,
+      "all_rxresetdone": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false,
+      "link_up": false,
+      "axi_reset_n": false,
+      "raw_observers_valid": true,
+      "ltssm_raw": 0,
+      "ltssm_name": "Detect.Quiet",
+      "training_recent": false,
+      "all_gt_powergood": true
+    },
+    "first_raw": {
+      "valid": true,
+      "groups": {
+        "powergood": 15,
+        "cplllock": 0,
+        "txresetdone": 0,
+        "rxresetdone": 0,
+        "txpmaresetdone": 0,
+        "rxpmaresetdone": 0,
+        "rxelecidle": 15,
+        "rxvalid": 0,
+        "rxcommadet": 0,
+        "rxcdrlock": 0,
+        "txelecidle": 15,
+        "txinhibit": 0,
+        "cpllreset": 0,
+        "cpllpd": 0
+      },
+      "qpll1lock": false,
+      "qpll1reset": null,
+      "qpll1pd": null,
+      "qpll0lock": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false
+    },
+    "last_raw": {
+      "valid": true,
+      "groups": {
+        "powergood": 15,
+        "cplllock": 0,
+        "txresetdone": 0,
+        "rxresetdone": 0,
+        "txpmaresetdone": 0,
+        "rxpmaresetdone": 0,
+        "rxelecidle": 15,
+        "rxvalid": 0,
+        "rxcommadet": 0,
+        "rxcdrlock": 0,
+        "txelecidle": 15,
+        "txinhibit": 0,
+        "cpllreset": 0,
+        "cpllpd": 0
+      },
+      "qpll1lock": false,
+      "qpll1reset": null,
+      "qpll1pd": null,
+      "qpll0lock": false,
+      "phy_rst_idle": false,
+      "phy_rrst_n": true,
+      "phy_prst_n": false
+    },
+    "ref_div8_count_delta": 2122,
+    "axi_div8_count_delta": 0,
+    "scope": "4096 independent SYS_CLK samples; not a startup-duration, absolute-frequency, jitter, TS1/TS2, L0 or DMA acceptance"
+  },
+  "host_before": {
+    "observed_at": "2026-10-30T22:08:09.6220865+08:00",
+    "last_boot": "2026-10-30T21:33:06.5000000+08:00",
+    "administrator": false,
+    "present_9034": 0,
+    "present_any_10ee": 0,
+    "whea_since_boot": 0,
+    "memory_configured_rates": [
+      4000,
+      4000
+    ],
+    "pci": [
+      {
+        "name": "Intel(R) UHD Graphics 770",
+        "status": "OK",
+        "link": {}
+      },
+      {
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "status": "OK",
+        "link": {
+          "CurrentLinkSpeed": 4,
+          "CurrentLinkWidth": 4,
+          "MaxLinkSpeed": 5,
+          "MaxLinkWidth": 16
+        }
+      },
+      {
+        "name": "Mellanox ConnectX-5 Adapter #3",
+        "status": "OK",
+        "link": {
+          "CurrentLinkSpeed": 3,
+          "CurrentLinkWidth": 16,
+          "MaxLinkSpeed": 3,
+          "MaxLinkWidth": 16
+        }
+      },
+      {
+        "name": "Mellanox ConnectX-5 Adapter #4",
+        "status": "OK",
+        "link": {
+          "CurrentLinkSpeed": 3,
+          "CurrentLinkWidth": 16,
+          "MaxLinkSpeed": 3,
+          "MaxLinkWidth": 16
+        }
+      }
+    ]
+  },
+  "host_after": {
+    "observed_at": "2026-10-30T22:10:57.1600586+08:00",
+    "last_boot": "2026-10-30T21:33:06.5000000+08:00",
+    "administrator": false,
+    "present_9034": 0,
+    "present_any_10ee": 0,
+    "whea_since_boot": 0,
+    "memory_configured_rates": [
+      4000,
+      4000
+    ],
+    "pci": [
+      {
+        "name": "Intel(R) UHD Graphics 770",
+        "status": "OK",
+        "link": {}
+      },
+      {
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "status": "OK",
+        "link": {
+          "CurrentLinkSpeed": 4,
+          "CurrentLinkWidth": 4,
+          "MaxLinkSpeed": 5,
+          "MaxLinkWidth": 16
+        }
+      },
+      {
+        "name": "Mellanox ConnectX-5 Adapter #3",
+        "status": "OK",
+        "link": {
+          "CurrentLinkSpeed": 3,
+          "CurrentLinkWidth": 16,
+          "MaxLinkSpeed": 3,
+          "MaxLinkWidth": 16
+        }
+      },
+      {
+        "name": "Mellanox ConnectX-5 Adapter #4",
+        "status": "OK",
+        "link": {
+          "CurrentLinkSpeed": 3,
+          "CurrentLinkWidth": 16,
+          "MaxLinkSpeed": 3,
+          "MaxLinkWidth": 16
+        }
+      }
+    ]
+  },
+  "acceptance": {
+    "program_identity": "PASS",
+    "diagnostic_evidence": "PASS",
+    "gt_initialization": "FAIL_NOT_OBSERVED",
+    "link": "FAIL_NO_L0",
+    "enumeration": "FAIL_NO_10EE",
+    "bar": "NOT_RUN",
+    "dma": "NOT_RUN",
+    "new_simulation": "NOT_RUN",
+    "new_route": "NOT_RUN"
+  },
+  "untouched": [
+    "Flash",
+    "Si5338",
+    "BIOS",
+    "memory configuration",
+    "Windows drivers",
+    "NIC configuration",
+    "automatic host restart"
+  ],
+  "os_rescan": {
+    "performed": false,
+    "reason": "No L0/GT initialization; non-admin process; no elevation or driver/configuration changes"
+  },
+  "stop": "WAIT_FOR_USER_WARM_RESTART_SLOT2",
+  "next_action": "If continuing this new-slot startup comparison, user manually chooses Windows Restart while keeping FPGA power and JTAG connected; return first reads DONE/build/actual outputs/epoch before program/reset/arm",
+  "limits": [
+    "Host recovery changed memory/display/card population and slot, so this is not a single-variable comparison with morning data",
+    "ConnectX-5 enumeration verifies its own first-slot link, not FPGA second-slot reference/GT conditions",
+    "JTAG programming after host boot differs from retained-firmware host startup; morning third-slot warm-restart positive result is historical"
+  ],
+  "evidence_inputs_sha256": {
+    "events_decoded.json": "5be6d38efa467fdc00d11fe93749e450c7641f10f03af6a4268f1c9748699200",
+    "final_decoded.json": "93d3a4214fce79f102615fc2a7a320b020a1d08a330daba3b4184f2dfae73b0f",
+    "final_state.tcldict": "826fb228f4a63e1497d4b22f519c2defa1a618bbafaae167956ed6940b98dd3b",
+    "held_decoded.json": "bfa693766d5cd696b6301154182058afd2e1d1e15d8f8a1573f7d0443094b3f8",
+    "ila_decoded.json": "ad72e178186a994b77db437db5e504789d282bca8dff642f42cb2cf12dc3e80a",
+    "later_decoded.json": "149998eb06bcaffbe26194aee945b1d8ac9f88b11b94ca846a0bbaa6acdfff7a",
+    "read_host.ps1": "67360af4f7fbe8cd6bacea1f4feac714373f4b916303beda4059c08f8f12947b",
+    "released_decoded.json": "78db3ae1c9c8f1ae18aa6608cf35e281815cf96a6f04130d9da69ec73759ce26",
+    "summarize_trial.py": "bd82010cdd7797a4a2f16a12ca744f14ab7eb49574f42e3c4ee2fd91220f3173",
+    "verification.json": "456784e7c5da8d727ac7ee0680b96e7168938517a88a1441fbba652da49d05ec",
+    "windows_after_release.json": "49f9e27a0390b57d485f27044c6dcfc1f132d1d2cfb690e82e86df361bac7196",
+    "windows_before.json": "eb5d741abd545955721288f42895fbc8b872e8db6693fbdb873b55165f8cc22d",
+    "windows_final.json": "492927cde1ddb2de2aed4401dff112b0ac4b29bc3706041b027af8b74c9959fd",
+    "hardware/final.tsv": "fba5df5bd39267a8007bd89fd1b6ffdeda397c2e6a2d5d976cb6e999cc9b36b2",
+    "hardware/held.tsv": "b3e6751c24434b0678e200b26c02743e5e2a2b3f9e751a64ca6513c691c5eada",
+    "hardware/later.tsv": "79b54b59a635fdb913404a8a1fc2da83cdbd2dfbbce68558946798a35a41962d",
+    "hardware/preprogram_retention.tcldict": "874ffccbbe32823ecac42e6f8b9c2904436722f3f3e6cc1d306e5b852b63ae20",
+    "hardware/programmed.tcldict": "02ecd30323e0b6e0b33fcbb203de989eff687c419b3a0b89c7b864d48c0efdce",
+    "hardware/released.tsv": "2d18626f496abdbdeee6eb7db1f48359bb717e43d3b38d1eed03fd6165de3f03",
+    "hardware/released_reset.tcldict": "f47dc991a65d4792fd10080c1ebedb051075103d340833aa076eb10526dd773a",
+    "hardware/slot2_clock.csv": "9ed4648922082ec7f0f0d86a77097f7bc5061db7493ce6705e5927fcbb52c64e",
+    "hardware/slot2_clock.ila": "00bdf55089d0bd985a17bb90808293ef7f795e2db5718e2462718776ad53fc9f",
+    "hardware/slot2_clock_layout.tsv": "44e53a0d0f6c8f60b14f367f1f15f67ecc999ea60093c1b47ac14cdbed003af8",
+    "hardware/slot2_events_0.tsv": "8dd8fd2ae35432f025a150f6865c972d7fbac46f24897501e4395491c6434610",
+    "hardware/slot2_events_128.tsv": "0b18f06ed4aea3cb8d6cf35d0165151eda5ad0f0f8f2122fc9a5a806f4a22dcc",
+    "hardware/slot2_events_160.tsv": "1e4dd904679223128e964b2f612a224061bc3fd0db622613fccd920d50055400",
+    "hardware/slot2_events_192.tsv": "a0aae8fc6598b0e3efc94b86dc4434e3b1ed4914b3efdb65c48aef052cecc454",
+    "hardware/slot2_events_224.tsv": "3bb0a61f5d893acf8b72f203127f24961c5d97602f5fbfdd5746fc0ea1881735",
+    "hardware/slot2_events_256.tsv": "2a28f72bba4fed85e299511a1a6f1e6caf24977d47cfd93aa35b749820f74889",
+    "hardware/slot2_events_288.tsv": "4b40bc00c81b1c961ea96972c6e6adeb0b1906594202cce48baa51936e683c06",
+    "hardware/slot2_events_32.tsv": "0fda79d425c58923a3aafc7f993f3532fa9999914cebdc70ea0d3a7719e5c3c5",
+    "hardware/slot2_events_320.tsv": "8988e3aab2b2beb0d98f96e6852f6a5d80d9485c168a426487d77e05211230cc",
+    "hardware/slot2_events_352.tsv": "1a5a8cfa873ad921ee4c602e3bc196fbb22cfad2c5509f7bdf7672ee60cd738b",
+    "hardware/slot2_events_384.tsv": "171e792f0cabf406f3195a400690a97c0b61f9e8fdb9ce56a37094379d60ba13",
+    "hardware/slot2_events_416.tsv": "0f4530cc1b916e154707e53732d3860bb5656cdbdcda957031c91f9fc468afdd",
+    "hardware/slot2_events_448.tsv": "883e87dce1d1dc44be68b9ff3095d4644c6bccda03897f5ad6cd379a36f8ebb5",
+    "hardware/slot2_events_480.tsv": "34eaf1afe219ac21dcd59503254ccb9e061e567aab34c0425f7af371c4ef26e0",
+    "hardware/slot2_events_64.tsv": "5eb4057986f4408fa3dcabb16a59da6e61df8417720ea97908e0b94bb3eddae8",
+    "hardware/slot2_events_96.tsv": "80312ed510e0b7b097e16b8671eaf8b55771ab442127cb07e45cfe9b99962ae6",
+    "hardware/slot2_trial_arm.tcldict": "f709e733890142516dcb10c144e111aea2294d89b463a30fac667e9f4ba25fe3"
+  },
+  "analysis_sources_sha256": {
+    "scripts/pcie_boot_capture.py": "2027c39934189dff19b018534358636a5588fe5b53ed347b2171712921982299",
+    "scripts/pcie_evidence.py": "87f034270b05d2fcbf527d6d399d4dc1ab6a3119548deea349414c91349bb5c2",
+    "tcl/lesson05i_boot_hardware.tcl": "5cae404d4078ac9277e13c96728e6da7340020c7ce0fa713fae7099b7dc60b84",
+    "tcl/lesson05d_hardware.tcl": "87432a82cbde931686a3825e6f2520dd6b39332b4abc8ae3b9b8d206002589e4"
+  }
+}
