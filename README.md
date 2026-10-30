@@ -1,6 +1,6 @@
 # KU5P_FX_Accelerator
 
-**最新停止点（2026-10-30）：** 夜间已完成 M0 离线回归与 e4 只读复核，停在需用户手动重启的节点。见[本轮报告](docs/m0-night-development-2026-10-30.md)及[当前状态](docs/CURRENT_STATE.md)。当前 PCIe 仍未建链/枚举；以下 2026-10-29 暂停说明为历史记录，本轮新授权已在报告中说明。
+**最新停止点（2026-10-30）：** 用户已完成重启；e4保留、epoch2完整512条新事件已保存，四路GT初始化完成且训练快照活跃于Polling.Compliance，仍无L0/枚举。保留现场，下一项硬件排查需要独立正对照，不重复复位/重启。见[重启实测](docs/e4-restart-observation-2026-10-30.md)、[夜间M0回归](docs/m0-night-development-2026-10-30.md)及[当前状态](docs/CURRENT_STATE.md)。以下旧暂停说明为历史。
 
 **本地 Codex/下一次开发入口：** [AGENTS.md](AGENTS.md)（工作约束与授权边界）→ [当前真实状态](docs/CURRENT_STATE.md) → [详细开发里程碑](docs/DEVELOPMENT_PLAN.md) → [接口与科学数据合同](docs/INTERFACE_CONTRACTS.md) → [代码审查清单](docs/REVIEW_BACKLOG.md)。原开发分支仍在 Draft PR #1；新工作使用独立专题分支。文档路线本身不代表新的执行授权。
 

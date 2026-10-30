@@ -1,0 +1,245 @@
+{
+  "verified_at_utc": "2026-10-30T02:02:50.568705+00:00",
+  "source_commit": "eb4ec3192be4bb0e340fd725ded665a323be4ceb",
+  "worktree": "D:/work/KU5P_FX_Accelerator",
+  "branch": "codex/e4-restart-observation-2026-10-30",
+  "authorization": "User reported completing the agreed retained-e4 host restart; read retained state/events only, preserve working observation without local reset",
+  "evidence_valid": true,
+  "build_id": "465805e4",
+  "original_e4_artifacts": {
+    "lesson05i_pcie_boot_top.bit": "a12257b3eddf1a1160be04e23d1e7374103c05e2c19c5e3c56ebb6abfd9eb300",
+    "lesson05i_pcie_boot_top.ltx": "4c8d23e196eb2c5de522a88a0b120561929ece30adf43e72f3f2012e62d652df",
+    "lesson05i_pcie_boot_top_routed.dcp": "8980fbddd1dd87e1e3d47070b306b658d6c0b5a48adbac341cf9aac5c7e1f1af"
+  },
+  "original_proof_sha256": "456784e7c5da8d727ac7ee0680b96e7168938517a88a1441fbba652da49d05ec",
+  "prior_epoch": 1,
+  "current_epoch": 2,
+  "current_entries": 512,
+  "epoch_advanced": true,
+  "first_record_perst_seen": false,
+  "nominal_sys_clock_hz": 100000000,
+  "span_cycles": 471142416,
+  "nominal_span_seconds": 4.71142416,
+  "first_flags": {
+    "physical_perst_n": {
+      "index": 1,
+      "cycles_from_first_record": 29647276
+    },
+    "endpoint_reset_n": {
+      "index": 2,
+      "cycles_from_first_record": 29647278
+    },
+    "any_cpll_locked": {
+      "index": 4,
+      "cycles_from_first_record": 29696190
+    },
+    "all_txresetdone": {
+      "index": 11,
+      "cycles_from_first_record": 30122371
+    },
+    "all_rxresetdone": {
+      "index": 12,
+      "cycles_from_first_record": 30221587
+    },
+    "training_recent": {
+      "index": 7,
+      "cycles_from_first_record": 29696267
+    },
+    "link_up": null
+  },
+  "first_states": {
+    "Detect.Quiet": {
+      "index": 0,
+      "cycles_from_first_record": 0
+    },
+    "Detect.Active": {
+      "index": 16,
+      "cycles_from_first_record": 31492140
+    },
+    "Polling.Active": {
+      "index": 17,
+      "cycles_from_first_record": 31492254
+    },
+    "Polling.Compliance": {
+      "index": 21,
+      "cycles_from_first_record": 34433641
+    }
+  },
+  "ltssm_record_counts": {
+    "Detect.Quiet": 16,
+    "Detect.Active": 1,
+    "Polling.Active": 4,
+    "Polling.Compliance": 491
+  },
+  "cpll_record_counts": {
+    "0": 36,
+    "6": 1,
+    "15": 449,
+    "4": 5,
+    "2": 14,
+    "8": 3,
+    "12": 1,
+    "1": 3
+  },
+  "tx_done_record_counts": {
+    "0": 11,
+    "15": 501
+  },
+  "rx_done_record_counts": {
+    "0": 12,
+    "15": 500
+  },
+  "reference_good_records": 467,
+  "current": {
+    "samples": 36,
+    "raw_hex": "f00000f00fffff2f",
+    "raw": {
+      "valid": true,
+      "groups": {
+        "powergood": 15,
+        "cplllock": 2,
+        "txresetdone": 15,
+        "rxresetdone": 15,
+        "txpmaresetdone": 15,
+        "rxpmaresetdone": 15,
+        "rxelecidle": 15,
+        "rxvalid": 0,
+        "rxcommadet": 0,
+        "rxcdrlock": 15,
+        "txelecidle": 0,
+        "txinhibit": 0,
+        "cpllreset": 0,
+        "cpllpd": 0
+      },
+      "qpll1lock": false,
+      "qpll1reset": null,
+      "qpll1pd": null,
+      "qpll0lock": false,
+      "phy_rst_idle": true,
+      "phy_rrst_n": true,
+      "phy_prst_n": true
+    },
+    "controls": {
+      "physical_perst_n": true,
+      "manual_reset": false,
+      "endpoint_reset_n": true,
+      "reference_recent": true,
+      "reference_window_good": false,
+      "axi_div8_recent": true,
+      "sys_mmcm_locked": true,
+      "sys_clock_stopped": false,
+      "any_cpll_locked": true,
+      "qpll1_locked": false,
+      "all_txresetdone": true,
+      "all_rxresetdone": true,
+      "phy_rst_idle": true,
+      "phy_rrst_n": true,
+      "phy_prst_n": true,
+      "link_up": false,
+      "axi_reset_n": false,
+      "raw_observers_valid": true,
+      "ltssm_raw": 3,
+      "ltssm_name": "Polling.Compliance",
+      "training_recent": true,
+      "all_gt_powergood": true
+    },
+    "observed_first_unix_ms": 1793325444325,
+    "observed_last_unix_ms": 1793325661688,
+    "epoch": 2,
+    "entries": 512,
+    "local_reset": 0,
+    "arm": 0,
+    "read_address": "1ff",
+    "dropped_events_final": 158373,
+    "each_phase_sequence_changes": {
+      "restart_initial": true,
+      "after_event_read": true,
+      "final": true
+    },
+    "axi_div8_active_each_phase": {
+      "restart_initial": true,
+      "after_event_read": true,
+      "final": true
+    },
+    "seen_state_bitmaps": [
+      "000000000000000f"
+    ],
+    "training_raw_aggregates": {
+      "transitions": [
+        3
+      ],
+      "speed_raw": [
+        0
+      ],
+      "width_raw": [
+        2
+      ],
+      "sticky_errors_hex": [
+        "00"
+      ]
+    }
+  },
+  "os": {
+    "host_last_boot": "2026-10-30T09:34:48.5000000+08:00",
+    "endpoint_9034_count": 0
+  },
+  "acceptance": {
+    "retention": "PASS",
+    "new_epoch_events": "PASS",
+    "observed_gt_reset_done": "PASS_IN_THIS_OBSERVATION",
+    "reference_electrical_quality": "NOT_VERIFIED",
+    "qualified_stable_pll": "NOT_VERIFIED",
+    "h1_full_acceptance": "HOLD",
+    "link": "FAIL_NO_L0",
+    "enumeration": "FAIL_NO_9034",
+    "bar": "NOT_RUN",
+    "dma": "NOT_RUN",
+    "new_simulation": "NOT_RUN",
+    "new_synthesis_or_route": "NOT_RUN"
+  },
+  "actions": {
+    "program": false,
+    "local_reset": false,
+    "recorder_arm": false,
+    "ila_trigger": false,
+    "ram_address_only_commits": true,
+    "fpga_event_memory_write": false,
+    "si5338_write": false,
+    "flash_write": false,
+    "bios_change": false,
+    "driver_install": false,
+    "automatic_reboot": false
+  },
+  "scope": "One retained startup prefix; counts are event records, not duty cycle; nominal cycles not UTC; late Polling.Compliance is fresh, not stale; no TS1/TS2 decoding or negotiated speed/width proof",
+  "state_encoding_source": "https://docs.amd.com/r/en-US/pg213-pcie4-ultrascale-plus/Configuration-Status-Interface",
+  "next_gate": "Preserve current initialized GT observation; independent known-working PCIe host/vendor design or instrumented reference/RX positive control; no repeated reset/reboot without discriminating hypothesis",
+  "evidence_inputs_sha256": {
+    "after_event_read_decoded.json": "e785872bd80e09bbb9fb0b311ce22e30da61bee5a063d465a47f671c5a36df69",
+    "final_decoded.json": "2b6729a601112bbde651e54fe151b35a9daaa9ba45285a4886499b759c22ff14",
+    "final_state.tcldict": "1315970e60a5a4cf9d4f5b500139077e9aa8ce506ccc8257483747b9526b8bd6",
+    "restart_events_decoded.json": "d30958413aa3391937e66bb614791fafa510b9423aece017c350a0445ed076ca",
+    "restart_initial_decoded.json": "8ce06376ffc0fe190c7a93ea2f46818369afcefaacf35de52ea8578ac52d66ad",
+    "summarize_restart.py": "33b8d7026c5419b9f51b9af06e947807a3fa97b490bae9755cd06cfd1f051910",
+    "windows_before.json": "9bb05a6cf21c41d6ac82acfeec7c108087b624c06d0b2c1f3b9f4ba4145a6822",
+    "hardware/after_event_read.tsv": "414ab569afcba0d80d8cc377a4fdc543f8eaa5b773fdef419cf1d3189f0c30a4",
+    "hardware/final.tsv": "61e9884a1f933613d26019ff04b1fba5c99e3f62b912bc63954ae5b13cf90d09",
+    "hardware/restart_events_0.tsv": "c70efce72f6fc35882aa0db7f7761e6d95594165bac5de66e02487a3332655e8",
+    "hardware/restart_events_128.tsv": "2d1a3b85efb381bb233ff884e0c9b289b9a067eda1dff66f5146738617c1e201",
+    "hardware/restart_events_160.tsv": "d69063bac7e6529fedf620e5e9766cf12fba29213fd1872a720c5075c3db5363",
+    "hardware/restart_events_192.tsv": "bc19a16200fd2b4ec5e763573ee577c61ff00b7bef9ead9f74575a517708ea10",
+    "hardware/restart_events_224.tsv": "4cc2401a5b8bb404a3929a995ee6e3ddce6456221b27fa3e480f316794ac2320",
+    "hardware/restart_events_256.tsv": "1403f776a707459c4b637eb54a7366b1dcbcc475de8cd48e07e3f6a2390a97b2",
+    "hardware/restart_events_288.tsv": "86bb3480824cf588a654add70e7c694babbeb8f46de8de689dc3a970da3bf905",
+    "hardware/restart_events_32.tsv": "da9d0d4f57da94fcf691b2917f6e97d8e797bb38377c348e1f62201fe3c7fe82",
+    "hardware/restart_events_320.tsv": "8d97e9050819d4939649dd1133bb9a60f62dde11372db7c423a4d4928c11e9db",
+    "hardware/restart_events_352.tsv": "7ac74a30c51d9dae06d71092a0f21a5faeaa6bc29e4f820a922b459234303979",
+    "hardware/restart_events_384.tsv": "9447170a02dfe086bdc6cc411d00eddde58dd2a771e9056e79d7cea8069959ed",
+    "hardware/restart_events_416.tsv": "74f44614a24c4c85b1ffc8fddf84308ae23b6c1fb943a1805ba0b21aa9f2f2ee",
+    "hardware/restart_events_448.tsv": "0e2af8961d9a9c2eee282aa5d6faa6230e3705f7dae202ecbc5ba36307aa9725",
+    "hardware/restart_events_480.tsv": "326f498d4178bb6eb9985ce2a06783fa6ae6c261186f4a6b91c1c4955631c387",
+    "hardware/restart_events_64.tsv": "9dfd15390ad4d1c48af634d18101252f1eb5af55fee98325e21fef095609ed2f",
+    "hardware/restart_events_96.tsv": "5d7b7959b9409e4bec535680d86e7341b9c6656bd87cd199f156e8d20fc2a784",
+    "hardware/restart_initial.tsv": "19c5cbb5936a3fe7a398696ee27e88138b4638ad4f9ac0974f20d6532824d9a6",
+    "hardware/restart_initial_retention.tcldict": "c55edf8041157bdf914750f4409ba673c19c074891a91b178e3449043432d52a"
+  }
+}
