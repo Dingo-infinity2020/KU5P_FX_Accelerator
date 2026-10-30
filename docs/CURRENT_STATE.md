@@ -1,5 +1,9 @@
 # CURRENT_STATE — KU5P FX Accelerator
 
+**最新覆盖段：2026-10-30 晚，主机黑屏事故后逐卡恢复。** 用户完全断电拆卡、内存由5400降至4000并调整后确认A2/B2；Windows内存诊断通过，MemTest86四轮48/48项通过、零错误。随后用户依次装回ConnectX-5、FPGA及RTX 5060 Ti，21:35主机只读检查：网卡Gen3 x16、显卡Gen4 x4、USB调试桥均正常枚举，本次启动WHEA为0；FPGA无10EE枚举，100G端口未连通。详见[事故与恢复历史](host-black-screen-triage-2026-10-30.md)。根因未确定；不是FPGA或系统链路验收通过。
+
+**当前停止点 HOST_RECOVERED_FPGA_STATE_UNKNOWN / WAIT_FOR_AUTH：** 下午断电后不能继续假定早上e4 SRAM现场保留；当前镜像/DONE/GT/LTSSM均未读，本轮未连接Vivado或操作FPGA。原e4实验和原始证据保持不变，下面“保留现场”属于早上历史。下一次FPGA实验需新授权并重建可核对的当前硬件基线，H1/H2/H3仍未通过。
+
 **最新实测覆盖段：2026-10-30 09:34 主机重启已完成，先读 e4 现场已保存。** 进入源为 `eb4ec31`，新记录分支 `codex/e4-restart-observation-2026-10-30`。e4/DONE1/reset0/arm0 保留，epoch1→2，完整读出512条新事件（名义4.711秒）。36个后读样本四路TX/RX/PMA done高、CPLL当前mask2、AXI计数和训练序号活跃，实时更新的 Polling.Compliance；没有L0、Windows无9034，BAR/DMA未测。没有program/局部复位/arm/触发ILA，仅为读RAM安全提交地址。最终读址1ff，Hardware Manager关闭。详见[新启动观察](e4-restart-observation-2026-10-30.md)与[验证摘要](validation/e4-restart-2026-10-30.json)。
 
 **当前停止点 H1_HOLD_POSITIVE_CONTROL：** 保留已初始化现场，不再次要求相同重启或局部复位。下一项有效对照需厂家已运行的兼容PCIe示例、另一合适主机或参考/接收侧测量之一；尚不具备。启动早期的锁定和数字比率不能替代稳定参考/PLL及L0验收。下方WAIT_FOR_HOST_RESTART与epoch1均为该次重启前历史，不是当前待办。

@@ -1,6 +1,6 @@
 # KU5P_FX_Accelerator
 
-**最新停止点（2026-10-30）：** 用户已完成重启；e4保留、epoch2完整512条新事件已保存，四路GT初始化完成且训练快照活跃于Polling.Compliance，仍无L0/枚举。保留现场，下一项硬件排查需要独立正对照，不重复复位/重启。见[重启实测](docs/e4-restart-observation-2026-10-30.md)、[夜间M0回归](docs/m0-night-development-2026-10-30.md)及[当前状态](docs/CURRENT_STATE.md)。以下旧暂停说明为历史。
+**最新停止点（2026-10-30 晚）：** 主机换卡黑屏后，4000 MT/s内存通过Windows诊断及MemTest86四轮零错误；逐卡装回后ConnectX-5和RTX 5060 Ti正常枚举，FPGA仅USB桥确认，PCIe仍未枚举。根因未确定；完全断电后早上e4保留现场不再代表当前板上状态。当前等待新授权，不自动恢复FPGA实验。见[事故与恢复历史](docs/host-black-screen-triage-2026-10-30.md)与[当前状态](docs/CURRENT_STATE.md)。早上的[重启实测](docs/e4-restart-observation-2026-10-30.md)及[夜间M0回归](docs/m0-night-development-2026-10-30.md)保留为历史证据，以下旧暂停说明同样为历史。
 
 **本地 Codex/下一次开发入口：** [AGENTS.md](AGENTS.md)（工作约束与授权边界）→ [当前真实状态](docs/CURRENT_STATE.md) → [详细开发里程碑](docs/DEVELOPMENT_PLAN.md) → [接口与科学数据合同](docs/INTERFACE_CONTRACTS.md) → [代码审查清单](docs/REVIEW_BACKLOG.md)。原开发分支仍在 Draft PR #1；新工作使用独立专题分支。文档路线本身不代表新的执行授权。
 
