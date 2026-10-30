@@ -50,6 +50,8 @@ PASS: clean reproducible source baseline; known tests with exact counts; no secr
 
 ### H1 — causal PCIe electrical/clock/reset investigation (BOARD approval separately required)
 
+2026-10-30 retained-e4 restart completed by the user: epoch2/512 new events saved, all four TX/RX reset-done observed and fresh Polling.Compliance; no L0 or enumeration. H1 overall HOLD pending an independent positive control, not another identical reboot/reset. See [the new observation](e4-restart-observation-2026-10-30.md); this does not advance H2/H3 or qualify physical reference quality.
+
 Question: why did retained e0 first show CPLL/GT initialized and live Polling.Compliance, then fail after local reset, while e4 showed intermittent CPLL and no TX/RX done? Preserve these distinct histories.
 
 H1a STATIC/BUILD-only first: audit exact XDMA generator clock/reset/reset bridge, selected CPLL/QPLL for link speed, slot PERSTn and x4 lane reversal/physical pin maps, GTPOWERGOOD validity, REFCLK buffer CE/CLR, reference routing, GT RX termination/idle semantics and clock startup timing. Distinguish PCIe slot reference AB7/AB6 from Si5338 CLK2 V7/V6. Recheck e4 event recorder coverage (512 events, early overflow) and label unknown signals as unknown. Derive one minimal discriminating experiment with original validated rollback and no diagnostic edits to trained GT inputs.

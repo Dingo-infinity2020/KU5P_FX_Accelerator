@@ -1,5 +1,9 @@
 # CURRENT_STATE — KU5P FX Accelerator
 
+**最新实测覆盖段：2026-10-30 09:34 主机重启已完成，先读 e4 现场已保存。** 进入源为 `eb4ec31`，新记录分支 `codex/e4-restart-observation-2026-10-30`。e4/DONE1/reset0/arm0 保留，epoch1→2，完整读出512条新事件（名义4.711秒）。36个后读样本四路TX/RX/PMA done高、CPLL当前mask2、AXI计数和训练序号活跃，实时更新的 Polling.Compliance；没有L0、Windows无9034，BAR/DMA未测。没有program/局部复位/arm/触发ILA，仅为读RAM安全提交地址。最终读址1ff，Hardware Manager关闭。详见[新启动观察](e4-restart-observation-2026-10-30.md)与[验证摘要](validation/e4-restart-2026-10-30.json)。
+
+**当前停止点 H1_HOLD_POSITIVE_CONTROL：** 保留已初始化现场，不再次要求相同重启或局部复位。下一项有效对照需厂家已运行的兼容PCIe示例、另一合适主机或参考/接收侧测量之一；尚不具备。启动早期的锁定和数字比率不能替代稳定参考/PLL及L0验收。下方WAIT_FOR_HOST_RESTART与epoch1均为该次重启前历史，不是当前待办。
+
 **最新覆盖段：2026-10-30 夜间用户已明确授权恢复开发，至需要重启/人工操作时停下。** 已从远端 `ddf306e` 创建 `codex/m0-nightly-baseline-2026-10-30`，完成 M0：冻结源 `fb7a0d9` 的 72 Python 测试、14 诊断/9 训练检查、29 包应用仿真、226 帧/90 窗口完整 PFB-FX 回归通过；不是板级持续吞吐。235 项输入冻结，新旧证据严格分开。原 05A 构建脚本已按原哈希恢复并归档。详见[本轮报告及恢复入口](m0-night-development-2026-10-30.md)与[验证摘要](validation/m0-night-2026-10-30.json)。
 
 **当前停止点 WAIT_FOR_HOST_RESTART：** 本轮实际只读确认仍为 e4/465805e4、DONE1、local reset0、arm0、epoch1/512 条，尾事件与旧记录一致；未 program/reset/arm/触发 ILA，无新综合/布线。Windows PresentOnly 9034 仍 0、无 L0/BAR/DMA；Hardware Manager 已关闭。下一步需要用户手动 Windows“重新启动”并保持板/JTAG供电，返回后先只读保全，不得先重下位流/复位/arm。以下 2026-10-29 的 documentation-only 与暂停是历史基线，不覆盖本轮新授权和实测。
@@ -61,6 +65,6 @@ P2: wide PR mixes mature FX, experimental GT diagnostics and unmerged lessons; r
 
 ## Next authorized action and safe next development package
 
-Latest permission and stop point are the 2026-10-30 override at the top: user authorized night development until required reboot/manual action; M0 is complete, next H1 retained-e4 host restart needs user action. Do not restart the host automatically or repeat local resets. The earlier documentation-only scope below the historical heading remains a dated record, not the current authorization.
+Latest stop point is H1_HOLD_POSITIVE_CONTROL in the top override: user completed the retained-e4 host restart, new events are saved, GT initialization observed, but no L0/enumeration. Preserve this state; no repeated reset/reboot or driver installation. A new causal experiment needs an available independent positive-control condition and a concrete scope. Earlier WAIT_FOR_HOST_RESTART and documentation-only sections are historical.
 
 The plan in [DEVELOPMENT_PLAN](DEVELOPMENT_PLAN.md) is prospective. For raw report and latest real status, the dated experimental record takes precedence over a progress checkbox.
