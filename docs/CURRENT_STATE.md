@@ -1,5 +1,9 @@
 # CURRENT_STATE — KU5P FX Accelerator
 
+**2026-10-31最新开发覆盖段（非BOARD）：** 用户按PR6计划授权一轮离线开发，分支 `codex/pcie-cfg-development-2026-10-31`，e5源23ddf83、e6冻结源 `460fa77888d6b45fe4b7f3c5441df73adf9f6615`。e6已通过离线SIM/ROUTED接受，尚未上板。 e5时序通过但CDC-10 Critical1，门槛拒绝/无bit；e6移除VIO与PERST合并，只保留物理PERST。配置父flag开关未改变98生成文件，完整lane0..3静态映射为0..3，不能把动态反转禁用直接当根因。见[实施/验收](lesson05j-pcie-reference-reset.md)、[机器摘要](validation/h1a-cfg-development-2026-10-31.json)。
+
+**本轮停止点：** BUILD_ONLY_COMPLETE_WAIT_FOR_CONCRETE_BOARD_SCOPE。e6 VIO输出0保留/init0，不是PHY复位，旧e4 helper必须拒绝不同身份；新板上步骤需具体授权及经审查的读回入口。没有连接硬件或重读主机；最后历史BOARD仍是e4/DONE1/reset0/arm0/地址1ff/epoch2、GT done高、Polling.Compliance，无L0/枚举。本轮不能宣告现在硬件实测已改变，也不再要求相同e4重启。下方审计-only/WAIT_FOR_IMPLEMENTATION_AUTH为已被当前离线授权覆盖的历史。
+
 **2026-10-31 后续STATIC审计（非新BOARD）：** 进入源 `43580d3`，分支 `codex/pcie-audit-plan-2026-10-31`。确认解析/仿真缺少跨捕获首时间戳溯源门槛；实际DCP的timestamp64输入均接通。另发现XDMA父选项enable_lane_reversal=true，但子核/PCIE40E4的PL_DISABLE_LANE_REVERSAL=TRUE，需查支持接口/参数传播及两端映射，未证实为未建链根因。事件存储实为3 RAMB36E2+1 RAMB18E2，勘误旧“4 RAMB36”。见[审计及具体下一工作包](pcie-audit-and-next-plan-2026-10-31.md)、[摘要](validation/pcie-audit-plan-2026-10-31.json)。没有连接硬件、构建或改RTL；下方仍是最新BOARD历史。下一建议H1a-CFG BUILD_ONLY，WAIT_FOR_IMPLEMENTATION_AUTH；不要重做M0或再次相同重启。
 
 **最新实测覆盖段（2026-10-31）：** 用户“已经重启”，主机记录启动10:02:11.5+08:00。进入源 `bd0b687`，当前分支 `codex/slot2-e4-restart-2026-10-31`。先读确认e4/465805e4、DONE1、实际reset0/arm0、epoch1→2/512。36样本四路GT TX/RX/PMA done高，AXI和训练快照持续更新到Polling.Compliance；当前PLL锁定指示低，无L0/Windows10EE。512地址和8字重复读取均已保存；首事件时间戳早于昨晚epoch1，事件字不含epoch，不能宣称整个启动段溯源通过。事件1..511跨度名义4.92280064秒，仅作为后段相对观察。见[本次报告](slot2-e4-restart-2026-10-31.md)和[机器摘要](validation/slot2-e4-restart-2026-10-31.json)。

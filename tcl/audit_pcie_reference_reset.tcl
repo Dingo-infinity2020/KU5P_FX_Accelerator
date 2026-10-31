@@ -44,3 +44,26 @@ proc audit_pcie_reference_reset {path} {
     close $h
     puts REFERENCE_RESET_READONLY_AUDIT_PASS
 }
+
+proc audit_pcie_perst_reset {path} {
+    set origins [all_fanin -flat -startpoints_only -to [get_pins dma/sys_rst_n]]
+    if {$origins ne "pcie_reset_n"} {error "PERST-only candidate has another core reset source"}
+    set h [open $path {WRONLY CREAT EXCL}]
+    puts $h "check\tvalue"
+    puts $h "core_reset_only_primary_PERST\t1"
+    foreach stage {1 2} {
+        set prior [expr {$stage-1}]
+        set q [get_pins [format {reference_reset/observer_pipe_reg[%d]/Q} $prior]]
+        set d [get_pins [format {reference_reset/observer_pipe_reg[%d]/D} $stage]]
+        foreach n [list $prior $stage] {
+            if {![get_property ASYNC_REG [get_cells [format {reference_reset/observer_pipe_reg[%d]} $n]]]} {error "Observer ASYNC_REG missing"}
+        }
+        if {[get_nets -of_objects $q] ne [get_nets -of_objects $d]} {error "Observer stages disconnected"}
+        set timing [get_timing_paths -quiet -from $q -to $d -max_paths 1]
+        if {![llength $timing]} {error "Observer second/third stage is not timed"}
+        puts $h "observer_stage${stage}_timed\t1"
+        puts $h "observer_stage${stage}_slack\t[get_property SLACK $timing]"
+    }
+    close $h
+    puts PERST_RESET_READONLY_AUDIT_PASS
+}

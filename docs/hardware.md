@@ -1,5 +1,7 @@
 # 板卡信息
 
+2026-10-31开发：e6已通过离线SIM/ROUTED接受，尚未上板。 当前静态连接器0..3→GT7..4→硬核PIPE0..3，物理GT倒序不等于逻辑lane倒序。e6的PHY仅受物理PERST控制，VIO输出0保留。最后实测SRAM仍是历史e4记录，本轮未读板；见[版本和验收](lesson05j-pcie-reference-reset.md)。
+
 2026-10-31静态审计勘误：父XDMA选项写lane reversal=true，实际子核/硬核PL_DISABLE_LANE_REVERSAL=TRUE；尚需核对参数适用性和完整映射，不能继续只凭上层选项声称最终硬核已启用。事件RAM实际3个RAMB36E2+1个RAMB18E2。见[审计与下一方案](pcie-audit-and-next-plan-2026-10-31.md)。本轮无新BOARD。
 
 **最新停止点（2026-10-31）：** 用户完成第二长槽保留e4重启。当前四路GT TX/RX/PMA done高，AXI和训练更新至Polling.Compliance；PLL锁定指示低，仍无L0/10EE枚举。512地址已保存，但首事件时间戳早于昨晚记录，完整启动溯源HOLD。最终e4/DONE1/reset0/arm0/epoch2，Hardware Manager关闭；不要求再次重启或复位。 见[当前复核](slot2-e4-restart-2026-10-31.md)。下方2026-10-30停止点均为历史。

@@ -35,6 +35,8 @@ H and F can progress **independently only once user explicitly resumes**. No exp
 
 ## 4. Work packages and exit criteria
 
+2026-10-31 execution: H1a-CFG offline round authorized and completed through its actual gates. e5 was rejected at CDC-10 before bitstream; e6已通过离线SIM/ROUTED接受，尚未上板。 [Execution/evidence](lesson05j-pcie-reference-reset.md). Parameter true/false produced identical98 HDL/XDC files and connector-to-core mapping is identity, so do not blindly enable dynamic reversal. Capture provenance acceptance/negative cases added, hardware anomaly still OPEN. M0/FX remain reusable history. Next gate is a concrete e6 BOARD scope if its proof is accepted, never old e4 reset sequencing or automatic restart.
+
 **Current next package after 2026-10-31 audit:** H1a-CFG BUILD_ONLY, detailed [execution contract](pcie-audit-and-next-plan-2026-10-31.md). Reconcile parent lane-reversal intent with child/primitive disable attribute, verify connector-to-core lane0 before narrowing width, add capture provenance fault acceptance, then prepare one official-example-derived candidate. M0 is historical PASS. This user request covers audit/docs only; no implementation started, no new board evidence. Later BOARD requires a concrete single-change candidate/rollback and explicit scope.
 
 ### M0 — baseline reconciliation and reproducible repo (FIRST after RESUME; offline only)
