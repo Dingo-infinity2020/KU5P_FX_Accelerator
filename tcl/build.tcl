@@ -41,6 +41,13 @@ log "part      = $part"
 log "top       = $top"
 log "build_dir = $build_dir"
 
+if {$top in {lesson05j_pcie_reference_top lesson05k_pcie_perst_top}} {
+    set ::reference_ip_cache [lindex $argv 3]
+    source -notrace [file join $repo_dir tcl lesson05i_boot_project.tcl]
+    lesson05i_boot_build $build_dir $part [expr {$top eq "lesson05j_pcie_reference_top" ? "e5" : "e6"}]
+    return
+}
+
 if {$top eq "lesson05i_pcie_boot_top"} {
     source -notrace [file join $repo_dir tcl lesson05i_boot_project.tcl]
     lesson05i_boot_build $build_dir $part

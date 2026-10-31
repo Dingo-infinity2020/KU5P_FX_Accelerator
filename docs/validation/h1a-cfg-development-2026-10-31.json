@@ -1,0 +1,368 @@
+{
+  "source_entry_commit": "ad6c0928077a3b73d374f7b5fae1dcbaf0e84f8e",
+  "build_source_commit": "460fa77888d6b45fe4b7f3c5441df73adf9f6615",
+  "worktree": "D:\\work\\KU5P_FX_Accelerator",
+  "branch": "codex/pcie-cfg-development-2026-10-31",
+  "authorization": "Current user explicitly requested one development round following PR6 execution plan; offline code/SIM/IP/build only, stop before BOARD",
+  "configuration": {
+    "fresh_cases": 2,
+    "tool": "2026.1",
+    "xdma": "4.2",
+    "parent_false": {
+      "parent_lane_reversal_requested": false,
+      "child_hard_disable": true,
+      "relation": "NO_ENABLED_INTENT_CONFLICT",
+      "parent_model_exposes_lane_reversal": false,
+      "child_managed": "TRUE",
+      "parent_width": "X4",
+      "parent_speed": "8.0_GT/s",
+      "scope": "Generated configuration only; no primitive, physical mapping, root-port capability or L0 proof",
+      "input_sha256": {
+        "parent": "2b3fbe530e2802ba4dfe8289ff02caeac9f411a9fa59e0bc776015aea02728e8",
+        "child": "ff6df55cc8c8c301d3e91feef8f60bcb493dc2f03086562a08a134975d44fd1d"
+      }
+    },
+    "parent_true": {
+      "parent_lane_reversal_requested": true,
+      "child_hard_disable": true,
+      "relation": "INTENT_NOT_REALIZED_IN_CHILD",
+      "parent_model_exposes_lane_reversal": false,
+      "child_managed": "TRUE",
+      "parent_width": "X4",
+      "parent_speed": "8.0_GT/s",
+      "scope": "Generated configuration only; no primitive, physical mapping, root-port capability or L0 proof",
+      "input_sha256": {
+        "parent": "e953ac5bbe2eb77b4df3d10dad0056265c310bf81ef4ed17a46dec59be270b40",
+        "child": "ff6df55cc8c8c301d3e91feef8f60bcb493dc2f03086562a08a134975d44fd1d"
+      }
+    },
+    "identical_generated_files": {
+      ".xdc": 12,
+      ".sv": 8,
+      ".v": 74,
+      ".vhd": 4
+    },
+    "changed_generated_files": 0,
+    "managed_child_customization": "REJECTED_BY_OFFICIAL_API_12_1506_NO_UNLOCK_OR_VENDOR_EDIT",
+    "lane_mapping": "connector0..3 -> physicalGT7..4 -> hardPIPE0..3; no static lane reversal mismatch observed",
+    "checked_serial_ports": 16,
+    "checked_data_bits": 256,
+    "hardware_causality": "NOT_PROVEN",
+    "final_ip_cache_use": {
+      "lesson05d_vio": "0",
+      "lesson05d_xdma": "0",
+      "lesson05i_ila": "NOT_APPLICABLE_NON_OOC"
+    }
+  },
+  "validation": {
+    "python_tests": 92,
+    "python_status": "PASS",
+    "boot_provenance_checks": 15,
+    "reference_reset_checks": 7,
+    "failed_e5_reset_unit_checks": 10,
+    "prior_boot_checks": 14,
+    "training_checks": 9,
+    "application_packets": 29,
+    "application_beats": 3712,
+    "exact_rtl_python_tcl_words": 8,
+    "hardware_first_timestamp_anomaly": "STILL_FAIL_PROVENANCE_UNCHANGED_RAW",
+    "full_pfb_fx_simulation": "NOT_RUN_THIS_ROUND",
+    "full_pcie_gt_dynamic_model": "NOT_RUN_HISTORY_LICENSE_COVERAGE_GAP_REMAINS"
+  },
+  "candidate": {
+    "build_id": "465805e6",
+    "top": "lesson05k_pcie_perst_top",
+    "functional_variable": "Physical PERST-only XDMA reset entrance; no VIO PHY-reset control; data/GT/reference paths unchanged",
+    "diagnostic_change": "metadata bit95/control bit2 two-stage reset observation; VIO output0 reserved/init0; manual reset metadata constant0",
+    "native_exit_code": 0,
+    "status": "BUILD_ONLY_ACCEPTED",
+    "verification": {
+      "verified_at_utc": "2026-10-31T03:24:26.225643+00:00",
+      "build_id": "465805e6",
+      "profile": "e6",
+      "source_commit": "460fa77888d6b45fe4b7f3c5441df73adf9f6615",
+      "sources": {
+        "tcl/build.tcl": "1012ec80b02a283688528922dd5e5ad632e4c6dae228a781fa8f20e057329102",
+        "tcl/lesson05i_boot_project.tcl": "5b94213fc7f55004133393bcebd6f838f751a027e3da3e8c2f2111e816d3f0ae",
+        "tcl/lesson05d_project.tcl": "b032f0b33bb283e8dc94a14edef4a2f3d039e99843cbf3a20506bdc5a6e74d16",
+        "tcl/lesson05d_synth_settings.tcl": "1130e435899a9aa2ba8ea0ed69748bbe1a6f61dbff412341eec7aa270a1e3afa",
+        "constr/lesson05i_pcie_boot.xdc": "5bd02210352635001dcfd86d1c421b24c85df51f6096efda183bbadbd1c91290",
+        "rtl/lesson05i_pcie_boot_top.sv": "a12be37fc872da9a3f347110ea8706f530609ce91f6d2fc9cc8de42cc12fc187",
+        "rtl/pcie_boot_diagnostics.sv": "7305caaf4c48ba0cd5ce1dd3b48d743117270c6c03bcef6be97164ec7eb62c7d",
+        "rtl/pcie_training_monitor.sv": "4b52e8dd219aa52cbe25df8daf8d9c01975904047182adbd1353dd21203d985d",
+        "rtl/dma_pattern_source.sv": "085cbfb400b244a6a5d8a1dad802e7b86323e6699b2dfb5f66c93e0fc6f51e36",
+        "rtl/pcie_test_endpoint.sv": "a77b0b480c0d6b97018c19cb1009067ecbef70b7eddaf2974d26eb5585a0c422",
+        "sim/tb_pcie_boot_diagnostics.sv": "909e240fe86e9526fd848c798c3039da8464cae0e2e80671f50a9f9844e5b60e",
+        "sim/tb_pcie_training_monitor.sv": "33e39ed3f1b8016a9640a73d1c62c4adeb82be63840d2df58ed7433e752bfd8d",
+        "sim/tb_pcie_test_endpoint.sv": "e65143c783e925502a33d9d4d24a8d040797fbcb3b120e345fdba0cd981896f3",
+        "scripts/pcie_boot_manifest.py": "eda1fb3e848d21d6258f10f27bd79748db8ed56d1e357a1b715f10d2ac9f0a28",
+        "scripts/run_pcie_boot.ps1": "081e3755e9306dc80900899302d4cf9d1257148639ecfed8655295122c4baf95",
+        "scripts/run_pcie_boot_test.ps1": "dcef140e75f8561c087687e7b923cb3efed4918df1bf49a20f31577cb29137cb",
+        "scripts/run_pcie_training_monitor_test.ps1": "ddd3dbaf2bc08cc96e28b71d737077cd20519d97e82d56d8d1af2d227c1a98bd",
+        "scripts/run_pcie_application_test.ps1": "1566f2da127d63b1d4a9a9cf5dc38659e28ad6f78c8e9da4348da178ae8db260",
+        "scripts/generate_pcie_vectors.py": "f5b706138b7d8bb20d21d7097c67340b287b87742151dd39f888f2a5d5debed9",
+        "scripts/pcie_pattern.py": "c4c15783d28214f2245ae95dca594def2a6320ae6763f26073724c05547e6d62",
+        "rtl/lesson05j_pcie_reference_top.sv": "086d46847cbb278b66d6fcfb3868b95af3a7e0a89b4e18ec8b3972fd58aa1839",
+        "rtl/pcie_reference_reset.sv": "5897bbe3f44a41ebf99267f0404028681e5728e429013c1c6e6af7a67e1a6130",
+        "sim/tb_pcie_reference_reset.sv": "443fbcae36f10712617465f30c3ce4d4bbb647abaea315e5725e04e973d7e537",
+        "sim/tb_pcie_boot_provenance.sv": "b0e59422763fa301637389f0cb1d25fc91c5c7ec0d5a04a4668e6172b634f07b",
+        "scripts/run_pcie_reference_reset.ps1": "e4b951296586965b41f89d7389c73069b24c5ea4659f40251d518c25d8788871",
+        "scripts/run_pcie_boot_provenance.ps1": "2764cf81d829d5dd690b6c9ef8e80fde43a2fe506ce5c31a1bc592daccddec78",
+        "scripts/run_pcie_reference.ps1": "e56bac82017b77f4ec18c27173ec3cf7f1cb5bdea2de1e54633c4534ca301bfc",
+        "tcl/audit_pcie_lane_mapping.tcl": "304cae66bf4338717f4121f9c04114f4cd6a30a3292daa9fdf871f996c95eb22",
+        "rtl/lesson05k_pcie_perst_top.sv": "a2cda10bf50fea189fab477e0e1970f48fa4993d1fc82d24320334703b0de8ed",
+        "rtl/pcie_perst_reference_reset.sv": "2c5a2be1965e40358399349c12f9bb5d749c3c36acccff66c2f5c2f8022953a4",
+        "sim/tb_pcie_perst_reference_reset.sv": "bd68d2e14542f865e5cd805eda957fcf1830a0715735c1b2e7cd52a1eccb38dc"
+      },
+      "ip_cache_dcp_sha256": {
+        "D:\\work\\build\\KU5P_FX_Accelerator\\h1a_cfg_20261031\\ip_cache\\8\\8\\88803afe7c3dda99\\lesson05d_vio.dcp": "c35ed29fdd88ccd3c8ebed3d771b3a3f1bcbc7a957cb24ef97ded09d3625885d",
+        "D:\\work\\build\\KU5P_FX_Accelerator\\h1a_cfg_20261031\\ip_cache\\b\\1\\b1af98972998c617\\lesson05d_xdma.dcp": "f16b6fd6dcbf47f8e2dbbbb96e53d0437b80600e053c9d3d9b7c3df584a31510"
+      },
+      "artifacts": {
+        "lesson05k_pcie_perst_top.bit": "04c4510f11b72304a42c2bfb0db356f6bfa6aa7e74e99a8b22f181a79e62282d",
+        "lesson05k_pcie_perst_top.ltx": "216e37627f096eb3d8c3ba0add56933921d049a572b4d02732e8997703bc4e33",
+        "lesson05k_pcie_perst_top_routed.dcp": "b447b6d28bd1b0611abfb4a2dd94fee535c77b731ade69dfe0bb8b4c6229f52b"
+      },
+      "simulation": {
+        "boot_sim": {
+          "result": "PASS boot_diagnostics_checks=14",
+          "sha256": "82381e7130e56511401eb60c857cb30e2e2f48d58ea2ab45ed815196e1ef2256"
+        },
+        "training_sim": {
+          "result": "PASS training_monitor_checks=9",
+          "sha256": "28c1c5438c0b6ece9762277f1e34c2b261eb23827f7332636828c653885adb40"
+        },
+        "application_test": {
+          "result": "PASS packets=29 beats=3712 stalls=1114 max_burst=1024 write_errors=12 read_errors=2 aw_first=22 w_first=22",
+          "sha256": "7e327d43819028a8f1730d04ed775f94423846e287dd195cf4e52d918735ae19"
+        },
+        "reference_reset_sim": {
+          "result": "PASS perst_reference_reset_checks=7",
+          "sha256": "3d9127d0f103a2353b9ee29fdb7b8f8945c85614986f9e8884cb349c63cb83e9"
+        },
+        "boot_provenance_sim": {
+          "result": "PASS boot_provenance_checks=15 events=8",
+          "sha256": "9b29b0a9c7ec9f982ea8991841dc540768aee386e634f308fb74ed1d68034f51"
+        }
+      },
+      "timing": {
+        "wns": 1.232,
+        "tns": 0.0,
+        "whs": 0.01,
+        "ths": 0.0,
+        "wpws": 0.0,
+        "tpws": 0.0,
+        "failing_endpoints": 0,
+        "met": true,
+        "scope": "Reported constrained paths only; inspect check_timing and design stage separately",
+        "constraint_checks": {
+          "no_clock": 0,
+          "unconstrained_internal_endpoints": 0,
+          "no_input_delay": 1,
+          "no_output_delay": 2
+        },
+        "parser": "ku5p-vivado-table-v1"
+      },
+      "route": {
+        "routable": 48251,
+        "routed": 48251,
+        "errors": 0
+      },
+      "cdc_critical_no_waiver": 0,
+      "utilization": {
+        "parser": "ku5p-vivado-table-v1",
+        "lut": {
+          "used": 22309.0,
+          "available": 216960.0,
+          "percent": 10.28,
+          "parsed": true
+        },
+        "ff": {
+          "used": 29832.0,
+          "available": 433920.0,
+          "percent": 6.88,
+          "parsed": true
+        },
+        "bram": {
+          "used": 67.5,
+          "available": 480.0,
+          "percent": 14.06,
+          "parsed": true
+        },
+        "dsp": {
+          "used": 0.0,
+          "available": 1824.0,
+          "percent": 0.0,
+          "parsed": true
+        },
+        "io": {
+          "used": 4.0,
+          "available": 280.0,
+          "percent": 1.43,
+          "parsed": true
+        }
+      },
+      "observer_count": 59,
+      "gt_pcie_functional_inputs_unchanged": true,
+      "dcp_reopened_audit_equal": true,
+      "audit_sha256": {
+        "observers.tsv": "c4086e322b82bd570fbdd516a5c189808cfe440e5b5520417e5298c67857d4d9",
+        "destinations.tsv": "dc6b7abc2120bd59e05cbac2fed95f8fb86604f2324965595300f31604178d44",
+        "pins.tsv": "bae043f5c6cba45179d128a44e1954bc1b9d6e7d4b63d32a80c3891f38bb8919",
+        "clock_reset.tsv": "89b62b7f4f2253fe3a3eb04bc1ea8f77c837be9eeac2bbb218cfeae452a391f9",
+        "functional_inputs_before.tsv": "bf588cde0513902013bf94b6e13381f08124da8445d249a22079c3a68594fbce",
+        "functional_inputs_after.tsv": "bf588cde0513902013bf94b6e13381f08124da8445d249a22079c3a68594fbce"
+      },
+      "scope": "Authored diagnostic/reset/application simulation plus implementation and observation-only GT hookups. No full PCIe/GT dynamic model, host enumeration, BAR or DMA acceptance.",
+      "hardware_tested": false,
+      "expected_device_id": "9034",
+      "pcie_lanes": 4,
+      "axi_counter_divisor": 8,
+      "ref_counter_divisor": 8,
+      "event_depth": 512,
+      "event_bits": 256,
+      "window_cycles": 1000000,
+      "clock_port_layout_high_to_low": [
+        "controls32",
+        "window_delta32",
+        "axi_div8_count32",
+        "ref_div8_count32"
+      ],
+      "lane_contract_sha256": "b9b988e6b2a0eb0bc1b5229b5ce5a3cdbf1a9efcd3badcbeea68664de3ff0e6a",
+      "reset_scope": "raw physical PERST only; VIO output0 reserved init0 and cannot reset PHY; metadata bit95/control bit2 are two-stage observation, manual-reset metadata is constant0",
+      "board_authorized": false,
+      "vio_phy_reset_supported": false
+    },
+    "board_programmed": false,
+    "link": "NOT_RUN",
+    "enumeration": "NOT_RUN",
+    "bar": "NOT_RUN",
+    "dma": "NOT_RUN",
+    "reported_timing": {
+      "wns": 1.232,
+      "tns": 0.0,
+      "whs": 0.01,
+      "ths": 0.0,
+      "wpws": 0.0,
+      "tpws": 0.0,
+      "failing_endpoints": 0,
+      "met": true,
+      "scope": "Reported constrained paths only; inspect check_timing and design stage separately",
+      "constraint_checks": {
+        "no_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 1,
+        "no_output_delay": 2
+      },
+      "parser": "ku5p-vivado-table-v1"
+    },
+    "cdc_critical_no_waiver": 0
+  },
+  "original_e4_provenance": {
+    "verification_sha256": "456784e7c5da8d727ac7ee0680b96e7168938517a88a1441fbba652da49d05ec",
+    "program_record_sha256": "f19abcb3d9e39b9c2c08eca97974c04b4355123ec4d51ecf0a7e9b1ae009cbf1",
+    "verified_source_locations": {
+      "tcl/build.tcl": "source_snapshot",
+      "tcl/lesson05i_boot_project.tcl": "source_snapshot",
+      "tcl/lesson05d_project.tcl": "source_snapshot",
+      "tcl/lesson05d_synth_settings.tcl": "workspace",
+      "constr/lesson05i_pcie_boot.xdc": "workspace",
+      "rtl/lesson05i_pcie_boot_top.sv": "workspace",
+      "rtl/pcie_boot_diagnostics.sv": "workspace",
+      "rtl/pcie_training_monitor.sv": "workspace",
+      "rtl/dma_pattern_source.sv": "workspace",
+      "rtl/pcie_test_endpoint.sv": "workspace",
+      "sim/tb_pcie_boot_diagnostics.sv": "workspace",
+      "sim/tb_pcie_training_monitor.sv": "workspace",
+      "sim/tb_pcie_test_endpoint.sv": "workspace",
+      "scripts/pcie_boot_manifest.py": "source_snapshot",
+      "scripts/run_pcie_boot.ps1": "workspace",
+      "scripts/run_pcie_boot_test.ps1": "workspace",
+      "scripts/run_pcie_training_monitor_test.ps1": "workspace",
+      "scripts/run_pcie_application_test.ps1": "workspace",
+      "scripts/generate_pcie_vectors.py": "workspace",
+      "scripts/pcie_pattern.py": "workspace"
+    },
+    "decoder_sha256": "67b3e8115ae88ae23a8b5e2aabe1e88d3cf5f149bc17c481b8d6349dd2a752f8",
+    "build_id": "465805e4"
+  },
+  "hardware": {
+    "touched": false,
+    "reread": false,
+    "last_observed_only": "e4/DONE1/reset0/arm0/read1ff/epoch2/GT done high/live Polling.Compliance/no L0",
+    "hardware_manager_opened": false
+  },
+  "host": {
+    "configuration_changed": false,
+    "automatic_reboot": false,
+    "driver_install": false,
+    "nic_traffic": false,
+    "si5338_write": false,
+    "flash_write": false
+  },
+  "failures_preserved": [
+    {
+      "name": "generation_attempt1",
+      "reason": "IP output directory not created; rejected before generation; corrected into new attempt2"
+    },
+    {
+      "name": "provenance_sim_attempt1",
+      "reason": "RTL passed15; wrapper incorrectly expected14 and rejected; fresh attempt2 with correct count15 passed"
+    },
+    {
+      "name": "h1j_ref_attempt1",
+      "reason": "e5 routed timing met but CDC10 Critical1 from manual VIO combination; exit1, no bitstream"
+    },
+    {
+      "name": "child_api_attempt1",
+      "reason": "scoped child property modification explicitly rejected; intentional negative probe, not clean build PASS"
+    }
+  ],
+  "stop": "BUILD_ONLY_COMPLETE_WAIT_FOR_CONCRETE_BOARD_SCOPE",
+  "original_rfsoc_or_vendor_files_uploaded": false,
+  "supporting_source_sha256": {
+    "tcl/audit_pcie_reference_reset.tcl": "12f0ad874fd0b7a33d72cc62c63ac5866130ac920cdd94bbe559663c910892f5",
+    "tcl/reproduce_xdma_lane_config.tcl": "420de84a0699f6fa7cb6764d47fb768132bef292d743f1513d08b128d32db3b8",
+    "scripts/pcie_boot_capture.py": "67b3e8115ae88ae23a8b5e2aabe1e88d3cf5f149bc17c481b8d6349dd2a752f8",
+    "scripts/check_xdma_lane_config.py": "8a82c8b1486d90fda5c2bed58a62977b083c7620463932563e216cfbdfc385b0"
+  },
+  "local_input_sha256": {
+    "python_all_e6_prebuild.txt": "e6af15a495d191efc039eaeb1749e84fe9137981d28da2cfe860e2917b941d6a",
+    "config_false.json": "1d7ea85657a7b6ed659d3af873da8bf5e79bece6603bf01f0db4a973f2c360a4",
+    "config_true.json": "791cd12c91423f2b6b5893d46c047ae411977effc024958887e24a1e249207c7",
+    "generated_output_comparison.json": "9c703baaa92031839cee044d439bfdd94eb3a08baeefa1b3c2f78fa2b464da96",
+    "lane_data_contract.tsv": "b9b988e6b2a0eb0bc1b5229b5ce5a3cdbf1a9efcd3badcbeea68664de3ff0e6a",
+    "historical_event_gate.json": "740c85844d52b7399d5e2ba0d79a828b76afbd94741116f5939b0a99084db619",
+    "sim_roundtrip.json": "8db59904a0de7023e39497da060c03ca29254f529705e44ab9d216da29906b89",
+    "ip_generation_attempt2.log": "26665d48537ec36c792c58472c762a78b731e81c4665717f776dda2318bb14d3",
+    "ip_child_probe.log": "d3977b0725547f023703d23606693695c6bba4c0270b5ecddc3c9df6f3b41f27",
+    "perst_reference_launcher_exit.json": "232415d22215c4f8dd0120afe8d691d81e3446f6586843a9a40ef4affb0f4572",
+    "perst_reference_attempt1_launcher.txt": "8a3433410ee728b4b56f87fd2284ed024cc323df398beaaa6f036f36585ac73e",
+    "generation_attempt2_source.tcl": "024c91c0a94133ba869b34ab5447db9b525e680305a7c5267898b7a6394eeed0",
+    "perst_reset_routed_audit.tsv": "89c2d0672470c9f1bf198ed8e1e0cb70f43d24f8b8ca3cab3e9d701f0f16df12",
+    "ip_cache_final.tsv": "0ca6107cbd55c1b7b91d7e353e033cc435573cbdb1b607cf9256642d5bedbaf4",
+    "readonly_audit_input.json": "bf50c1d573cc2765f465c9aae36b1bc562ce63b370871ef56caa33b72e63b372"
+  },
+  "build_input_sha256": {
+    "inputs.json": "1729923a3836ace4f4f824cc82c584c1a0fd5836bd55c7ae7e6c5d0858428505",
+    "verification.json": "bf6f477dc6bcaf97a7c179d8433dfb973faadcb4d2846a148e686ba39cf9b660",
+    "boot_sim/simulation_pass.txt": "82381e7130e56511401eb60c857cb30e2e2f48d58ea2ab45ed815196e1ef2256",
+    "training_sim/simulation_pass.txt": "28c1c5438c0b6ece9762277f1e34c2b261eb23827f7332636828c653885adb40",
+    "application_test/simulation_pass.txt": "7e327d43819028a8f1730d04ed775f94423846e287dd195cf4e52d918735ae19",
+    "reference_reset_sim/simulation_pass.txt": "3d9127d0f103a2353b9ee29fdb7b8f8945c85614986f9e8884cb349c63cb83e9",
+    "boot_provenance_sim/simulation_pass.txt": "9b29b0a9c7ec9f982ea8991841dc540768aee386e634f308fb74ed1d68034f51"
+  },
+  "failed_e5": {
+    "source_commit": "23ddf8363c1620e1eceaf58ce1693556259c6d59",
+    "timing_wns": 1.348,
+    "timing_whs": 0.011,
+    "cdc_critical": 1,
+    "bitstream_generated": false,
+    "input_sha256": {
+      "inputs.json": "38c6653d60ffc952b365b52f2b487e1e15abdf5598741aad50fa8e05283dce46",
+      "reports/cdc.rpt": "f84208fb57e431e6b3c458085de9c546cfac81e202870fd4079e3e71c1499005",
+      "reports/timing.rpt": "a1bb903fe964705ac9ac82a7c8d6b550133adda8756409abe60d3c345c735ed8",
+      "diagnostic_routed_before_acceptance.dcp": "74f613d9993d69cfb7e00f721c64af7441414bf9fd2c36fd3d6fe32c3b00cf65"
+    }
+  }
+}

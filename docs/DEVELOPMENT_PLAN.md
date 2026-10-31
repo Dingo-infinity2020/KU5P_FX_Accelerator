@@ -35,6 +35,8 @@ H and F can progress **independently only once user explicitly resumes**. No exp
 
 ## 4. Work packages and exit criteria
 
+2026-10-31 execution: H1a-CFG offline round authorized and completed through its actual gates. e5 was rejected at CDC-10 before bitstream; e6已通过离线SIM/ROUTED接受，尚未上板。 [Execution/evidence](lesson05j-pcie-reference-reset.md). Parameter true/false produced identical98 HDL/XDC files and connector-to-core mapping is identity, so do not blindly enable dynamic reversal. Capture provenance acceptance/negative cases added, hardware anomaly still OPEN. M0/FX remain reusable history. Next gate is a concrete e6 BOARD scope if its proof is accepted, never old e4 reset sequencing or automatic restart. Later on 2026-10-31 that BOARD scope was executed: e6 in CPU G5 reached L0 and Windows enumerated `10EE:9034` (BAR/DMA NOT RUN; see the H1 override).
+
 **Current next package after 2026-10-31 audit:** H1a-CFG BUILD_ONLY, detailed [execution contract](pcie-audit-and-next-plan-2026-10-31.md). Reconcile parent lane-reversal intent with child/primitive disable attribute, verify connector-to-core lane0 before narrowing width, add capture provenance fault acceptance, then prepare one official-example-derived candidate. M0 is historical PASS. This user request covers audit/docs only; no implementation started, no new board evidence. Later BOARD requires a concrete single-change candidate/rollback and explicit scope.
 
 ### M0 — baseline reconciliation and reproducible repo (FIRST after RESUME; offline only)
@@ -51,6 +53,8 @@ Inputs: actual Windows worktree, latest GitHub refs and Draft PR #1; previous le
 PASS: clean reproducible source baseline; known tests with exact counts; no secret/vendor leakage; no missing rebuild dependencies or unrecorded assumptions; preserved e4 rollback. HOLD: IP/license or original evidence missing -> report precise blocker, not fake recovery.
 
 ### H1 — causal PCIe electrical/clock/reset investigation (BOARD approval separately required)
+
+2026-10-31 later BOARD override: e6 `465805e6` moved to `PCIEX16(G5)` (CPU x16, root port A70D), JTAG-loaded, and given a real PERST by a warm restart. Measured **L0**, `link_up=1`, GT TX/RX/PMA done, QPLL1 lock, negotiated **Gen3 x4**, and Windows enumerated **`10EE:9034`** (problem 28 = no driver). BAR/driver/DMA **NOT RUN**; repeatability PENDING. The GPU on G4_2 (7A44) Gen4 x4 and NVMe on M.2_2 (7A48) Gen4 x4 are working PCH x4 controls, so the previous second-slot failures are now attributed primarily to **PCIEX16(G4)_1 / root port 7A40**, not to the FPGA, reference clock or e6 reset entry. [Report](e6-g5-link-2026-10-31.md). The older second-slot H1 HOLD paragraphs below are preserved history; they no longer mean the FPGA cannot link. H2 remains blocked on a legal Windows XDMA driver.
 
 2026-10-31 latest: retained-e4 restart in corrected second long slot completed. GT TX/RX/PMA done observed, live Polling.Compliance, no L0/10EE; current PLL lock indicators low. Full512 address readback preserved, but event0 timestamp predates prior session, so whole-prefix temporal provenance HOLD; events1..511 span nominal4.92280064s after PERST high. [Current evidence](slot2-e4-restart-2026-10-31.md). Stop H1_HOLD_POSITIVE_CONTROL_AND_RECORDER_PROVENANCE, not another reboot/reset. No program/reset/arm/ILA/new build. Older wait/third-slot paragraphs below are historical.
 
@@ -163,7 +167,9 @@ Large generated files and raw captures stay under D:\work\build\KU5P_FX_Accelera
 
 ## 7. Immediate handoff to future local Codex
 
-**NOW (2026-10-31 audit):** audit/planning complete; hardware/implementation HOLD. M0 was completed on frozen source and must not be restarted merely because this handoff used to say so.
+**LATEST (2026-10-31 BOARD):** e6 in `PCIEX16(G5)` (CPU x16) reached L0; Windows enumerated `10EE:9034`; BAR/driver/DMA NOT RUN; H2 blocked on a legal XDMA driver; `PCIEX16(G4)_1`/root port 7A40 is the primary suspect for the previous failures. See [the G5 report](e6-g5-link-2026-10-31.md). The audit-era handoff below is preserved history.
+
+**EARLIER (2026-10-31 audit):** audit/planning complete; hardware/implementation HOLD. M0 was completed on frozen source and must not be restarted merely because this handoff used to say so.
 **WHEN USER AUTHORIZES IMPLEMENTATION:** select H1a-CFG BUILD_ONLY from the dated execution contract, preserve e4 and prior captures, reconcile generated config and evidence acceptance before one candidate build. Stop before BOARD unless separately and concretely authorized. FX/F1 and networking stay deferred under the user's board-first priority. If inputs/tools are unavailable, report the precise blocker rather than fabricate results.
 
 Pointers: [Current state](CURRENT_STATE.md), [Interface contracts](INTERFACE_CONTRACTS.md), [Review backlog](REVIEW_BACKLOG.md), [Last e4 hardware proof](lesson05i-pcie-boot-recorder.md).
