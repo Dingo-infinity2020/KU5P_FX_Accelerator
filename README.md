@@ -1,6 +1,6 @@
 # KU5P_FX_Accelerator
 
-**最新停止点（2026-10-30 晚）：** 用户更正FPGA原在第三长槽，现确认第二长槽，网卡第一长槽。一轮原e4 ×4 SRAM下载/复位释放已完成，512事件及ILA已保存，仍未初始化/建链/枚举；最终e4/reset0，等待用户手动Windows重新启动作新槽启动对照。网卡Gen3×16、显卡Gen4×4及WHEA0保持。见[本轮测试](docs/slot2-e4-trial-2026-10-30.md)、[主机恢复历史](docs/host-black-screen-triage-2026-10-30.md)和[当前状态](docs/CURRENT_STATE.md)。早上的[第三槽重启实测](docs/e4-restart-observation-2026-10-30.md)及[夜间M0回归](docs/m0-night-development-2026-10-30.md)保留为历史。
+**最新停止点（2026-10-31）：** 用户完成第二长槽保留e4重启。当前四路GT TX/RX/PMA done高，AXI和训练更新至Polling.Compliance；PLL锁定指示低，仍无L0/10EE枚举。512地址已保存，但首事件时间戳早于昨晚记录，完整启动溯源HOLD。最终e4/DONE1/reset0/arm0/epoch2，Hardware Manager关闭；不要求再次重启或复位。 见[本次复核](docs/slot2-e4-restart-2026-10-31.md)与[当前状态](docs/CURRENT_STATE.md)。上一轮下载及第三槽结果作为历史保留。
 
 **本地 Codex/下一次开发入口：** [AGENTS.md](AGENTS.md)（工作约束与授权边界）→ [当前真实状态](docs/CURRENT_STATE.md) → [详细开发里程碑](docs/DEVELOPMENT_PLAN.md) → [接口与科学数据合同](docs/INTERFACE_CONTRACTS.md) → [代码审查清单](docs/REVIEW_BACKLOG.md)。原开发分支仍在 Draft PR #1；新工作使用独立专题分支。文档路线本身不代表新的执行授权。
 

@@ -1,5 +1,9 @@
 # CURRENT_STATE — KU5P FX Accelerator
 
+**最新实测覆盖段（2026-10-31）：** 用户“已经重启”，主机记录启动10:02:11.5+08:00。进入源 `bd0b687`，当前分支 `codex/slot2-e4-restart-2026-10-31`。先读确认e4/465805e4、DONE1、实际reset0/arm0、epoch1→2/512。36样本四路GT TX/RX/PMA done高，AXI和训练快照持续更新到Polling.Compliance；当前PLL锁定指示低，无L0/Windows10EE。512地址和8字重复读取均已保存；首事件时间戳早于昨晚epoch1，事件字不含epoch，不能宣称整个启动段溯源通过。事件1..511跨度名义4.92280064秒，仅作为后段相对观察。见[本次报告](slot2-e4-restart-2026-10-31.md)和[机器摘要](validation/slot2-e4-restart-2026-10-31.json)。
+
+**当前停止点 H1_HOLD_POSITIVE_CONTROL_AND_RECORDER_PROVENANCE：** 最终e4/DONE1/reset0/arm0/地址1ff/epoch2，Hardware Manager关闭，无构建/仿真/采集。没有program/reset/arm/ILA trigger，仅安全提交RAM读地址；未写Flash/Si5338/BIOS/驱动/内存/网卡。H1未通过，BAR/DMA NOT RUN。不再等待或要求相同主机重启；后续须先审查记录溯源，并取得有区分力的独立训练/电气正对照。下方所有WAIT_FOR_USER_WARM_RESTART_SLOT2及阴性状态均为历史，不能作为当前待办或当前GT状态。
+
 **最新实测覆盖段：2026-10-30 22:07–22:11，用户新授权的一轮第二长槽 e4 测试结束。** 进入源 `cad2269`，分支 `codex/slot2-e4-trial-2026-10-30`。用户更正旧FPGA实际在第三长槽，现确认在第二长槽；ConnectX-5在第一长槽、GPU第三长槽。初始DONE1但无e4调试核，镜像UNKNOWN；原已验收e4 ×4仅下载一次，arm一次、仅释放一次reset，保存512条epoch1新事件、40个VIO样本和4096点ILA。最终e4/DONE1/reset0/arm0/读址1ff，PLL/GT done低、AXI÷8固定10、Detect.Quiet快照冻结，无L0/10EE枚举；网卡Gen3×16、显卡Gen4×4，主机WHEA仍0。没有Flash/Si5338/BIOS/驱动/内存设置变更。见[本轮记录](slot2-e4-trial-2026-10-30.md)与[验证摘要](validation/slot2-e4-trial-2026-10-30.json)。
 
 **当前停止点 WAIT_FOR_USER_WARM_RESTART_SLOT2：** Hardware Manager关闭，无构建/仿真/采集进行。如继续新第二槽的启动对照，需要用户手动Windows“重新启动”并保持板卡供电/JTAG；不得自动重启。返回后先只读保全DONE/身份/真实控制/epoch，不能先program/reset/arm。下方主机恢复时UNKNOWN及早上第三槽epoch2为历史状态，不是当前镜像；旧槽号错误不抹去原实测。
@@ -73,6 +77,6 @@ P2: wide PR mixes mature FX, experimental GT diagnostics and unmerged lessons; r
 
 ## Next authorized action and safe next development package
 
-Latest stop point is WAIT_FOR_USER_WARM_RESTART_SLOT2 in the top override. The current user authorized one firmware/PCIe trial in the corrected second long slot; this is completed with e4 loaded and reset0, no GT initialization/L0/enum. A retained-e4 Windows restart in this new configuration is a user action, never automatic. Earlier morning positive-control hold and post-black-screen UNKNOWN are historical.
+Latest stop point is H1_HOLD_POSITIVE_CONTROL_AND_RECORDER_PROVENANCE in the top override; the optional second-slot restart has completed. The following old paragraph describes its pre-restart history only. The current user authorized one firmware/PCIe trial in the corrected second long slot; this is completed with e4 loaded and reset0, no GT initialization/L0/enum. A retained-e4 Windows restart in this new configuration is a user action, never automatic. Earlier morning positive-control hold and post-black-screen UNKNOWN are historical.
 
 The plan in [DEVELOPMENT_PLAN](DEVELOPMENT_PLAN.md) is prospective. For raw report and latest real status, the dated experimental record takes precedence over a progress checkbox.
