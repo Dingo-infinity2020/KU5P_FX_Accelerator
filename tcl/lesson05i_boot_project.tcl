@@ -113,12 +113,17 @@ proc lesson05i_audit {directory {reset_pin {reset_bridge/endpoint_pipe_reg[1]/Q}
     set refnet [get_nets -of_objects [get_pins reference_input/O]]
     puts $h "$refnet\tROUTE_STATUS\t[get_property ROUTE_STATUS $refnet]"
     puts $h "$refnet\tROUTE\t[get_property ROUTE $refnet]"
-    set reset [get_pins $reset_pin]
+    set reset [get_pins -quiet $reset_pin]
+    set primary_reset [expr {![llength $reset]}]
+    if {$primary_reset} {set reset [get_ports -quiet $reset_pin]}
     if {[llength $reset]!=1} {error "Missing expected endpoint reset driver"}
     set resetnets [get_nets -segments -of_objects $reset]
     set core_reset [get_nets -segments -of_objects [get_pins dma/sys_rst_n]]
     set joined 0;foreach n $resetnets {if {$n in $core_reset} {set joined 1}}
-    if {!$joined} {error "Endpoint reset is not the registered bridge output"}
+    if {$primary_reset} {
+        set joined [expr {$reset in [all_fanin -flat -startpoints_only -to [get_pins dma/sys_rst_n]]}]
+    }
+    if {!$joined} {error "Endpoint reset does not match the selected profile"}
     puts $h "dma/sys_rst_n\tdriver\t$reset"
     set first [get_pins -hier -filter {NAME =~ diagnostics/raw_meta_reg*/D || NAME =~ diagnostics/auxiliary_meta_reg*/D}]
     if {[llength $first]!=68} {error "Unexpected first-stage observation count"}
@@ -129,12 +134,12 @@ proc lesson05i_audit {directory {reset_pin {reset_bridge/endpoint_pipe_reg[1]/Q}
 proc lesson05i_boot_build {out part {profile e4}} {
     global repo_dir
     if {$part ne "xcku5p-ffvb676-1-i"} {error "Unverified part"}
-    if {$profile ni {e4 e5}} {error "Invalid diagnostic build profile"}
-    set top [expr {$profile eq "e4" ? "lesson05i_pcie_boot_top" : "lesson05j_pcie_reference_top"}]
-    set reset_pin [expr {$profile eq "e4" ? {reset_bridge/endpoint_pipe_reg[1]/Q} : {reference_reset/core_reset_gate/O}}]
+    if {$profile ni {e4 e5 e6}} {error "Invalid diagnostic build profile"}
+    set top [dict get {e4 lesson05i_pcie_boot_top e5 lesson05j_pcie_reference_top e6 lesson05k_pcie_perst_top} $profile]
+    set reset_pin [dict get {e4 {reset_bridge/endpoint_pipe_reg[1]/Q} e5 reference_reset/core_reset_gate/O e6 pcie_reset_n} $profile]
     set out [file normalize $out]
     if {![file exists [file join $out inputs.json]] || ![file exists [file join $out boot_sim simulation_pass.txt]]} {error "Frozen inputs and diagnostic simulation required"}
-    if {$profile eq "e5"} {
+    if {$profile ne "e4"} {
         foreach folder {reference_reset_sim boot_provenance_sim} {
             if {![file exists [file join $out $folder simulation_pass.txt]]} {error "Missing reference profile simulation: $folder"}
         }
@@ -144,6 +149,7 @@ proc lesson05i_boot_build {out part {profile e4}} {
     lesson05d_prepare $out $part 4 1 1 [expr {$profile eq "e4" ? "true" : "false"}]
     set rtl [list ${top}.sv pcie_boot_diagnostics.sv]
     if {$profile eq "e5"} {lappend rtl pcie_reference_reset.sv}
+    if {$profile eq "e6"} {lappend rtl pcie_perst_reference_reset.sv}
     foreach name $rtl {add_files -norecurse [file join $repo_dir rtl $name]}
     remove_files [get_files -of_objects [get_filesets constrs_1]]
     add_files -fileset constrs_1 -norecurse [file join $repo_dir constr lesson05i_pcie_boot.xdc]
@@ -154,7 +160,14 @@ proc lesson05i_boot_build {out part {profile e4}} {
         CONFIG.C_PROBE_OUT0_WIDTH 1 CONFIG.C_PROBE_OUT0_INIT_VAL 0x1
         CONFIG.C_PROBE_OUT1_WIDTH 9 CONFIG.C_PROBE_OUT1_INIT_VAL 0x0
         CONFIG.C_PROBE_OUT2_WIDTH 1 CONFIG.C_PROBE_OUT2_INIT_VAL 0x0} [get_ips lesson05d_vio]
+    if {$profile eq "e6"} {set_property CONFIG.C_PROBE_OUT0_INIT_VAL 0x0 [get_ips lesson05d_vio]}
     generate_target all [get_ips lesson05d_vio]
+    if {$profile ne "e4"} {
+        set cache_report [open [file join $out reports ip_cache_use.tsv] {WRONLY CREAT EXCL}]
+        puts $cache_report "ip\tcache_id\tcache_was_used"
+        foreach ip [get_ips] {puts $cache_report "$ip\t[config_ip_cache -get_id $ip]\t[config_ip_cache -cache_was_used $ip]"}
+        close $cache_report
+    }
     create_ip -name ila -vendor xilinx.com -library ip -version 6.2 -module_name lesson05i_ila -dir [file join $out vivado_project ip]
     set_property -dict {CONFIG.C_NUM_OF_PROBES 3 CONFIG.C_PROBE0_WIDTH 32 CONFIG.C_PROBE1_WIDTH 64 CONFIG.C_PROBE2_WIDTH 64 CONFIG.C_DATA_DEPTH 4096} [get_ips lesson05i_ila]
     generate_target all [get_ips lesson05i_ila]
@@ -175,7 +188,7 @@ proc lesson05i_boot_build {out part {profile e4}} {
     foreach delay {max min} {if {[llength [get_timing_paths -quiet -delay_type $delay -slack_lesser_than 0 -max_paths 1]]} {error "Timing failed"}}
     set h [open [file join $reports cdc.rpt]];set cdc [read $h];close $h
     if {[regexp -line {^CDC-[0-9]+\s+Critical\s+[1-9]} $cdc]} {error "Unwaived CDC Critical paths: fix before generating bitstream"}
-    if {$profile eq "e5"} {
+    if {$profile ne "e4"} {
         set cores [get_cells -hier -filter {REF_NAME==PCIE40E4}]
         if {[llength $cores]!=1 || ![get_property PL_DISABLE_LANE_REVERSAL $cores] ||
             ![get_property PF0_LINK_STATUS_SLOT_CLOCK_CONFIG $cores]} {error "Reference candidate primitive contract failed"}

@@ -17,15 +17,17 @@ sha=lambda path:hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['begin','finish'])
     p.add_argument('--build-dir',type=Path,required=True)
-    p.add_argument('--profile',choices=['e4','e5'],default='e4');a=p.parse_args()
-    top='lesson05i_pcie_boot_top' if a.profile=='e4' else 'lesson05j_pcie_reference_top'
-    build_id='465805e4' if a.profile=='e4' else '465805e5'
+    p.add_argument('--profile',choices=['e4','e5','e6'],default='e4')
+    p.add_argument('--ip-cache-dir',type=Path);a=p.parse_args()
+    top=dict(e4='lesson05i_pcie_boot_top',e5='lesson05j_pcie_reference_top',e6='lesson05k_pcie_perst_top')[a.profile]
+    build_id='465805'+a.profile
     source_names=SOURCES
-    if a.profile=='e5':
+    if a.profile!='e4':
         source_names+=('rtl/lesson05j_pcie_reference_top.sv','rtl/pcie_reference_reset.sv',
             'sim/tb_pcie_reference_reset.sv','sim/tb_pcie_boot_provenance.sv',
             'scripts/run_pcie_reference_reset.ps1','scripts/run_pcie_boot_provenance.ps1',
             'scripts/run_pcie_reference.ps1','tcl/audit_pcie_lane_mapping.tcl')
+    if a.profile=='e6':source_names+=('rtl/lesson05k_pcie_perst_top.sv','rtl/pcie_perst_reference_reset.sv','sim/tb_pcie_perst_reference_reset.sv')
     root=Path(__file__).resolve().parents[1];out=a.build_dir.resolve()
     assert root!=out and root not in out.parents,'External directory required'
     if a.action=='begin':
@@ -36,10 +38,16 @@ def main():
             target=out/'source_snapshot'/name;target.parent.mkdir(parents=True,exist_ok=True)
             shutil.copy2(root/name,target)
         source_commit=subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD']).decode().strip()
-        (out/'inputs.json').write_text(json.dumps(dict(build_id=build_id,profile=a.profile,source_commit=source_commit,started_unix=time.time(),sources=sources),indent=2)+'\n')
+        cache_inputs={}
+        if a.ip_cache_dir:
+            assert a.ip_cache_dir.is_dir(),'Explicit IP cache missing'
+            cache_inputs={str(p.resolve()):sha(p) for p in a.ip_cache_dir.rglob('*.dcp')}
+            assert cache_inputs,'No synthesized IP cache inputs'
+        (out/'inputs.json').write_text(json.dumps(dict(build_id=build_id,profile=a.profile,source_commit=source_commit,started_unix=time.time(),sources=sources,ip_cache_dcp_sha256=cache_inputs),indent=2)+'\n')
         print('Boot build inputs frozen');return
     inputs=json.loads((out/'inputs.json').read_text())
     assert inputs['build_id']==build_id,'Profile differs from frozen inputs'
+    for name,digest in inputs.get('ip_cache_dcp_sha256',{}).items():assert sha(Path(name))==digest,'IP cache DCP changed'
     for name,digest in inputs['sources'].items():
         assert sha(root/name)==sha(out/'source_snapshot'/name)==digest,'Changed source: '+name
     log=(out/'native_build.log').read_text(errors='replace')
@@ -48,7 +56,7 @@ def main():
     simulations={}
     cases=[('boot_sim','PASS boot_diagnostics_checks=14'),
             ('training_sim','PASS training_monitor_checks=9'),('application_test','PASS packets=29 beats=3712 ')]
-    if a.profile=='e5':cases += [('reference_reset_sim','PASS reference_reset_checks=10'),('boot_provenance_sim','PASS boot_provenance_checks=15 events=8')]
+    if a.profile!='e4':cases += [('reference_reset_sim','PASS reference_reset_checks=10' if a.profile=='e5' else 'PASS perst_reference_reset_checks=7'),('boot_provenance_sim','PASS boot_provenance_checks=15 events=8')]
     for folder,expected in cases:
         marker=out/folder/'simulation_pass.txt';result=marker.read_text().strip()
         assert result.startswith(expected) and marker.stat().st_mtime>=inputs['started_unix']
@@ -81,7 +89,7 @@ def main():
     names=[top+'.bit',top+'.ltx',top+'_routed.dcp']
     assert all((out/n).stat().st_mtime>=inputs['started_unix'] for n in names)
     result=dict(verified_at_utc=datetime.now(timezone.utc).isoformat(),build_id=build_id,profile=a.profile,source_commit=inputs.get('source_commit'),
-        sources=inputs['sources'],artifacts={n:sha(out/n) for n in names},simulation=simulations,
+        sources=inputs['sources'],ip_cache_dcp_sha256=inputs.get('ip_cache_dcp_sha256',{}),artifacts={n:sha(out/n) for n in names},simulation=simulations,
         timing={k:v for k,v in timing.items() if k!='raw'},route=counts,cdc_critical_no_waiver=critical,
         utilization={k:v for k,v in parse_utilization((reports/'utilization.rpt').read_text()).items() if k!='raw'},
         observer_count=59,gt_pcie_functional_inputs_unchanged=True,dcp_reopened_audit_equal=True,
@@ -90,12 +98,13 @@ def main():
         hardware_tested=False,expected_device_id='9034',pcie_lanes=4,axi_counter_divisor=8,
         ref_counter_divisor=8,event_depth=512,event_bits=256,window_cycles=1000000,
         clock_port_layout_high_to_low=['controls32','window_delta32','axi_div8_count32','ref_div8_count32'])
-    if a.profile=='e5':
+    if a.profile!='e4':
         with (reports/'lane_data_contract.tsv').open() as h:lane_rows=list(csv.DictReader(h,delimiter='\t'))
         assert len(lane_rows)==272 and all(r['verified']=='1' for r in lane_rows)
         result.update(lane_contract_sha256=sha(reports/'lane_data_contract.tsv'),
             reset_scope='core reset is raw PERSTn AND NOT manual; metadata bit95/control bit2 are independent two-stage observed release, not the raw core input',
             hardware_tested=False,board_authorized=False)
+        if a.profile=='e6':result.update(reset_scope='raw physical PERST only; VIO output0 reserved init0 and cannot reset PHY; metadata bit95/control bit2 are two-stage observation, manual-reset metadata is constant0',vio_phy_reset_supported=False)
     with (out/'verification.json').open('x') as h:json.dump(result,h,indent=2);h.write('\n')
     print(json.dumps(dict(build_id=result['build_id'],timing=result['timing'],route=counts,cdc_critical=critical)))
 

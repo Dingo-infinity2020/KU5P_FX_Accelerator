@@ -52,7 +52,15 @@ foreach reversal $cases {
     close_project
     puts "LANE_CONFIG_GENERATED reversal=$reversal"
 }
-set h [open [file join $out generation_complete.txt] {WRONLY CREAT EXCL}]
-puts $h "PASS tool=2026.1 xdma=4.2 cases=[llength $cases] scope=GENERATION_ONLY child_api_probe=$probe"
-close $h
-puts "LANE_CONFIG_REPRODUCTION_COMPLETE"
+if {$probe} {
+    # A caught tool rejection is evidence, not a clean build/PASS marker.
+    set h [open [file join $out child_probe_complete.txt] {WRONLY CREAT EXCL}]
+    puts $h "PROBE_ONLY customization_rejected=$failed not_build_acceptance=true"
+    close $h
+    puts "LANE_CONFIG_CHILD_PROBE_COMPLETE_NOT_BUILD_ACCEPTANCE"
+} else {
+    set h [open [file join $out generation_complete.txt] {WRONLY CREAT EXCL}]
+    puts $h "PASS tool=2026.1 xdma=4.2 cases=2 scope=GENERATION_ONLY"
+    close $h
+    puts "LANE_CONFIG_REPRODUCTION_COMPLETE"
+}

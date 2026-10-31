@@ -20,6 +20,11 @@ proc lesson05d_prepare {output_dir target_part {lanes 8} {training_debug 0} {phy
     set xpr [file join $project_dir lesson05d_pcie.xpr]
     if {[file exists $xpr]} {open_project $xpr} else {create_project lesson05d_pcie $project_dir -part $target_part}
     if {[get_property PART [current_project]] ne $target_part} {error "Wrong existing project part"}
+    if {[info exists ::reference_ip_cache] && $::reference_ip_cache ne ""} {
+        if {![file isdirectory $::reference_ip_cache]} {error "Missing explicitly selected IP cache"}
+        config_ip_cache -use_cache_location [file normalize $::reference_ip_cache]
+        set_property IP_CACHE_PERMISSIONS read [current_project]
+    }
     set rtl_names {dma_pattern_source.sv pcie_test_endpoint.sv pcie_clock_monitor.sv lesson05d_pcie_top.sv}
     if {$lanes==4} {lappend rtl_names lesson05d_pcie_x4_top.sv}
     if {$training_debug} {lappend rtl_names pcie_training_monitor.sv lesson05d_pcie_training_top.sv}
