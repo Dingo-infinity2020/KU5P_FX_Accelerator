@@ -1,0 +1,128 @@
+{
+  "source_commit": "43580d31c864939d9444a8e5e13e7b203c752be4",
+  "branch": "codex/pcie-audit-plan-2026-10-31",
+  "worktree": "D:\\work\\KU5P_FX_Accelerator",
+  "authorization": "Current user requested one audit and concrete planning round; docs and read-only saved-source/evidence/DCP analysis only",
+  "evidence_level": "STATIC_SAVED_ROUTED_DCP_INSPECTED_NOT_NEW_ROUTED_OR_BOARD",
+  "checks": {
+    "original_build_sources_verified": 20,
+    "original_artifact_hashes_verified": 3,
+    "prior_restart_input_hashes_verified": 35,
+    "existing_parser_accepts_temporally_unproven_event0": true,
+    "timestamp_input_bits_inspected": 64,
+    "memory_active_byte_enables_same_driver": true,
+    "active_byte_enable_pins": 28
+  },
+  "findings": [
+    {
+      "id": "A-01",
+      "priority": "P0",
+      "status": "CONFIRMED_VALIDATION_GAP",
+      "description": "Current read metadata epoch is not stored per record; parser does not enforce capture start bound. Existing 14-check HDL unit does not assert fresh monotonic first timestamp across epochs or exercise 32-bit timestamp carry."
+    },
+    {
+      "id": "A-02",
+      "priority": "P0",
+      "status": "OPEN_CONFIGURATION_DISCREPANCY_NOT_PROVEN_LINK_CAUSE",
+      "description": "Parent enable_lane_reversal=true, child and actual PCIE40E4 PL_DISABLE_LANE_REVERSAL=TRUE. Trace generated hierarchy, physical lane0 and root-port behavior before any change; do not patch vendor RTL."
+    },
+    {
+      "id": "A-03",
+      "priority": "P1",
+      "status": "STATIC_INPUT_WIRING_VERIFIED_ROOT_CAUSE_OPEN",
+      "description": "All64 timestamp bits connect to RAM data pins and active byte-enables share a driver. This rejects a simple static high32 disconnected-input explanation, not runtime memory/readback faults."
+    },
+    {
+      "id": "A-04",
+      "priority": "P2",
+      "status": "CONFIRMED_DOCUMENTATION_COUNT_ERROR",
+      "description": "Actual event storage is three RAMB36E2 plus one RAMB18E2, four primitives total. Historical four-RAMB36 wording is inaccurate."
+    },
+    {
+      "id": "A-05",
+      "priority": "P1",
+      "status": "CONFIRMED_PLAN_STALENESS",
+      "description": "NIC is now installed in first slot with historical Gen3x16 observation; old plan says mechanically unavailable. M0 is historical PASS; board link still HOLD; roadmap must not restart M0 or claim two-input continuous board operation."
+    }
+  ],
+  "memory_primitives": {
+    "diagnostics/events_reg_0": "RAMB36E2",
+    "diagnostics/events_reg_1": "RAMB36E2",
+    "diagnostics/events_reg_2": "RAMB36E2",
+    "diagnostics/events_reg_3": "RAMB18E2"
+  },
+  "pcie_properties_selected": {
+    "PL_DISABLE_LANE_REVERSAL": "TRUE",
+    "PF0_LINK_STATUS_SLOT_CLOCK_CONFIG": "TRUE",
+    "PL_LINK_CAP_MAX_LINK_WIDTH": "5'h04",
+    "PL_LINK_CAP_MAX_LINK_SPEED": "4'h4"
+  },
+  "scope": "Gen speed primitive field is generated encoding; 4 is not evidence of a Gen4 link. No link negotiated. No high32 timestamp repair/inference applied.",
+  "plan_next": "H1a-CFG: bounded offline fresh IP parameter propagation and official minimal example reconciliation, plus observation acceptance regression before using event timing; BUILD_ONLY then separate board gate",
+  "operations": {
+    "new_rtl": false,
+    "new_simulation": false,
+    "new_synthesis": false,
+    "new_route": false,
+    "new_bitstream": false,
+    "hardware_manager_opened": false,
+    "program": false,
+    "reset": false,
+    "arm": false,
+    "ila": false,
+    "host_configuration": false
+  },
+  "board_state": "NOT_REREAD_THIS_AUDIT; last observed e4/DONE1/reset0/arm0/epoch2, GT done high, live Polling.Compliance/no L0. Saved DCP closed, hardware servers0 before audit.",
+  "source_hashes": {
+    "rtl/pcie_boot_diagnostics.sv": "7305caaf4c48ba0cd5ce1dd3b48d743117270c6c03bcef6be97164ec7eb62c7d",
+    "sim/tb_pcie_boot_diagnostics.sv": "909e240fe86e9526fd848c798c3039da8464cae0e2e80671f50a9f9844e5b60e",
+    "scripts/pcie_boot_capture.py": "2027c39934189dff19b018534358636a5588fe5b53ed347b2171712921982299",
+    "tests/test_pcie_boot_capture.py": "0b07f0d392f200c868b4fd6f0d1493d00f432d004b72897516dacde97cab6674",
+    "tcl/lesson05i_boot_hardware.tcl": "5cae404d4078ac9277e13c96728e6da7340020c7ce0fa713fae7099b7dc60b84",
+    "tcl/lesson05i_boot_project.tcl": "0429c4389323a97c53f46fb940fb40f791b2022591138af8c3a518121a3599c9",
+    "tcl/lesson05d_project.tcl": "fe3db45d9a06141b9f4acd2b572f3d39e31e45e5ff92b380b0124da5874840f0",
+    "constr/lesson05i_pcie_boot.xdc": "5bd02210352635001dcfd86d1c421b24c85df51f6096efda183bbadbd1c91290"
+  },
+  "local_evidence_sha256": {
+    "memory_netlist.tsv": "a913a4b59e71aa86b985740e3b037dd4c73ca5894c87f5defe0094a75b0df27b",
+    "memory_logic.tsv": "d7c688b11669af1a6a9dbcf9a8661831ceb64a196286377a9e1fefb259fb1cfa",
+    "pcie_static.tsv": "d64991fd01eb91e1a62a59b7fc06c08c53000fa6492969f03d530fa387069130"
+  },
+  "generated_input_sha256": {
+    "parent_xci": "51dc73e8ed777ce26fb354b5d002244d2b62189688c1ba60108aa966a22bb646",
+    "child_xci": "d646bdc8ba84d478b53f89f36ccdbf14a185bc7279175c3822dd17896e56fac6"
+  },
+  "original_build_provenance": {
+    "verification_sha256": "456784e7c5da8d727ac7ee0680b96e7168938517a88a1441fbba652da49d05ec",
+    "program_record_sha256": "f19abcb3d9e39b9c2c08eca97974c04b4355123ec4d51ecf0a7e9b1ae009cbf1",
+    "verified_source_locations": {
+      "tcl/build.tcl": "workspace",
+      "tcl/lesson05i_boot_project.tcl": "workspace",
+      "tcl/lesson05d_project.tcl": "workspace",
+      "tcl/lesson05d_synth_settings.tcl": "workspace",
+      "constr/lesson05i_pcie_boot.xdc": "workspace",
+      "rtl/lesson05i_pcie_boot_top.sv": "workspace",
+      "rtl/pcie_boot_diagnostics.sv": "workspace",
+      "rtl/pcie_training_monitor.sv": "workspace",
+      "rtl/dma_pattern_source.sv": "workspace",
+      "rtl/pcie_test_endpoint.sv": "workspace",
+      "sim/tb_pcie_boot_diagnostics.sv": "workspace",
+      "sim/tb_pcie_training_monitor.sv": "workspace",
+      "sim/tb_pcie_test_endpoint.sv": "workspace",
+      "scripts/pcie_boot_manifest.py": "workspace",
+      "scripts/run_pcie_boot.ps1": "workspace",
+      "scripts/run_pcie_boot_test.ps1": "workspace",
+      "scripts/run_pcie_training_monitor_test.ps1": "workspace",
+      "scripts/run_pcie_application_test.ps1": "workspace",
+      "scripts/generate_pcie_vectors.py": "workspace",
+      "scripts/pcie_pattern.py": "workspace"
+    },
+    "decoder_sha256": "2027c39934189dff19b018534358636a5588fe5b53ed347b2171712921982299",
+    "build_id": "465805e4"
+  },
+  "references": [
+    "https://docs.amd.com/r/en-US/pg213-pcie4-ultrascale-plus/Lane-Reversal",
+    "https://docs.amd.com/r/en-US/pg213-pcie4-ultrascale-plus/Clocking",
+    "https://xilinx.github.io/pcie-debug-kmap/pciedebug/build/html/docs/PCIe_Debug_General_Techniques/Link_Training/general_debug_checklist_reasons_questions.html"
+  ]
+}
