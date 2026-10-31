@@ -35,6 +35,8 @@ H and F can progress **independently only once user explicitly resumes**. No exp
 
 ## 4. Work packages and exit criteria
 
+**Current next package after 2026-10-31 audit:** H1a-CFG BUILD_ONLY, detailed [execution contract](pcie-audit-and-next-plan-2026-10-31.md). Reconcile parent lane-reversal intent with child/primitive disable attribute, verify connector-to-core lane0 before narrowing width, add capture provenance fault acceptance, then prepare one official-example-derived candidate. M0 is historical PASS. This user request covers audit/docs only; no implementation started, no new board evidence. Later BOARD requires a concrete single-change candidate/rollback and explicit scope.
+
 ### M0 — baseline reconciliation and reproducible repo (FIRST after RESUME; offline only)
 
 2026-10-30 execution: M0 completed under the user's explicit night-development grant; 72 Python tests and bounded existing HDL regressions passed on frozen source `fb7a0d9`. Fresh simulation, historical artifact/source recovery, and read-only retained-e4 observation are reported separately in [the execution report](m0-night-development-2026-10-30.md). H1 latest stop is in the dated H1 override below; the previously requested user-performed restart has completed. No automatic reboot or unrelated RTL/GT sweep.
@@ -110,7 +112,7 @@ PASS for each N: 136-product (for N16) full matrix vs independent high-precision
 
 N0: Read actual RFSoC firmware capture BEFORE declaring wire format final. Existing candidate model: two RFSoCs each 8 complex streams, time-domain I/Q16 container; 100 MS/s variant preferred for early scope, 320 MS/s historical path exists. Candidate UDP payload 32-byte metadata + 8192-byte samples, 2048 complex samples/packet, possible padded Ethernet tail; verify with signed test patterns and live capture. Frame rate, endian, sample index, PPS/epoch, overflow and channel mapping must be checked; do not infer shared UTC from packet counter.
 
-N1: Recover one working 100GbE endpoint with correct GT/ref, SR4 optics, MPO polarity, CMAC/FEC, MTU and actual link. ConnectX-5 is physically incompatible with the current host installation; use a separately qualified host and correct x8 network slot. Validate no link-level or MAC errors with controlled traffic first. One KU5P hard CMAC cannot automatically serve as two independent 100G receivers. For two RFSoC sources, design an external aggregation path or a separately justified second MAC/PCS interface. No assumption that two QSFP cages imply two proven 100GbE receivers. Both RFSoC 320-MS/s streams together would be 163.84 Gb/s net, exceeding one 100GbE port.
+N1: Recover one working 100GbE endpoint with correct GT/ref, SR4 optics, MPO polarity, CMAC/FEC, MTU and actual link. This old installation limit was resolved during 2026-10-30 host recovery: ConnectX-5 is installed in the first long slot and both functions were observed at Gen3x16. Optical link/traffic remain unverified; current audit does not operate the NIC. Do not assume another host is mandatory solely from the superseded mechanical report. Validate no link-level or MAC errors with controlled traffic first. One KU5P hard CMAC cannot automatically serve as two independent 100G receivers. For two RFSoC sources, design an external aggregation path or a separately justified second MAC/PCS interface. No assumption that two QSFP cages imply two proven 100GbE receivers. Both RFSoC 320-MS/s streams together would be 163.84 Gb/s net, exceeding one 100GbE port.
 
 N2: Packet parser/reorder/jitter buffer/source time alignment with explicit missing, duplicate and late data handling. Test before FX and then at input. Admit full FFT frames only. Verify long-run ingress counters and passband/noise performance with actual traffic. No real-hardware status from synthetic PCAP tests.
 
@@ -161,7 +163,7 @@ Large generated files and raw captures stay under D:\work\build\KU5P_FX_Accelera
 
 ## 7. Immediate handoff to future local Codex
 
-**NOW:** documentation-only complete, hardware/implementation HOLD. Do not continue automatically.
-**WHEN USER RESUMES:** run M0 with explicit approved bounded scope, list any local-only evidence that is missing, update the backlog, propose H1 static single-variable diagnostics and F1 non-stallable testbench as separate work packages. Do not auto-run H1 board or F2 high-rate board. If Codex has no real workspace/hardware, stop at review-only and give exact commands for the authorized local operator, never fabricate results.
+**NOW (2026-10-31 audit):** audit/planning complete; hardware/implementation HOLD. M0 was completed on frozen source and must not be restarted merely because this handoff used to say so.
+**WHEN USER AUTHORIZES IMPLEMENTATION:** select H1a-CFG BUILD_ONLY from the dated execution contract, preserve e4 and prior captures, reconcile generated config and evidence acceptance before one candidate build. Stop before BOARD unless separately and concretely authorized. FX/F1 and networking stay deferred under the user's board-first priority. If inputs/tools are unavailable, report the precise blocker rather than fabricate results.
 
 Pointers: [Current state](CURRENT_STATE.md), [Interface contracts](INTERFACE_CONTRACTS.md), [Review backlog](REVIEW_BACKLOG.md), [Last e4 hardware proof](lesson05i-pcie-boot-recorder.md).

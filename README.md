@@ -2,6 +2,8 @@
 
 **最新停止点（2026-10-31）：** 用户完成第二长槽保留e4重启。当前四路GT TX/RX/PMA done高，AXI和训练更新至Polling.Compliance；PLL锁定指示低，仍无L0/10EE枚举。512地址已保存，但首事件时间戳早于昨晚记录，完整启动溯源HOLD。最终e4/DONE1/reset0/arm0/epoch2，Hardware Manager关闭；不要求再次重启或复位。 见[本次复核](docs/slot2-e4-restart-2026-10-31.md)与[当前状态](docs/CURRENT_STATE.md)。上一轮下载及第三槽结果作为历史保留。
 
+**最新审计/下一方案（2026-10-31）：** 上层lane reversal意图与最终硬核属性存在差异，先做离线参数传播/通道映射及官方最小端点对照，补观察溯源验收；当前只完成审计规划，无新板级操作。见[具体实施合同](docs/pcie-audit-and-next-plan-2026-10-31.md)。
+
 **本地 Codex/下一次开发入口：** [AGENTS.md](AGENTS.md)（工作约束与授权边界）→ [当前真实状态](docs/CURRENT_STATE.md) → [详细开发里程碑](docs/DEVELOPMENT_PLAN.md) → [接口与科学数据合同](docs/INTERFACE_CONTRACTS.md) → [代码审查清单](docs/REVIEW_BACKLOG.md)。原开发分支仍在 Draft PR #1；新工作使用独立专题分支。文档路线本身不代表新的执行授权。
 
 

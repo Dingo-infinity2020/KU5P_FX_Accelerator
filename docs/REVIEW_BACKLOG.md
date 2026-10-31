@@ -19,9 +19,12 @@
 | R-013 | P1 | hardcoded reset | e4 reset bridge differs from e0 baseline, e0 prior CDC issues differ from e4 zero Critical. Need design-specific CDC and recovery evidence. | independent reset assertion/release, fail/recovery |
 | R-014 | P2 | repo organization | Draft PR #1 aggregates algorithm, old lessons, current diagnostics; main only bootstrap. | focused reviewed PRs and source-of-truth docs |
 | R-015 | P2 | science metadata | No fully qualified UTC/PPS, antenna-pol map, calibration scale, spectrum frequency mapping. | packet schema + bench/sky comparison |
+| R-017 | P0 | PCIe parameter propagation | Parent enable_lane_reversal=true but child/PCIE40E4 PL_DISABLE_LANE_REVERSAL=TRUE in saved e4. Confirm intended semantics, supported propagation and physical/core lane0 mapping; link causality OPEN. | reproducible parent→child→primitive configuration and justified correction/control |
 | R-016 | P2 | security/licensing | Local vendor schematic and RFSoC original project, license hostid, raw captures must not be uploaded. | staged diff/secrets/license/source provenance audit |
 
 ## Review discipline
+
+2026-10-31 STATIC audit (source `43580d3`, [contract/findings](pcie-audit-and-next-plan-2026-10-31.md)): R-003 CONFIRMED_VALIDATION_GAP for whole-capture temporal provenance; raw hardware cause OPEN. R-017 configuration discrepancy confirmed, link cause OPEN. R-011 parent-only acceptance is insufficient; require generated-child and primitive assertions. Saved DCP timestamp64 inputs match and active byte-enables share a driver; no runtime acceptance follows. Correct historical event memory count to3 RAMB36E2+1 RAMB18E2. No new SIM/BUILD/BOARD; R-001/H1 HOLD, R-002 BLOCKED. Current next recommendation H1a-CFG offline/build-only, not repeated M0/reboot or F1.
 
 2026-10-31 second-slot retained restart (source `bd0b687`, [report](slot2-e4-restart-2026-10-31.md)): R-001 OPEN/H1 HOLD despite current GT done and fresh Polling.Compliance; current PLL lock indicators low, no L0. R-002 BLOCKED/no enumeration. R-003 OPEN: full512 words and eight identical repeated words preserved, but event0 timestamp predates previous epoch1; current metadata epoch is not embedded in event words. Full-prefix temporal provenance HOLD; do not infer overnight PERST duration or certify a new complete startup. R-013 OPEN, no local reset. No new SIM/SYNTH/ROUTED claim; no repeated restart requested.
 

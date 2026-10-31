@@ -1,5 +1,7 @@
 # CURRENT_STATE — KU5P FX Accelerator
 
+**2026-10-31 后续STATIC审计（非新BOARD）：** 进入源 `43580d3`，分支 `codex/pcie-audit-plan-2026-10-31`。确认解析/仿真缺少跨捕获首时间戳溯源门槛；实际DCP的timestamp64输入均接通。另发现XDMA父选项enable_lane_reversal=true，但子核/PCIE40E4的PL_DISABLE_LANE_REVERSAL=TRUE，需查支持接口/参数传播及两端映射，未证实为未建链根因。事件存储实为3 RAMB36E2+1 RAMB18E2，勘误旧“4 RAMB36”。见[审计及具体下一工作包](pcie-audit-and-next-plan-2026-10-31.md)、[摘要](validation/pcie-audit-plan-2026-10-31.json)。没有连接硬件、构建或改RTL；下方仍是最新BOARD历史。下一建议H1a-CFG BUILD_ONLY，WAIT_FOR_IMPLEMENTATION_AUTH；不要重做M0或再次相同重启。
+
 **最新实测覆盖段（2026-10-31）：** 用户“已经重启”，主机记录启动10:02:11.5+08:00。进入源 `bd0b687`，当前分支 `codex/slot2-e4-restart-2026-10-31`。先读确认e4/465805e4、DONE1、实际reset0/arm0、epoch1→2/512。36样本四路GT TX/RX/PMA done高，AXI和训练快照持续更新到Polling.Compliance；当前PLL锁定指示低，无L0/Windows10EE。512地址和8字重复读取均已保存；首事件时间戳早于昨晚epoch1，事件字不含epoch，不能宣称整个启动段溯源通过。事件1..511跨度名义4.92280064秒，仅作为后段相对观察。见[本次报告](slot2-e4-restart-2026-10-31.md)和[机器摘要](validation/slot2-e4-restart-2026-10-31.json)。
 
 **当前停止点 H1_HOLD_POSITIVE_CONTROL_AND_RECORDER_PROVENANCE：** 最终e4/DONE1/reset0/arm0/地址1ff/epoch2，Hardware Manager关闭，无构建/仿真/采集。没有program/reset/arm/ILA trigger，仅安全提交RAM读地址；未写Flash/Si5338/BIOS/驱动/内存/网卡。H1未通过，BAR/DMA NOT RUN。不再等待或要求相同主机重启；后续须先审查记录溯源，并取得有区分力的独立训练/电气正对照。下方所有WAIT_FOR_USER_WARM_RESTART_SLOT2及阴性状态均为历史，不能作为当前待办或当前GT状态。
@@ -77,6 +79,6 @@ P2: wide PR mixes mature FX, experimental GT diagnostics and unmerged lessons; r
 
 ## Next authorized action and safe next development package
 
-Latest stop point is H1_HOLD_POSITIVE_CONTROL_AND_RECORDER_PROVENANCE in the top override; the optional second-slot restart has completed. The following old paragraph describes its pre-restart history only. The current user authorized one firmware/PCIe trial in the corrected second long slot; this is completed with e4 loaded and reset0, no GT initialization/L0/enum. A retained-e4 Windows restart in this new configuration is a user action, never automatic. Earlier morning positive-control hold and post-black-screen UNKNOWN are historical.
+Latest BOARD stop remains H1_HOLD_POSITIVE_CONTROL_AND_RECORDER_PROVENANCE; the second-slot restart completed with GT done observed but no L0/enumeration. The subsequent STATIC audit proposes H1a-CFG BUILD_ONLY under new explicit implementation scope, not repeated reboot, M0 or hardware changes. See the dated audit/plan above. No board reread in the audit.
 
 The plan in [DEVELOPMENT_PLAN](DEVELOPMENT_PLAN.md) is prospective. For raw report and latest real status, the dated experimental record takes precedence over a progress checkbox.

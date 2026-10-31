@@ -1,5 +1,7 @@
 # 板卡信息
 
+2026-10-31静态审计勘误：父XDMA选项写lane reversal=true，实际子核/硬核PL_DISABLE_LANE_REVERSAL=TRUE；尚需核对参数适用性和完整映射，不能继续只凭上层选项声称最终硬核已启用。事件RAM实际3个RAMB36E2+1个RAMB18E2。见[审计与下一方案](pcie-audit-and-next-plan-2026-10-31.md)。本轮无新BOARD。
+
 **最新停止点（2026-10-31）：** 用户完成第二长槽保留e4重启。当前四路GT TX/RX/PMA done高，AXI和训练更新至Polling.Compliance；PLL锁定指示低，仍无L0/10EE枚举。512地址已保存，但首事件时间戳早于昨晚记录，完整启动溯源HOLD。最终e4/DONE1/reset0/arm0/epoch2，Hardware Manager关闭；不要求再次重启或复位。 见[当前复核](slot2-e4-restart-2026-10-31.md)。下方2026-10-30停止点均为历史。
 
 最新实板更新（2026-10-30晚）：用户确认FPGA现为第二长槽、网卡第一长槽，并更正原FPGA一直在第三长槽，旧“第二长槽”口述记录不能作精确物理归因。本轮原e4 ×4下载一次后最终reset0，PLL/GT未初始化，无L0/枚举；完整事件和ILA已保存，见[第二槽测试](slot2-e4-trial-2026-10-30.md)。当前等待用户手动Windows重新启动作新槽启动对照；下表e0等是此前历史状态。
