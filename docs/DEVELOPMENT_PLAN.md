@@ -37,7 +37,7 @@ H and F can progress **independently only once user explicitly resumes**. No exp
 
 ### M0 — baseline reconciliation and reproducible repo (FIRST after RESUME; offline only)
 
-2026-10-30 execution: M0 completed under the user's explicit night-development grant; 72 Python tests and bounded existing HDL regressions passed on frozen source `fb7a0d9`. Fresh simulation, historical artifact/source recovery, and read-only retained-e4 observation are reported separately in [the execution report](m0-night-development-2026-10-30.md). H1 now waits for a user-performed retained-configuration host restart; no automatic reboot or unrelated RTL/GT sweep.
+2026-10-30 execution: M0 completed under the user's explicit night-development grant; 72 Python tests and bounded existing HDL regressions passed on frozen source `fb7a0d9`. Fresh simulation, historical artifact/source recovery, and read-only retained-e4 observation are reported separately in [the execution report](m0-night-development-2026-10-30.md). H1 latest stop is in the dated H1 override below; the previously requested user-performed restart has completed. No automatic reboot or unrelated RTL/GT sweep.
 
 Inputs: actual Windows worktree, latest GitHub refs and Draft PR #1; previous lesson05A/05C/05I proof, IP regeneration Tcl. Deliver:
 1. Reconcile local uncommitted files and remote HEAD; locate every authored source, generated IP dependence, board pin/part, and existing test launcher. No destructive reset/clean. Maintain manifest of SHA, tool versions, constraints, exact historical output directories.
@@ -49,6 +49,8 @@ Inputs: actual Windows worktree, latest GitHub refs and Draft PR #1; previous le
 PASS: clean reproducible source baseline; known tests with exact counts; no secret/vendor leakage; no missing rebuild dependencies or unrecorded assumptions; preserved e4 rollback. HOLD: IP/license or original evidence missing -> report precise blocker, not fake recovery.
 
 ### H1 — causal PCIe electrical/clock/reset investigation (BOARD approval separately required)
+
+2026-10-31 latest: retained-e4 restart in corrected second long slot completed. GT TX/RX/PMA done observed, live Polling.Compliance, no L0/10EE; current PLL lock indicators low. Full512 address readback preserved, but event0 timestamp predates prior session, so whole-prefix temporal provenance HOLD; events1..511 span nominal4.92280064s after PERST high. [Current evidence](slot2-e4-restart-2026-10-31.md). Stop H1_HOLD_POSITIVE_CONTROL_AND_RECORDER_PROVENANCE, not another reboot/reset. No program/reset/arm/ILA/new build. Older wait/third-slot paragraphs below are historical.
 
 2026-10-30 evening: user corrected previous FPGA location to the third long slot and explicitly authorized one trial in the now-confirmed second long slot. Same accepted e4 programmed once after host boot; no GT initialization/L0/enum, full new evidence saved, final reset0. WAIT_FOR_USER_WARM_RESTART_SLOT2 before a retained-firmware startup comparison in this new configuration. [Trial and corrected slot history](slot2-e4-trial-2026-10-30.md). Host recovery changed multiple conditions; no single-slot causal verdict.
 

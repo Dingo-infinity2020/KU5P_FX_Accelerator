@@ -1,0 +1,347 @@
+{
+  "source_commit": "bd0b687e2d745fd714b24008af7265433bf4d774",
+  "branch": "codex/slot2-e4-restart-2026-10-31",
+  "worktree": "D:\\work\\KU5P_FX_Accelerator",
+  "authorization": "User completed optional retained-e4 host restart; preserve and read current JTAG/VIO/events and Windows only; no program/reset/arm/ILA",
+  "original_provenance": {
+    "verification_sha256": "456784e7c5da8d727ac7ee0680b96e7168938517a88a1441fbba652da49d05ec",
+    "program_record_sha256": "f19abcb3d9e39b9c2c08eca97974c04b4355123ec4d51ecf0a7e9b1ae009cbf1",
+    "verified_source_locations": {
+      "tcl/build.tcl": "workspace",
+      "tcl/lesson05i_boot_project.tcl": "workspace",
+      "tcl/lesson05d_project.tcl": "workspace",
+      "tcl/lesson05d_synth_settings.tcl": "workspace",
+      "constr/lesson05i_pcie_boot.xdc": "workspace",
+      "rtl/lesson05i_pcie_boot_top.sv": "workspace",
+      "rtl/pcie_boot_diagnostics.sv": "workspace",
+      "rtl/pcie_training_monitor.sv": "workspace",
+      "rtl/dma_pattern_source.sv": "workspace",
+      "rtl/pcie_test_endpoint.sv": "workspace",
+      "sim/tb_pcie_boot_diagnostics.sv": "workspace",
+      "sim/tb_pcie_training_monitor.sv": "workspace",
+      "sim/tb_pcie_test_endpoint.sv": "workspace",
+      "scripts/pcie_boot_manifest.py": "workspace",
+      "scripts/run_pcie_boot.ps1": "workspace",
+      "scripts/run_pcie_boot_test.ps1": "workspace",
+      "scripts/run_pcie_training_monitor_test.ps1": "workspace",
+      "scripts/run_pcie_application_test.ps1": "workspace",
+      "scripts/generate_pcie_vectors.py": "workspace",
+      "scripts/pcie_pattern.py": "workspace"
+    },
+    "decoder_sha256": "2027c39934189dff19b018534358636a5588fe5b53ed347b2171712921982299",
+    "build_id": "465805e4"
+  },
+  "build_id": "465805e4",
+  "previous_epoch": 1,
+  "current_epoch": 2,
+  "entries": 512,
+  "retained_identity_and_controls": "PASS_OBSERVED_NO_BITSTREAM_READBACK",
+  "event_read_integrity": "PASS_512_INDEXED_WORDS_AND_8_IDENTICAL_REPEATS",
+  "full_new_epoch_temporal_provenance": "HOLD_EVENT0_PREDATES_PREVIOUS_SESSION",
+  "timestamp_issue": {
+    "event0_cycles": 244641140,
+    "previous_epoch1_first_event_cycles": 1314341712,
+    "previous_session_final_cycles": 10516269668,
+    "event1_cycles": 4260663719941,
+    "event0_to_1_cycles": 4260419078801,
+    "explanation": "Event0 predates previous saved epoch1 while words1..511 follow it. Read metadata epoch2 is current RAM read metadata, not epoch stored within each word. Eight repeated words match. Do not infer an overnight PERST hold, full coherent startup or calibrated elapsed time; cause unresolved."
+  },
+  "post_perst_high_prefix": {
+    "first_index": 1,
+    "last_index": 511,
+    "span_cycles": 492280064,
+    "nominal_seconds": 4.92280064,
+    "first_flags": {
+      "physical_perst_n": {
+        "index": 1,
+        "cycles_from_perst_high": 0
+      },
+      "endpoint_reset_n": {
+        "index": 2,
+        "cycles_from_perst_high": 2
+      },
+      "any_cpll_locked": {
+        "index": 4,
+        "cycles_from_perst_high": 48982
+      },
+      "all_txresetdone": {
+        "index": 12,
+        "cycles_from_perst_high": 475059
+      },
+      "all_rxresetdone": {
+        "index": 13,
+        "cycles_from_perst_high": 574315
+      },
+      "training_recent": {
+        "index": 6,
+        "cycles_from_perst_high": 49003
+      },
+      "link_up": null
+    },
+    "first_states": {
+      "Detect.Quiet": {
+        "index": 1,
+        "cycles_from_perst_high": 0
+      },
+      "Detect.Active": {
+        "index": 16,
+        "cycles_from_perst_high": 1847776
+      },
+      "Polling.Active": {
+        "index": 17,
+        "cycles_from_perst_high": 1847889
+      },
+      "Polling.Compliance": {
+        "index": 21,
+        "cycles_from_perst_high": 4789257
+      }
+    }
+  },
+  "record_counts": {
+    "cpll": {
+      "0": 60,
+      "15": 450,
+      "8": 2
+    },
+    "tx": {
+      "0": 12,
+      "15": 500
+    },
+    "rx": {
+      "0": 13,
+      "15": 499
+    },
+    "ltssm": {
+      "Detect.Quiet": 16,
+      "Detect.Active": 1,
+      "Polling.Active": 4,
+      "Polling.Compliance": 491
+    },
+    "reference_window_good": 458
+  },
+  "current": {
+    "samples": 36,
+    "last_sample": {
+      "unix_ms": 1793412476040,
+      "raw_hex": "f00000f00fffff0f",
+      "raw": {
+        "valid": true,
+        "groups": {
+          "powergood": 15,
+          "cplllock": 0,
+          "txresetdone": 15,
+          "rxresetdone": 15,
+          "txpmaresetdone": 15,
+          "rxpmaresetdone": 15,
+          "rxelecidle": 15,
+          "rxvalid": 0,
+          "rxcommadet": 0,
+          "rxcdrlock": 15,
+          "txelecidle": 0,
+          "txinhibit": 0,
+          "cpllreset": 0,
+          "cpllpd": 0
+        },
+        "qpll1lock": false,
+        "qpll1reset": null,
+        "qpll1pd": null,
+        "qpll0lock": false,
+        "phy_rst_idle": true,
+        "phy_rrst_n": true,
+        "phy_prst_n": true
+      },
+      "metadata": {
+        "timestamp_cycles": 4296642554628,
+        "epoch": 2,
+        "entries": 512,
+        "full": true,
+        "read_valid": true,
+        "training_snapshot_valid": true,
+        "training_recent": true,
+        "manual_reset": false,
+        "endpoint_reset_n": true,
+        "dropped_events": 35486
+      },
+      "ref_div8_count": 3840010164,
+      "axi_div8_count": 546082035,
+      "reference_window_delta": 906747,
+      "controls": {
+        "physical_perst_n": true,
+        "manual_reset": false,
+        "endpoint_reset_n": true,
+        "reference_recent": true,
+        "reference_window_good": false,
+        "axi_div8_recent": true,
+        "sys_mmcm_locked": true,
+        "sys_clock_stopped": false,
+        "any_cpll_locked": false,
+        "qpll1_locked": false,
+        "all_txresetdone": true,
+        "all_rxresetdone": true,
+        "phy_rst_idle": true,
+        "phy_rrst_n": true,
+        "phy_prst_n": true,
+        "link_up": false,
+        "axi_reset_n": false,
+        "raw_observers_valid": true,
+        "ltssm_raw": 3,
+        "ltssm_name": "Polling.Compliance",
+        "training_recent": true,
+        "all_gt_powergood": true
+      },
+      "training_sequence": 139,
+      "training_ltssm": 3,
+      "training_ltssm_name": "Polling.Compliance",
+      "training_states_seen_hex": "000000000000000f"
+    },
+    "actual_final_metadata": {
+      "timestamp_cycles": 4302021737312,
+      "epoch": 2,
+      "entries": 512,
+      "full": true,
+      "read_valid": true,
+      "training_snapshot_valid": true,
+      "training_recent": true,
+      "manual_reset": false,
+      "endpoint_reset_n": true,
+      "dropped_events": 40865
+    },
+    "done": 1,
+    "local_reset": 0,
+    "arm": 0,
+    "read_address": "1ff",
+    "training_sequence_changes": {
+      "restart_initial": true,
+      "after_event_read": true,
+      "final": true
+    },
+    "axi_count_changes": {
+      "restart_initial": true,
+      "after_event_read": true,
+      "final": true
+    }
+  },
+  "os": {
+    "boot_time": "2026-10-31T10:02:11.5000000+08:00",
+    "any_10ee_before": 0,
+    "any_10ee_final": 0,
+    "whea_before": 0,
+    "whea_final": 0,
+    "pci_links": [
+      {
+        "name": "Intel(R) UHD Graphics 770",
+        "status": "OK",
+        "link": []
+      },
+      {
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "status": "OK",
+        "link": [
+          {
+            "KeyName": "DEVPKEY_PciDevice_CurrentLinkSpeed",
+            "Data": 4
+          },
+          {
+            "KeyName": "DEVPKEY_PciDevice_CurrentLinkWidth",
+            "Data": 4
+          }
+        ]
+      },
+      {
+        "name": "Mellanox ConnectX-5 Adapter #3",
+        "status": "OK",
+        "link": [
+          {
+            "KeyName": "DEVPKEY_PciDevice_CurrentLinkSpeed",
+            "Data": 3
+          },
+          {
+            "KeyName": "DEVPKEY_PciDevice_CurrentLinkWidth",
+            "Data": 16
+          }
+        ]
+      },
+      {
+        "name": "Mellanox ConnectX-5 Adapter #4",
+        "status": "OK",
+        "link": [
+          {
+            "KeyName": "DEVPKEY_PciDevice_CurrentLinkSpeed",
+            "Data": 3
+          },
+          {
+            "KeyName": "DEVPKEY_PciDevice_CurrentLinkWidth",
+            "Data": 16
+          }
+        ]
+      }
+    ]
+  },
+  "actions": {
+    "program": false,
+    "reset": false,
+    "arm": false,
+    "ila_trigger": false,
+    "address_only_commits": true,
+    "si5338_write": false,
+    "flash_write": false,
+    "driver_install": false,
+    "bios_change": false,
+    "automatic_reboot": false
+  },
+  "acceptance": {
+    "gt_initialization": "OBSERVED_ALL_FOUR_DONE",
+    "qualified_stable_pll": "NOT_VERIFIED_CURRENT_LOCKS_LOW",
+    "physical_reference": "NOT_VERIFIED",
+    "h1": "HOLD",
+    "link": "FAIL_NO_L0",
+    "enumeration": "FAIL_NO_10EE",
+    "bar": "NOT_RUN",
+    "dma": "NOT_RUN",
+    "new_simulation": "NOT_RUN",
+    "new_synthesis_route": "NOT_RUN"
+  },
+  "next": "H1_HOLD_POSITIVE_CONTROL_AND_RECORDER_PROVENANCE; preserve e4, no repeated reboot/reset; source-only timestamp/BRAM audit can be proposed separately; independent proven endpoint/host or instrumented electrical control remains necessary",
+  "hardware_manager_closed": true,
+  "evidence_inputs_sha256": {
+    "after_event_read_decoded.json": "a1d2e665911d60469c4dd730c1b44c431849fa8780ee5539c67f2791d9f6c40c",
+    "consistency_final_state.tcldict": "451e8a0c6d89cffe87c6ab0a2a9398e0dd5e7f09d9d59a004ffe3857719277e6",
+    "events_decoded.json": "ba4911f66c65faa146c372ef719997c7cdbd0c40fb7a9d5c776eb25b60f0edc6",
+    "final_decoded.json": "66b5ea2d7cca4337fea2ad2760b29b4a2abae8fc36edd088fa171dc89aa4042b",
+    "final_state.tcldict": "922e78c28fe0fe9c4a8182d7acc1b505dad468b86c64da773f25dcd7211f118a",
+    "lesson05i_pcie_boot_top.ltx": "4c8d23e196eb2c5de522a88a0b120561929ece30adf43e72f3f2012e62d652df",
+    "provenance.json": "dfc0984a13dbf9aef1f63a19b3c4837394596f2fcaed59de62b4c5252b9b34c4",
+    "read_host.ps1": "597a2e67b66948ed6597ed89c785e34ed62dc25cc10086c787627fdd783d57e9",
+    "restart_initial_decoded.json": "8a39c917adcabd73497296e413551e239090ff8e6e58ea8a3d73bfc96c455a48",
+    "summarize.py": "19e938210e693a972546c5b7f30cde70288c58674bf551ae25cef159c0659f5b",
+    "windows_before.json": "60e4ade052cb1f7df844d8a431ccfab11dc4f41e9ea7e002679bd810c0101f6b",
+    "windows_final.json": "0778016042064e91106a36aaff31f4477c860bde1a1926ff4925d6c43fd1cb33",
+    "hardware/after_event_read.tsv": "391f01f480d75713aa2799aab3a8830edc5e61524ac61d27556d42e817a1fc9c",
+    "hardware/consistency_check_retention.tcldict": "696f1a1cfc8f6983a3018ff8a6e4a0ac694427ebeb6e3f33b0ac6ddf1b361a4e",
+    "hardware/final.tsv": "5764715a3741a475fc4d1026c9639dd0b28324ea81f731e174a6057710b1e279",
+    "hardware/recheck_events_0.tsv": "9aeb0f06fdb6349cd59f726eae39ec677b1f09aadcf6e805b637d2b99ef85c5f",
+    "hardware/restart_events_0.tsv": "22027793ac299ed86d47c0ccc1500c23c2b31ee96b6d06b566794a2eaa8c44e8",
+    "hardware/restart_events_128.tsv": "7f0bb2e73338e4815e2d2d874627a1848effad3153b66ff0bbe272114cfbefdd",
+    "hardware/restart_events_160.tsv": "eee6333477cb6555e97b9375ea369ccb375838cf2dc32030d69f9158f8b18e0d",
+    "hardware/restart_events_192.tsv": "20c6788f8513f2f17f4312b38abf2951d1e5b5a7ca0cca91119b2ebda32de356",
+    "hardware/restart_events_224.tsv": "e6419dbc1d145e227c967a5dd93676d302b61fd26965836bef839ecc0bd9653a",
+    "hardware/restart_events_256.tsv": "da89ced5686a1159085de1dc11b6a14c606fcb909ca6ca20573b024764bb1253",
+    "hardware/restart_events_288.tsv": "e9a4680b88c55fa380c5fb683393c8abf69600938103548caab7ce3adcac80db",
+    "hardware/restart_events_32.tsv": "5fdd2ed51136cb5743da70c634978a7661282ff957491aa90614363149e53326",
+    "hardware/restart_events_320.tsv": "11932916164e0b0d9a8c66dfce702b0bab65af9f066c795310b2431f429a68d1",
+    "hardware/restart_events_352.tsv": "cacd4104e474d55f94e43adcc5d52cc006a07c86024458188028cd7616a188ba",
+    "hardware/restart_events_384.tsv": "6df81de7a9503a0a4ebf30d6fba6299f0e6994ad265f5ded35fe097940f9928a",
+    "hardware/restart_events_416.tsv": "4282e2722fb976585aa03a8551f1c472cc8d1a999b9295f01fca661782078747",
+    "hardware/restart_events_448.tsv": "a4af01843d5e4ef31d603d572becb3fbac0ce99e49743116705b68c46a7f559c",
+    "hardware/restart_events_480.tsv": "2c4f65b5d0811e90b5c28cecf1921ae0f8c3c157831c3c705271600725678e38",
+    "hardware/restart_events_64.tsv": "cfa6a96fcefe22547f5cf449a007029b941b19fd1e0e69d65ba187efcca49d7e",
+    "hardware/restart_events_96.tsv": "2dbdc9cbe70085f0cd2ed6507844d5d2cede3e3c033e003f6c8af340e76e6a00",
+    "hardware/restart_initial.tsv": "c2ce61c9bd8069380cbace9463dda9b9a55d71af84c8f3aed5665f6723abe611",
+    "hardware/restart_initial_retention.tcldict": "b07d4a66a2565bc72c295ed80f3e26b7ec27534fc502d80f41b3e745610a2e56",
+    ".Xil/Vivado-10768-DESKTOP-GBTI6Q4/.lpr": "e902e0ccecec09c2828df5f21d65a7f947cea219d6d529731e49e19fcda9c8a5"
+  },
+  "prior_source_evidence_sha256": {
+    "hardware/final.tsv": "fba5df5bd39267a8007bd89fd1b6ffdeda397c2e6a2d5d976cb6e999cc9b36b2",
+    "hardware/slot2_events_0.tsv": "8dd8fd2ae35432f025a150f6865c972d7fbac46f24897501e4395491c6434610"
+  }
+}
