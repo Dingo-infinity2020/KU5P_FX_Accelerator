@@ -54,7 +54,7 @@ proc lesson05i_attach_observers {out} {
     set h [open [file join $out reports functional_inputs_after.tsv]];set after [read $h];close $h
     if {$before ne $after} {error "Observer attachment altered functional GT/PCIe input drivers"}
 }
-proc lesson05i_audit {directory} {
+proc lesson05i_audit {directory {reset_pin {reset_bridge/endpoint_pipe_reg[1]/Q}}} {
     file mkdir $directory
     set common [get_cells -hier -filter {REF_NAME==GTYE4_COMMON}]
     if {[llength $common]!=1 || [get_property LOC $common] ne "GTYE4_COMMON_X0Y1"} {error "Final common placement is incorrect"}
@@ -113,7 +113,8 @@ proc lesson05i_audit {directory} {
     set refnet [get_nets -of_objects [get_pins reference_input/O]]
     puts $h "$refnet\tROUTE_STATUS\t[get_property ROUTE_STATUS $refnet]"
     puts $h "$refnet\tROUTE\t[get_property ROUTE $refnet]"
-    set reset [get_pins {reset_bridge/endpoint_pipe_reg[1]/Q}]
+    set reset [get_pins $reset_pin]
+    if {[llength $reset]!=1} {error "Missing expected endpoint reset driver"}
     set resetnets [get_nets -segments -of_objects $reset]
     set core_reset [get_nets -segments -of_objects [get_pins dma/sys_rst_n]]
     set joined 0;foreach n $resetnets {if {$n in $core_reset} {set joined 1}}
@@ -125,15 +126,25 @@ proc lesson05i_audit {directory} {
     if {![llength [get_timing_paths -quiet -from [get_pins {diagnostics/raw_meta_reg[0]/Q}] -to [get_pins {diagnostics/raw_sync_reg[0]/D}] -max_paths 1]]} {error "Second synchronizer stage is no longer timed"}
     puts $h "raw_sync_stage2\ttimed\t1";close $h
 }
-proc lesson05i_boot_build {out part} {
+proc lesson05i_boot_build {out part {profile e4}} {
     global repo_dir
     if {$part ne "xcku5p-ffvb676-1-i"} {error "Unverified part"}
+    if {$profile ni {e4 e5}} {error "Invalid diagnostic build profile"}
+    set top [expr {$profile eq "e4" ? "lesson05i_pcie_boot_top" : "lesson05j_pcie_reference_top"}]
+    set reset_pin [expr {$profile eq "e4" ? {reset_bridge/endpoint_pipe_reg[1]/Q} : {reference_reset/core_reset_gate/O}}]
     set out [file normalize $out]
     if {![file exists [file join $out inputs.json]] || ![file exists [file join $out boot_sim simulation_pass.txt]]} {error "Frozen inputs and diagnostic simulation required"}
+    if {$profile eq "e5"} {
+        foreach folder {reference_reset_sim boot_provenance_sim} {
+            if {![file exists [file join $out $folder simulation_pass.txt]]} {error "Missing reference profile simulation: $folder"}
+        }
+    }
     set_param tcl.collectionResultDisplayLimit 0
     source -notrace [file join $repo_dir tcl lesson05d_project.tcl]
-    lesson05d_prepare $out $part 4 1 1
-    foreach name {lesson05i_pcie_boot_top.sv pcie_boot_diagnostics.sv} {add_files -norecurse [file join $repo_dir rtl $name]}
+    lesson05d_prepare $out $part 4 1 1 [expr {$profile eq "e4" ? "true" : "false"}]
+    set rtl [list ${top}.sv pcie_boot_diagnostics.sv]
+    if {$profile eq "e5"} {lappend rtl pcie_reference_reset.sv}
+    foreach name $rtl {add_files -norecurse [file join $repo_dir rtl $name]}
     remove_files [get_files -of_objects [get_filesets constrs_1]]
     add_files -fileset constrs_1 -norecurse [file join $repo_dir constr lesson05i_pcie_boot.xdc]
     set_property -dict {CONFIG.C_NUM_PROBE_IN 8 CONFIG.C_NUM_PROBE_OUT 3
@@ -148,7 +159,7 @@ proc lesson05i_boot_build {out part} {
     set_property -dict {CONFIG.C_NUM_OF_PROBES 3 CONFIG.C_PROBE0_WIDTH 32 CONFIG.C_PROBE1_WIDTH 64 CONFIG.C_PROBE2_WIDTH 64 CONFIG.C_DATA_DEPTH 4096} [get_ips lesson05i_ila]
     generate_target all [get_ips lesson05i_ila]
     set_property GENERATE_SYNTH_CHECKPOINT false [get_files [get_property IP_FILE [get_ips lesson05i_ila]]]
-    set_property top lesson05i_pcie_boot_top [get_filesets sources_1]
+    set_property top $top [get_filesets sources_1]
     update_compile_order -fileset sources_1
     launch_runs synth_1 -jobs 2;wait_on_run synth_1;open_run synth_1
     lesson05i_attach_observers $out
@@ -158,15 +169,23 @@ proc lesson05i_boot_build {out part} {
     set reports [file join $out reports]
     foreach {cmd file} {report_timing_summary timing.rpt check_timing check_timing.rpt report_route_status route.rpt report_drc drc.rpt report_utilization utilization.rpt report_bus_skew bus_skew.rpt report_clocks clocks.rpt} {$cmd -file [file join $reports $file]}
     report_cdc -details -no_waiver -file [file join $reports cdc.rpt]
-    lesson05i_audit $reports
+    if {[llength [get_drc_violations -quiet -filter {SEVERITY==Error}]]} {error "DRC errors prevent bitstream acceptance"}
+    lesson05i_audit $reports $reset_pin
     write_checkpoint -force [file join $out diagnostic_routed_before_acceptance.dcp]
     foreach delay {max min} {if {[llength [get_timing_paths -quiet -delay_type $delay -slack_lesser_than 0 -max_paths 1]]} {error "Timing failed"}}
     set h [open [file join $reports cdc.rpt]];set cdc [read $h];close $h
     if {[regexp -line {^CDC-[0-9]+\s+Critical\s+[1-9]} $cdc]} {error "Unwaived CDC Critical paths: fix before generating bitstream"}
-    write_checkpoint -force [file join $out lesson05i_pcie_boot_top_routed.dcp]
-    write_debug_probes -force [file join $out lesson05i_pcie_boot_top.ltx]
-    write_bitstream -force [file join $out lesson05i_pcie_boot_top.bit]
-    close_project;open_checkpoint [file join $out lesson05i_pcie_boot_top_routed.dcp]
-    lesson05i_audit [file join $out reopened_audit];close_design
+    if {$profile eq "e5"} {
+        set cores [get_cells -hier -filter {REF_NAME==PCIE40E4}]
+        if {[llength $cores]!=1 || ![get_property PL_DISABLE_LANE_REVERSAL $cores] ||
+            ![get_property PF0_LINK_STATUS_SLOT_CLOCK_CONFIG $cores]} {error "Reference candidate primitive contract failed"}
+        source -notrace [file join $repo_dir tcl audit_pcie_lane_mapping.tcl]
+        audit_pcie_lane_mapping [file join $reports lane_data_contract.tsv]
+    }
+    write_checkpoint -force [file join $out ${top}_routed.dcp]
+    write_debug_probes -force [file join $out ${top}.ltx]
+    write_bitstream -force [file join $out ${top}.bit]
+    close_project;open_checkpoint [file join $out ${top}_routed.dcp]
+    lesson05i_audit [file join $out reopened_audit] $reset_pin;close_design
     puts BOOT_DIAGNOSTIC_BUILD_COMPLETE
 }
