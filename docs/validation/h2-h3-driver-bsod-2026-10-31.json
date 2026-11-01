@@ -1,0 +1,135 @@
+{
+  "date": "2026-10-31",
+  "status": "TEST_DRIVER_REJECTED__HOST_RECOVERED__CLEANUP_VERIFIED__OFFICIAL_DRIVER_REQUIRED",
+  "scope": "H2 user BAR read-only and finite H3 C2H/H2C with Xilinx Answer 65444 test-signed driver, then XDMA.sys BSOD; not a formal H2/H3 acceptance",
+  "host": {
+    "motherboard": "ASUS PRIME Z790-P",
+    "bios": "1812",
+    "windows": "Windows 10 22H2 x64",
+    "secure_boot": false
+  },
+  "fpga": {
+    "build": "465805e6",
+    "bit_sha256": "04c4510f11b72304a42c2bfb0db356f6bfa6aa7e74e99a8b22f181a79e62282d",
+    "slot": "PCIEX16(G5), CPU x16, root port A70D",
+    "link_before_crash": "L0, Gen3 x4",
+    "device_before_crash": "10EE:9034",
+    "post_crash": "DONE=1, no e6 VIO -> unknown Flash image; e6 SRAM lost; 10EE absent"
+  },
+  "driver": {
+    "package": "Xilinx Answer 65444 Windows XDMA driver, Win10 x64",
+    "zip_sha256": "487242CB876B16A3866007124B69F70982E6183B5FE0EEEAA865FC08FBE4060A",
+    "sys_sha256": "8E0F9A28F1F3BDFDC63FF06454C2F676DAEFD5F5294638F0146B9A6E44DFCEBC",
+    "cat_sha256": "ECD462CE869664091D4DCD5B06D3EF77303FCFC113B4238C02FB9FECA8BBB68C",
+    "driver_ver": "01/05/2018,17.47.34.943",
+    "kmdf": "1.15",
+    "signer": "CN=WDKTestCert alexande,131577433336737167",
+    "signer_thumbprint": "6F7C791DA2FDDF21693EE850BFE0A92B4C8B4815",
+    "signed_type": "test-signed, not WHQL",
+    "installed_as": "oem58.inf",
+    "device_status_before_crash": "OK, service XDMA running"
+  },
+  "h2": {
+    "status": "FINITE_READ_PASS_WITH_TEST_DRIVER",
+    "user_bar": {
+      "0x00": "0x35445846",
+      "0x04": "0x1",
+      "0x0c": "0x10",
+      "0x10": "0x2",
+      "0x14": "0x1",
+      "0x18": "0x10203040",
+      "0x30": "0x465805d1",
+      "0x34": "0x1000"
+    },
+    "control_bar_0x00": "0x1fc08006",
+    "device_interface_guid": "74c7e4a9-6d5d-4a70-bc0d-20691dff9e9d"
+  },
+  "h3": {
+    "c2h": [
+      {
+        "packets": 2,
+        "bytes": 8192,
+        "signature": "0556ac08",
+        "run_id": 1,
+        "seed": 270544960,
+        "accepted_beats": "0x100",
+        "completed_packets": 2,
+        "pattern_verified": true
+      },
+      {
+        "packets": 16,
+        "bytes": 65536,
+        "signature": "0199dc00",
+        "run_id": 2,
+        "seed": 195936478,
+        "accepted_beats": "0x800",
+        "completed_packets": 16,
+        "pattern_verified": true
+      }
+    ],
+    "h2c": [
+      {
+        "write_bytes": 4096,
+        "beats_delta": 128,
+        "packets": 1,
+        "bytes_cumulative": 4096,
+        "bad_writes": 0
+      },
+      {
+        "write_bytes": 65536,
+        "beats_delta": 2048,
+        "beats_cumulative": "0x880",
+        "packets": 2,
+        "bytes_cumulative": "0x11000",
+        "bad_writes": 0
+      }
+    ],
+    "scope": "finite known-pattern readback / H2C counter verification; not sustained bandwidth; H2C content not looped back"
+  },
+  "bsod": {
+    "bugcheck": "0x00000050 PAGE_FAULT_IN_NONPAGED_AREA",
+    "failing_module": "XDMA.sys",
+    "parameters": [
+      "0xffffe7818a1e3000",
+      "0x0000000000000000",
+      "0xfffff806859d1d40",
+      "0x0000000000000000"
+    ],
+    "wer_event_id": 1001,
+    "wer_time": "2026-10-31T16:23:03+08:00",
+    "memory_dump": "C:\\Windows\\MEMORY.DMP",
+    "memory_dump_bytes": 1901940077
+  },
+  "cleanup": {
+    "pnputil_delete": "oem58.inf /uninstall /force",
+    "testsigning": "off",
+    "cert_removed_from": [
+      "LocalMachine\\Root",
+      "LocalMachine\\TrustedPublisher"
+    ],
+    "xdma_service": "deleted",
+    "post_reboot_boot": "2026-10-31T16:27:25+08:00",
+    "post_reboot_checks": {
+      "testsigning": "No",
+      "xdma_service": "absent",
+      "oem58_driver": "absent",
+      "wdk_test_cert": "absent",
+      "10ee_devices": 0,
+      "new_bsod": false,
+      "new_whea": false
+    }
+  },
+  "not_run": [
+    "official signed XDMA driver",
+    "formal H2 acceptance",
+    "formal H3 sustained DMA",
+    "repeatability after official driver",
+    "e6 reload after crash"
+  ],
+  "prohibition": "Do not reinstall the Xilinx Answer 65444 test-signed driver on this host.",
+  "external_evidence": [
+    "D:/work/build/KU5P_FX_Accelerator/h1_e6_g5_20261031_attempt1",
+    "D:/work/build/KU5P_FX_Accelerator/bsod_20261031",
+    "D:/work/build/KU5P_FX_Accelerator/xdma_answer65444_20261031"
+  ]
+}
