@@ -1,5 +1,7 @@
 # KU5P_FX_Accelerator
 
+**2026-10-31离线开发更新：** e6已通过离线SIM/ROUTED接受，尚未上板。 e5因CDC-10拒绝且无bit；修正版e6仅物理PERST控制PHY，VIO输出0保留，不能套用e4复位流程。配置开关复现98文件无差异、静态lane映射通过；92项Python及新增溯源/复位单元已验证，PCIe实测仍未通过。见[本轮实施记录](docs/lesson05j-pcie-reference-reset.md)。
+
 **最新停止点（2026-10-31）：** 用户完成第二长槽保留e4重启。当前四路GT TX/RX/PMA done高，AXI和训练更新至Polling.Compliance；PLL锁定指示低，仍无L0/10EE枚举。512地址已保存，但首事件时间戳早于昨晚记录，完整启动溯源HOLD。最终e4/DONE1/reset0/arm0/epoch2，Hardware Manager关闭；不要求再次重启或复位。 见[本次复核](docs/slot2-e4-restart-2026-10-31.md)与[当前状态](docs/CURRENT_STATE.md)。上一轮下载及第三槽结果作为历史保留。
 
 **最新审计/下一方案（2026-10-31）：** 上层lane reversal意图与最终硬核属性存在差异，先做离线参数传播/通道映射及官方最小端点对照，补观察溯源验收；当前只完成审计规划，无新板级操作。见[具体实施合同](docs/pcie-audit-and-next-plan-2026-10-31.md)。

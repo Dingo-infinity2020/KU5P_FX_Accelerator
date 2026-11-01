@@ -1,5 +1,11 @@
 # 板卡信息
 
+**2026-10-31 最新安全事件（H2/H3 测试签名驱动）：** Xilinx Answer 65444 **test-signed** XDMA 驱动在 G5/e6 上完成有限 H2/H3（user BAR 身份、C2H pattern、H2C 计数），随后主机 BSOD **`0x00000050` PAGE_FAULT_IN_NONPAGED_AREA，`XDMA.sys`**。已删除 `oem58.inf`、`XDMA` 服务和 `WDKTestCert`，关闭 test signing；重启后验证无新 BSOD/WHEA。**不得重装该测试驱动；正式 H2/H3 未通过，等官方签名驱动。** BSOD 后 e6 SRAM 丢失，JTAG DONE=1 但无 e6 VIO，当前为未知 Flash 镜像、无 10EE；未写 Flash。见 [事件报告](h2-h3-driver-bsod-2026-10-31.md)。
+
+**同日更早的 G5 L0/枚举段（保留）：** 2026-10-31 最新 BOARD（G5 L0 + 枚举）： e6 `465805e6` 在 `PCIEX16(G5)`（CPU x16，root port A70D）经真实 PERST 后达到 **L0**、Gen3 x4，Windows 枚举 `10EE:9034`（问题码 28=未装驱动）；BAR/DMA NOT RUN，重复性 PENDING。GPU 在 `PCIEX16(G4)_2`（7A44）Gen4 x4、NVMe 在 M.2_2（7A48）Gen4 x4；`PCIEX16(G4)_1`（7A40）为历史失败槽，现列为主要嫌疑。主板手册：3 个 G4 x4 槽 + M.2_2/M.2_3，未发现 M.2 lane-sharing。断电后 DONE=1 但无 e4/e6 VIO，说明上电从**未知 Flash 镜像**启动，e6 仅 SRAM；未写 Flash，当前保持供电。ConnectX-5 已取出。见 [e6/G5 报告](e6-g5-link-2026-10-31.md)。
+
+**同日更早的离线段（保留）：** 2026-10-31开发：e6已通过离线SIM/ROUTED接受，尚未上板。 当前静态连接器0..3→GT7..4→硬核PIPE0..3，物理GT倒序不等于逻辑lane倒序。e6的PHY仅受物理PERST控制，VIO输出0保留。最后实测SRAM仍是历史e4记录，本轮未读板；见[版本和验收](lesson05j-pcie-reference-reset.md)。
+
 2026-10-31静态审计勘误：父XDMA选项写lane reversal=true，实际子核/硬核PL_DISABLE_LANE_REVERSAL=TRUE；尚需核对参数适用性和完整映射，不能继续只凭上层选项声称最终硬核已启用。事件RAM实际3个RAMB36E2+1个RAMB18E2。见[审计与下一方案](pcie-audit-and-next-plan-2026-10-31.md)。本轮无新BOARD。
 
 **最新停止点（2026-10-31）：** 用户完成第二长槽保留e4重启。当前四路GT TX/RX/PMA done高，AXI和训练更新至Polling.Compliance；PLL锁定指示低，仍无L0/10EE枚举。512地址已保存，但首事件时间戳早于昨晚记录，完整启动溯源HOLD。最终e4/DONE1/reset0/arm0/epoch2，Hardware Manager关闭；不要求再次重启或复位。 见[当前复核](slot2-e4-restart-2026-10-31.md)。下方2026-10-30停止点均为历史。

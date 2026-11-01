@@ -35,6 +35,8 @@ H and F can progress **independently only once user explicitly resumes**. No exp
 
 ## 4. Work packages and exit criteria
 
+2026-10-31 execution: H1a-CFG offline round authorized and completed through its actual gates. e5 was rejected at CDC-10 before bitstream; e6已通过离线SIM/ROUTED接受，尚未上板。 [Execution/evidence](lesson05j-pcie-reference-reset.md). Parameter true/false produced identical98 HDL/XDC files and connector-to-core mapping is identity, so do not blindly enable dynamic reversal. Capture provenance acceptance/negative cases added, hardware anomaly still OPEN. M0/FX remain reusable history. Next gate is a concrete e6 BOARD scope if its proof is accepted, never old e4 reset sequencing or automatic restart. Later on 2026-10-31 that BOARD scope was executed: e6 in CPU G5 reached L0 and Windows enumerated `10EE:9034`. A test-signed XDMA driver was then used for finite H2/H3 tests, which passed before the host BSOD'd in `XDMA.sys`; that driver is rejected and removed. Formal H2/H3 remain NOT PASS. See the H2/H3 override.
+
 **Current next package after 2026-10-31 audit:** H1a-CFG BUILD_ONLY, detailed [execution contract](pcie-audit-and-next-plan-2026-10-31.md). Reconcile parent lane-reversal intent with child/primitive disable attribute, verify connector-to-core lane0 before narrowing width, add capture provenance fault acceptance, then prepare one official-example-derived candidate. M0 is historical PASS. This user request covers audit/docs only; no implementation started, no new board evidence. Later BOARD requires a concrete single-change candidate/rollback and explicit scope.
 
 ### M0 — baseline reconciliation and reproducible repo (FIRST after RESUME; offline only)
@@ -52,6 +54,8 @@ PASS: clean reproducible source baseline; known tests with exact counts; no secr
 
 ### H1 — causal PCIe electrical/clock/reset investigation (BOARD approval separately required)
 
+2026-10-31 later BOARD override: e6 `465805e6` moved to `PCIEX16(G5)` (CPU x16, root port A70D), JTAG-loaded, and given a real PERST by a warm restart. Measured **L0**, `link_up=1`, GT TX/RX/PMA done, QPLL1 lock, negotiated **Gen3 x4**, and Windows enumerated **`10EE:9034`** (problem 28 = no driver). BAR/driver/DMA **NOT RUN**; repeatability PENDING. The GPU on G4_2 (7A44) Gen4 x4 and NVMe on M.2_2 (7A48) Gen4 x4 are working PCH x4 controls, so the previous second-slot failures are now attributed primarily to **PCIEX16(G4)_1 / root port 7A40**, not to the FPGA, reference clock or e6 reset entry. [Report](e6-g5-link-2026-10-31.md). The older second-slot H1 HOLD paragraphs below are preserved history; they no longer mean the FPGA cannot link. H2 remains blocked on a legal Windows XDMA driver.
+
 2026-10-31 latest: retained-e4 restart in corrected second long slot completed. GT TX/RX/PMA done observed, live Polling.Compliance, no L0/10EE; current PLL lock indicators low. Full512 address readback preserved, but event0 timestamp predates prior session, so whole-prefix temporal provenance HOLD; events1..511 span nominal4.92280064s after PERST high. [Current evidence](slot2-e4-restart-2026-10-31.md). Stop H1_HOLD_POSITIVE_CONTROL_AND_RECORDER_PROVENANCE, not another reboot/reset. No program/reset/arm/ILA/new build. Older wait/third-slot paragraphs below are historical.
 
 2026-10-30 evening: user corrected previous FPGA location to the third long slot and explicitly authorized one trial in the now-confirmed second long slot. Same accepted e4 programmed once after host boot; no GT initialization/L0/enum, full new evidence saved, final reset0. WAIT_FOR_USER_WARM_RESTART_SLOT2 before a retained-firmware startup comparison in this new configuration. [Trial and corrected slot history](slot2-e4-trial-2026-10-30.md). Host recovery changed multiple conditions; no single-slot causal verdict.
@@ -68,6 +72,8 @@ PASS (stable PHY): exact loaded firmware identity, repeated qualified reference 
 
 ### H2 — Windows device enumeration and BAR contract
 
+2026-10-31 later H2/H3 override: with the Xilinx Answer 65444 **test-signed** driver, H2 user BAR identity (`0x35445846`/`0x465805d1`, link up) and finite H3 C2H/H2C passed; then the host BSOD'd (`0x50`, `XDMA.sys`). The driver/service/test cert were removed and test signing disabled; post-reboot checks are clean. **Formal H2/H3 PASS was NOT achieved**; the official signed driver is required. e6 SRAM was lost in the crash; the board is on the unknown Flash image. [Incident report](h2-h3-driver-bsod-2026-10-31.md). Do not reinstall the test driver.
+
 Precondition: H1 L0 proven. Validate actual Gen/width, device and subsystem ID, OS enumeration (target test VID:DID 10EE:9034 when configured so), read-only BAR identity/version, separately writable safe scratch registers, AXI-Lite errors, reset conditions and no unintended MMIO side effects.
 
 Drivers: choose legal vendor-compatible Windows XDMA driver or properly authorized development signing environment. No permanent change to test signing/secure boot as a workaround without separate approval. Compare PCI hardware IDs and driver binding; Python simulated device files are not a hardware pass.
@@ -75,6 +81,8 @@ Drivers: choose legal vendor-compatible Windows XDMA driver or properly authoriz
 PASS: cold/warm enumerations within bounded trials with recorded link speed/width, bidirectional register transaction agreement and negative invalid-register handling. Never call a Windows re-scan a substitute for PCIe physical L0.
 
 ### H3 — deterministic C2H / H2C DMA and host APIs
+
+2026-10-31 test-driver note: finite C2H (8 KB/64 KB pattern verified) and H2C (4 KB/64 KB counters) were observed with the test-signed driver before the `XDMA.sys` BSOD. This is evidence only; formal H3 PASS is NOT achieved and must be redone with the official signed driver.
 
 Precondition: H2 PASS. Test on-chip deterministic packets -> XDMA C2H -> Windows user-space checksum and reverse H2C stress pattern -> FPGA counters. Check TLAST/TKEEP, partial last beat, descriptor size, interrupt vs polling, flow control, corruption, duplicate/overrun and host failure/retry. Record actual sustained MB/s and lost-packet counters, not theoretical link speed. Keep visibility packet format versioned, explicitly separated from raw sample frames.
 
@@ -163,7 +171,9 @@ Large generated files and raw captures stay under D:\work\build\KU5P_FX_Accelera
 
 ## 7. Immediate handoff to future local Codex
 
-**NOW (2026-10-31 audit):** audit/planning complete; hardware/implementation HOLD. M0 was completed on frozen source and must not be restarted merely because this handoff used to say so.
+**LATEST (2026-10-31 BOARD/H2/H3):** e6 in `PCIEX16(G5)` (CPU x16) reached L0 and Windows enumerated `10EE:9034`. A test-signed XDMA driver then produced finite H2/H3 results, followed by a host BSOD (`0x50`, `XDMA.sys`); the driver/service/cert were removed and test signing disabled. Formal H2/H3 are NOT PASS; the official signed driver is required. e6 SRAM was lost; the board is on the unknown Flash image. `PCIEX16(G4)_1`/root port 7A40 remains the primary suspect for the previous second-slot failures. See [the G5 report](e6-g5-link-2026-10-31.md). The audit-era handoff below is preserved history.
+
+**EARLIER (2026-10-31 audit):** audit/planning complete; hardware/implementation HOLD. M0 was completed on frozen source and must not be restarted merely because this handoff used to say so.
 **WHEN USER AUTHORIZES IMPLEMENTATION:** select H1a-CFG BUILD_ONLY from the dated execution contract, preserve e4 and prior captures, reconcile generated config and evidence acceptance before one candidate build. Stop before BOARD unless separately and concretely authorized. FX/F1 and networking stay deferred under the user's board-first priority. If inputs/tools are unavailable, report the precise blocker rather than fabricate results.
 
 Pointers: [Current state](CURRENT_STATE.md), [Interface contracts](INTERFACE_CONTRACTS.md), [Review backlog](REVIEW_BACKLOG.md), [Last e4 hardware proof](lesson05i-pcie-boot-recorder.md).

@@ -69,6 +69,8 @@ Ethernet: a real link, correct RS-FEC/CMAC and optical module pinout, verified M
 
 Clock domains must have explicit owners, reset assertion/release strategy, proper metastability synchronizers, async FIFOs/handshakes for data and cross-domain counters with coherent capture; only first-stage paths get justified exceptions. Report clock/no-clock/IO coverage; no arbitrary CDC waivers. Some older experimental e0/d images had CDC Critical, while final e4 diagnostic reports zero unwaived Critical; do not mix them.
 
+Diagnostic reset profiles are explicitly versioned. e4/465805e4 uses the SYS_CLK release bridge and VIO PHY reset. Experimental e5/465805e5 combined PERST and VIO before the vendor synchronizer and was rejected by unwaived CDC-10; it is not an accepted bitstream. e6/465805e6 is the PERST-only reference candidate: VIO output0 is reserved/init0 and cannot reset PHY, manual-reset metadata is constant0, and control bit2/metadata bit95 show a two-stage release observation rather than the raw core input edge. PERST observation is a separate three-stage tap. No reader may infer compatibility from equal widths or reuse e4 reset/program sequencing for e6. See [the implementation/validation record](lesson05j-pcie-reference-reset.md); profile semantics alone are not BOARD acceptance.
+
 ## H. Failure taxonomy and acceptance
 
 Failures classify as INVALID_SOURCE, FRAME_GAP, DUPLICATE, LATE, CRC_BAD, FIFO_OVERRUN, FFT_PROTOCOL, NUMERIC_CLIP, EPOCH_MISMATCH, CLOCK_RESET_LOSS, PCIe_LINK_LOST, DMA_ABORT. Each must specify a visible flag/counter, unit, frame/window/epoch effect, recovery boundary and regression vector. Unknown signals must be “unknown,” not low.

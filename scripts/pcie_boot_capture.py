@@ -75,7 +75,21 @@ def snapshot(path):
         axi_div8_count_changes=len({s['axi_div8_count'] for s in samples})>1,
         scope='Per-bit synchronized levels, sampled histories and coherent training snapshot; RXVALID/COMMA do not prove TS1/TS2 reception, enumeration or DMA')
 
-def event_files(paths):
+def event_files(paths, *, capture_start_cycles=None, previous_observed_cycles=None,
+                expected_epoch=None, expected_entries=None):
+    """Decode e4 words, separating formatting from temporal provenance.
+
+    Bounds must refer to the same retained configuration's monotonic SYS_CLK
+    counter. Current read metadata cannot supply a per-word capture identity.
+    No missing high timestamp bits or epoch values are inferred or repaired.
+    """
+    for value in (capture_start_cycles,previous_observed_cycles):
+        if value is not None and (type(value) is not int or not 0<=value<1<<64):
+            raise ValueError('Invalid same-configuration timestamp bound')
+    if expected_epoch is not None and (type(expected_epoch) is not int or not 0<=expected_epoch<1<<16):
+        raise ValueError('Invalid expected epoch')
+    if expected_entries is not None and (type(expected_entries) is not int or not 1<=expected_entries<=512):
+        raise ValueError('Invalid expected entry count')
     rows=[];hashes={}
     for path in paths:
         with path.open() as h:rows+=list(csv.DictReader(h,delimiter='\t'))
@@ -84,17 +98,36 @@ def event_files(paths):
     if not rows or [int(r['index']) for r in rows]!=list(range(len(rows))):raise ValueError('Incomplete/overlapping event dump')
     epochs={int(r['epoch']) for r in rows}
     if len(epochs)!=1:raise ValueError('Events cross capture epochs')
+    epoch=next(iter(epochs))
+    if not 0<=epoch<1<<16 or expected_epoch is not None and epoch!=expected_epoch:
+        raise ValueError('Unexpected capture epoch')
+    if expected_entries is not None and len(rows)!=expected_entries:
+        raise ValueError('Incomplete expected capture')
     events=[]
     for r in rows:
         word=hexv(r['event_hex'],256);m=meta(hexv(r['metadata_hex'],128))
-        if m['epoch']!=int(r['epoch']) or not m['read_valid'] or int(r['index'])>=m['entries']:
+        if m['epoch']!=int(r['epoch']) or not m['read_valid'] or not 1<=m['entries']<=512 or int(r['index'])>=m['entries']:
             raise ValueError('Invalid indexed evidence')
+        if expected_entries is not None and m['entries']!=expected_entries:
+            raise ValueError('Capture entry count changed during read')
+        if (word&((1<<64)-1))>m['timestamp_cycles']:
+            raise ValueError('Event timestamp is later than its read observation')
         events.append(dict(index=int(r['index']),timestamp_cycles=word&((1<<64)-1),
             controls=controls((word>>64)&U32),reference_window_delta=(word>>96)&U32,
             raw=raw((word>>128)&((1<<64)-1)),ref_div8_count=(word>>192)&U32,axi_div8_count=word>>224))
     if any(b['timestamp_cycles']<=a['timestamp_cycles'] for a,b in zip(events,events[1:])):raise ValueError('Events are not chronological')
-    return dict(input_sha256=hashes,evidence_valid=True,epoch=next(iter(epochs)),events=events,
-        event_count=len(events),scope='Captured prefix in one epoch; RAM stops on full, dropped events reported separately; no absolute-time or electrical-quality measurement')
+    first=events[0]['timestamp_cycles'];reasons=[]
+    if capture_start_cycles is not None and first!=capture_start_cycles:
+        reasons.append('FIRST_EVENT_DOES_NOT_MATCH_CAPTURE_START')
+    if previous_observed_cycles is not None and first<=previous_observed_cycles:
+        reasons.append('EVENT_PREDATES_PREVIOUS_OBSERVATION')
+    temporal_status=('FAIL' if reasons else 'BOUNDED_TIME_PASS' if capture_start_cycles is not None
+                     else 'LOWER_BOUND_ONLY' if previous_observed_cycles is not None else 'UNKNOWN')
+    return dict(input_sha256=hashes,evidence_valid=True,format_valid=True,epoch=epoch,events=events,
+        event_count=len(events),temporal_provenance=dict(status=temporal_status,reasons=reasons,
+            capture_start_cycles=capture_start_cycles,previous_observed_cycles=previous_observed_cycles,
+            record_epoch_status='UNKNOWN_E4_WORD_HAS_NO_EPOCH'),
+        scope='Indexed words read under one metadata epoch; formatting is not capture identity. E4 words have no stored epoch; RAM stops on full. No absolute-time or electrical-quality measurement')
 
 def trace(path,layout):
     with path.open(newline='',encoding='utf-8-sig') as h:rows=list(csv.DictReader(h))
@@ -129,11 +162,16 @@ def trace(path,layout):
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['snapshot','events','trace'])
     p.add_argument('--build-dir',required=True,type=Path);p.add_argument('--label',required=True)
+    p.add_argument('--capture-start-cycles',type=lambda s:int(s,0))
+    p.add_argument('--previous-observed-cycles',type=lambda s:int(s,0))
+    p.add_argument('--expected-epoch',type=int);p.add_argument('--expected-entries',type=int)
     a=p.parse_args();out=a.build_dir.resolve();root=Path(__file__).resolve().parents[1]
     if out==root or root in out.parents or not re.fullmatch('[A-Za-z0-9_-]+',a.label):p.error('External build and valid label required')
     provenance=verify(out);hw=out/'hardware'
     if a.action=='snapshot':result=snapshot(hw/f'{a.label}.tsv')
-    elif a.action=='events':result=event_files(list(hw.glob(f'{a.label}_events_*.tsv')))
+    elif a.action=='events':result=event_files(list(hw.glob(f'{a.label}_events_*.tsv')),
+        capture_start_cycles=a.capture_start_cycles,previous_observed_cycles=a.previous_observed_cycles,
+        expected_epoch=a.expected_epoch,expected_entries=a.expected_entries)
     else:result=trace(hw/f'{a.label}.csv',hw/f'{a.label}_layout.tsv')
     result.update(provenance,verified_at_utc=datetime.now(timezone.utc).isoformat())
     with (hw/f'{a.label}_{a.action}.json').open('x') as h:json.dump(result,h,indent=2);h.write('\n')

@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-31",
+  "scope": "e6 BOARD in CPU slot; L0 and Windows enumeration only; BAR/DMA NOT RUN",
+  "worktree": "D:/work/KU5P_FX_Accelerator",
+  "branch": "codex/pcie-cfg-development-2026-10-31",
+  "build_id": "465805e6",
+  "source_commit": "460fa77888d6b45fe4b7f3c5441df73adf9f6615",
+  "bit_sha256": "04c4510f11b72304a42c2bfb0db356f6bfa6aa7e74e99a8b22f181a79e62282d",
+  "ltx_sha256": "216e37627f096eb3d8c3ba0add56933921d049a572b4d02732e8997703bc4e33",
+  "dcp_sha256": "b447b6d28bd1b0611abfb4a2dd94fee535c77b731ade69dfe0bb8b4c6229f52b",
+  "host": {
+    "motherboard": "ASUS PRIME Z790-P",
+    "bios": "1812",
+    "windows_boot_utc_offset": "+08:00"
+  },
+  "slot": {
+    "current": "PCIEX16(G5), CPU x16, root port A70D",
+    "previous_failed": "PCIEX16(G4)_1, PCH x4, root port 7A40",
+    "working_pch_controls": [
+      "PCIEX16(G4)_2 GPU Gen4 x4 (root port 7A44)",
+      "M.2_2 NVMe Gen4 x4 (root port 7A48)"
+    ],
+    "pch_lane_sharing": "not found in manual; 3 x4 slots + M.2_2/M.2_3 = 20 PCH lanes"
+  },
+  "board_result": {
+    "ltssm": "L0",
+    "link_up": true,
+    "current_link_width": 4,
+    "current_link_speed_gtps": 8.0,
+    "max_link_width": 4,
+    "max_link_speed_gtps": 8.0,
+    "gt_tx_rx_pma_resetdone": true,
+    "qpll1_lock": true,
+    "device_id": "10EE:9034",
+    "windows_status": "Error",
+    "windows_problem_code": 28,
+    "observation_seconds": 30,
+    "repeatability": "PENDING"
+  },
+  "event_capture": {
+    "epoch": 1,
+    "count": 512,
+    "first_timestamp_cycles": 39937428628,
+    "second_timestamp_cycles": 39967072879,
+    "last_timestamp_cycles": 40243729538,
+    "chronological": true,
+    "first_word_anomaly_reproduced": false,
+    "coverage_note": "events filled in ~306 ms, only Detect.Quiet/Detect.Active; L0 proof from VIO snapshots and Windows"
+  },
+  "image_persistence": {
+    "power_off_boots_unknown_flash_image": true,
+    "e6_is_sram_only": true,
+    "flash_written": false
+  },
+  "not_run": [
+    "XDMA driver",
+    "BAR read/identity",
+    "C2H/H2C DMA",
+    "repeatability after second startup",
+    "G4_1 positive control with known-good card"
+  ],
+  "whea_note": "Corrected AER at 2026-10-31 14:30 and 2026-10-30 22:30 originates from root port 7A44 (GPU slot), not FPGA root port A70D",
+  "external_evidence": "D:/work/build/KU5P_FX_Accelerator/h1_e6_g5_20261031_attempt1",
+  "previous_failed_evidence": "D:/work/build/KU5P_FX_Accelerator/h1_e6_board_20261031_attempt1",
+  "status": "L0_AND_ENUMERATION_PASS__BAR_DMA_DRIVER_NOT_RUN__REPEATABILITY_PENDING"
+}

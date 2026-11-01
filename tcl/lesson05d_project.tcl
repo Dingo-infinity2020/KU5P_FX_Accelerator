@@ -1,9 +1,10 @@
 # Invoked through tcl/build.tcl. Build outputs and generated AMD IP stay external.
-proc lesson05d_prepare {output_dir target_part {lanes 8} {training_debug 0} {phy_debug 0}} {
+proc lesson05d_prepare {output_dir target_part {lanes 8} {training_debug 0} {phy_debug 0} {lane_reversal true}} {
     global repo_dir
     if {$lanes ni {4 8}} {error "Unsupported PCIe width"}
     if {$training_debug && $lanes!=4} {error "Training diagnostic requires x4"}
     if {$phy_debug && !$training_debug} {error "PHY diagnostic requires training monitor"}
+    if {$lane_reversal ni {true false}} {error "Invalid lane reversal intent"}
     set ::l5d_training_debug $training_debug
     set ::l5d_lanes $lanes
     set ::l5d_top [expr {$lanes==4 ? "lesson05d_pcie_x4_top" : "lesson05d_pcie_top"}]
@@ -19,6 +20,11 @@ proc lesson05d_prepare {output_dir target_part {lanes 8} {training_debug 0} {phy
     set xpr [file join $project_dir lesson05d_pcie.xpr]
     if {[file exists $xpr]} {open_project $xpr} else {create_project lesson05d_pcie $project_dir -part $target_part}
     if {[get_property PART [current_project]] ne $target_part} {error "Wrong existing project part"}
+    if {[info exists ::reference_ip_cache] && $::reference_ip_cache ne ""} {
+        if {![file isdirectory $::reference_ip_cache]} {error "Missing explicitly selected IP cache"}
+        config_ip_cache -use_cache_location [file normalize $::reference_ip_cache]
+        set_property IP_CACHE_PERMISSIONS read [current_project]
+    }
     set rtl_names {dma_pattern_source.sv pcie_test_endpoint.sv pcie_clock_monitor.sv lesson05d_pcie_top.sv}
     if {$lanes==4} {lappend rtl_names lesson05d_pcie_x4_top.sv}
     if {$training_debug} {lappend rtl_names pcie_training_monitor.sv lesson05d_pcie_training_top.sv}
@@ -40,7 +46,7 @@ proc lesson05d_prepare {output_dir target_part {lanes 8} {training_debug 0} {phy
         CONFIG.pl_link_cap_max_link_speed 8.0_GT/s CONFIG.axi_data_width 256_bit CONFIG.axisten_freq $frequency \
         CONFIG.xdma_axi_intf_mm AXI_Stream CONFIG.axilite_master_en true \
         CONFIG.axilite_master_scale Kilobytes CONFIG.axilite_master_size 4 CONFIG.ref_clk_freq 100_MHz \
-        CONFIG.en_gt_selection true CONFIG.select_quad GTY_Quad_225 CONFIG.enable_lane_reversal true \
+        CONFIG.en_gt_selection true CONFIG.select_quad GTY_Quad_225 CONFIG.enable_lane_reversal $lane_reversal \
         CONFIG.xdma_rnum_chnl 1 CONFIG.xdma_wnum_chnl 1 CONFIG.en_debug_ports false CONFIG.ext_sys_clk_bufg true]
     lappend dma_config CONFIG.enable_pcie_debug_ports [expr {$training_debug ? "True" : "False"}]
     lappend dma_config CONFIG.en_transceiver_status_ports [expr {$phy_debug ? "true" : "false"}]
