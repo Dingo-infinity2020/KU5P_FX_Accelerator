@@ -24,6 +24,8 @@
 
 ## Review discipline
 
+2026-11-02 offline dump review ([report](xdma-dump-analysis-2026-11-02.md)): R-002 remains P0/HOLD. Matched old SYS/PDB and kernel symbols identify synchronous `xdma_rw.exe` user BAR read offset0x1000/length4 beyond actual BAR size0x1000, faulting at ReadBarToRequest+0xbc. Correct prior asynchronous/idle attribution. Candidate yiyaowen 1aca897 still defines but does not call ValidateBarParams in its BAR read/write paths; no claim of an available fix. Next is separately scoped offline guard/lifecycle work, not reinstallation. No new build or BOARD; Nov1 freeze cause remains OPEN.
+
 2026-10-31 H2/H3 test-driver incident (Xilinx Answer 65444 test-signed, [report](h2-h3-driver-bsod-2026-10-31.md)): H2 user BAR identity and finite H3 C2H/H2C passed with the test-signed driver; then the host BSOD'd (`0x00000050`, `XDMA.sys`). Driver `oem58.inf`, `XDMA` service and WDK test certificate were removed; test signing disabled; post-reboot checks are clean. R-002 remains OPEN/BLOCKED on an official signed driver; H2/H3 are NOT accepted. R-016 security cleanup completed; e6 image lost/unknown Flash. **Do not reinstall the test driver.**
 
 2026-10-31 G5 BOARD (e6 `465805e6`, [report](e6-g5-link-2026-10-31.md)): R-001 root cause narrowed to `PCIEX16(G4)_1` / root port 7A40; the same e6 image in `PCIEX16(G5)` (CPU x16) reached **L0**, Gen3 x4, with Windows enumerating `10EE:9034` (problem 28 = no driver). BAR/DMA **NOT RUN**; repeatability PENDING. R-002 remains BLOCKED on a legal XDMA driver. R-003 e4 first-word anomaly remains OPEN but did **not** reproduce in e6/G5. R-017 remains not the link cause. The G4_1 slot still needs a known-good-card positive control; the G5 L0 result must not be extrapolated to BAR/DMA or repeatability.

@@ -1,5 +1,7 @@
 # H2/H3 有限测试、XDMA.sys 蓝屏与清理（2026-10-31）
 
+> 2026-11-02转储分析更正：匹配SYS/PDB确认崩溃进程为`xdma_rw.exe`，同步ReadFile读取user BAR offset=0x1000、length=4，而该BAR长度仅0x1000；驱动未拒绝越界，在`ReadBarToRequest+0xbc`崩溃。下文“不是命令执行瞬间、异步/空闲路径”是当时推断，现已被转储栈覆盖，不再作为事实。有限DMA结果与原始故障证据不变，禁止重装旧驱动。见[完整分析](xdma-dump-analysis-2026-11-02.md)。
+
 ## 状态
 
 **TEST_DRIVER_REJECTED__HOST_RECOVERED__CLEANUP_VERIFIED__OFFICIAL_DRIVER_REQUIRED**
