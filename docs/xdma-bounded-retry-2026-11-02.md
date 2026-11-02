@@ -1,5 +1,7 @@
 # XDMA 受控重试执行记录：离线护栏与首次重启前
 
+> 后续覆盖：用户重启后e6/L0/枚举通过，但原驱动包安装时在IsConfigBAR初始化探测中再次0x50，未运行本报告的固定用户态BAR/C2H入口。重试已终止，驱动/证书已清理、testsigning已恢复No，等待人工重启验证。见[新事故记录](xdma-retry-install-bsod-2026-11-02.md)；下面WAIT_FOR_USER_RESTART指首次重启前历史，不是继续安装授权。
+
 状态：**OFFLINE_GUARDS_PASS__E6_PROGRAMMED_ONCE__WAIT_FOR_USER_RESTART**。
 
 用户在当前聊天明确授权按照[完整计划](xdma-controlled-retry-plan-2026-11-02.md)执行全部受控流程，并确认FPGA仍在CPU第一长槽、JTAG连接。该新授权覆盖旧“禁止重装”对本轮有界实验的限制，不代表驱动已安全或允许持续运行。用户手动完成重启；本轮不自动重启。

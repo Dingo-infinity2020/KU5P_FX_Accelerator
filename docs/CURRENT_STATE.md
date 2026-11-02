@@ -1,5 +1,7 @@
 # CURRENT_STATE — KU5P FX Accelerator
 
+**2026-11-02 受控复测失败/恢复覆盖段：** 用户重启后e6保留、L0/Gen3x4/10EE:9034已确认；随后同一旧包安装阶段新0x50，在System/PnP准备硬件路径`IsConfigBAR -> XDMA_DeviceOpen+0x15b`读取4KB BAR0+0x2000越界，尚未运行固定BAR/C2H入口。该包不应再安装；用户态护栏不能保护加载初始化。已归档新转储，按实际包oem58.inf成功卸载，核对XDMA服务/包/测试证书均0，BCD已恢复testsigning No。当前 **RETEST_FAILED__CLEANUP_CONFIGURED__WAIT_FOR_USER_RESTART_VERIFY**：用户再重启后仅检查清理，不再继续安装/DMA；蓝屏后FPGA当前镜像UNKNOWN，不重下。详见[新事故与恢复报告](xdma-retry-install-bsod-2026-11-02.md)。下方重启/测试待办均为被本段覆盖的历史。
+
 **2026-11-02 受控旧驱动复测授权与执行覆盖段：** 用户已明确授权完整计划并确认FPGA在第一长槽。独立固定入口护栏8项＋原客户端4项离线回归PASS（非真实DMA）；已保存主机基线、核对原包和e6三文件哈希。e6 SRAM仅加载一次并读回465805e6/DONE1，output0=0/arm0/readaddr0，Hardware Manager关闭。临时BCD testsigning已配置Yes、待人工重启生效；未导入证书、未安装驱动、未运行BAR/C2H。当前 **WAIT_FOR_USER_RESTART_BOUNDED_RETRY**：用户Windows“重新启动”且保持板/JTAG供电，回来先检查e6/L0/枚举再按授权继续；本轮一次加载额度已用，不自动重复。见[执行与恢复记录](xdma-bounded-retry-2026-11-02.md)。旧驱动仍有漏洞，本轮授权仅覆盖有限实验，不覆盖持续运行。若中止需恢复testsigning No并人工重启验证，具体脚本见报告。
 
 **2026-11-02 离线转储分析覆盖段：** 旧10月31日0x50已由匹配SYS/PDB及内核符号定位：`xdma_rw.exe`同步BAR读取offset=0x1000、length=4，实际user BAR长度0x1000；驱动未拒绝越界，在`ReadBarToRequest+0xbc`读映射外地址崩溃。旧“异步/空闲路径”解释被更正；不能解释11月1日已卸载驱动后的冻结。yiyaowen/xdma_driver_win固定提交1aca897的BAR读写路径仍未调用边界validator，不能原样安装当作修复。详见[转储分析及修复设计](xdma-dump-analysis-2026-11-02.md)。本次无驱动修复/编译/安装、无硬件操作，H2/H3仍HOLD；下一离线修复或实板实验WAIT_FOR_AUTH。
