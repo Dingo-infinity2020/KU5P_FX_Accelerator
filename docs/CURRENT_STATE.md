@@ -1,5 +1,7 @@
 # CURRENT_STATE — KU5P FX Accelerator
 
+**2026-11-02 21:24 恢复完成覆盖段：** 用户再次重启（21:22:47.5+08:00），管理员只读核对XDMA包/服务/精确测试证书均0；BCD testsigning No，运行内核CodeIntegrityOptions=0x1（TESTSIGN未启用），Secure Boot=false保持原基线。本次启动至检查WHEA/蓝屏报告/异常关机事件均0。当前 **RETEST_FAILED__HOST_CLEANUP_VERIFIED__WAIT_FOR_NEW_SCOPE**，不再等待重启，不重装原包、不继续BAR/DMA。见[事故报告最终恢复覆盖](xdma-retry-install-bsod-2026-11-02.md)。本次未连接FPGA/Vivado，镜像UNKNOWN；以下pending重启/安装待办均为历史。
+
 **2026-11-02 受控复测失败/恢复覆盖段：** 用户重启后e6保留、L0/Gen3x4/10EE:9034已确认；随后同一旧包安装阶段新0x50，在System/PnP准备硬件路径`IsConfigBAR -> XDMA_DeviceOpen+0x15b`读取4KB BAR0+0x2000越界，尚未运行固定BAR/C2H入口。该包不应再安装；用户态护栏不能保护加载初始化。已归档新转储，按实际包oem58.inf成功卸载，核对XDMA服务/包/测试证书均0，BCD已恢复testsigning No。当前 **RETEST_FAILED__CLEANUP_CONFIGURED__WAIT_FOR_USER_RESTART_VERIFY**：用户再重启后仅检查清理，不再继续安装/DMA；蓝屏后FPGA当前镜像UNKNOWN，不重下。详见[新事故与恢复报告](xdma-retry-install-bsod-2026-11-02.md)。下方重启/测试待办均为被本段覆盖的历史。
 
 **2026-11-02 受控旧驱动复测授权与执行覆盖段：** 用户已明确授权完整计划并确认FPGA在第一长槽。独立固定入口护栏8项＋原客户端4项离线回归PASS（非真实DMA）；已保存主机基线、核对原包和e6三文件哈希。e6 SRAM仅加载一次并读回465805e6/DONE1，output0=0/arm0/readaddr0，Hardware Manager关闭。临时BCD testsigning已配置Yes、待人工重启生效；未导入证书、未安装驱动、未运行BAR/C2H。当前 **WAIT_FOR_USER_RESTART_BOUNDED_RETRY**：用户Windows“重新启动”且保持板/JTAG供电，回来先检查e6/L0/枚举再按授权继续；本轮一次加载额度已用，不自动重复。见[执行与恢复记录](xdma-bounded-retry-2026-11-02.md)。旧驱动仍有漏洞，本轮授权仅覆盖有限实验，不覆盖持续运行。若中止需恢复testsigning No并人工重启验证，具体脚本见报告。

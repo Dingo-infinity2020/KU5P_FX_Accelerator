@@ -1,5 +1,9 @@
 # 旧 XDMA 包受控重试：安装阶段再次蓝屏
 
+> **最终恢复覆盖（21:24检查）：RETEST_FAILED__CLEANUP_VERIFIED_AFTER_USER_RESTART。** 用户已再次重启，Windows启动时间为2026-11-02 21:22:47.5+08:00。管理员只读核对XDMA DriverStore包0、服务0、精确WDK测试证书0；BCD testsigning No。另通过只读NtQuerySystemInformation(SystemCodeIntegrityInformation)查询成功，CodeIntegrityOptions=0x1，运行内核TESTSIGN位未置位。Secure Boot=false与原基线一致，未改变。本次启动至21:24:48检查时WHEA0、WER蓝屏报告0、41/6008异常关机事件0；不等于长期稳定性验收。当前不再等待重启，不安装驱动或操作FPGA，后续只允许新授权的独立工作。下文pending重启状态属于此次重启前历史。
+
+本次恢复检查进入源为`f8a5c9f7588f6e9acaf0afeef74a03620fbaf5dc`，仍为同一工作树/分支，初始干净并fetch确认；本地证据`crash_20261102/post-cleanup-restart.json`、`bcd-after-final-restart.txt`和`runtime-code-integrity.json`。仅新增恢复文档，无驱动/证书/BCD写入、重启、JTAG或Vivado操作，FPGA当前镜像仍未重新核对。此前12项离线测试未重跑，无新BAR/DMA或驱动测试。回退无需新的系统变更，旧原始转储保留；main不修改。
+
 **FAIL / RETEST_ABORTED__PACKAGE_REMOVED__TESTSIGNING_OFF_PENDING_USER_RESTART**。本轮在安装/加载旧驱动时发生新0x50，尚未进入固定BAR/C2H入口。已按授权停止并清理，不再重装该二进制包。现需要用户手动重启后确认恢复。
 
 ## 范围与基线
